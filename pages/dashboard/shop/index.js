@@ -29,6 +29,7 @@ import {
   ShopFilterSidebar,
 } from 'src/minimalComponents/_dashboard/e-commerce/shop';
 import CartWidget from 'src/minimalComponents/_dashboard/e-commerce/CartWidget';
+import DashboardLayout from 'src/layouts/dashboard';
 
 // ----------------------------------------------------------------------
 
@@ -146,15 +147,16 @@ export default function EcommerceShop() {
   };
 
   return (
-    <Page title="Ecommerce: Shop | Minimal-UI">
-      {values && (
-        <Backdrop open={isSubmitting} sx={{ zIndex: 9999 }}>
-          <CircularProgress />
-        </Backdrop>
-      )}
+    <DashboardLayout>
+      <Page title="Ecommerce: Shop | Minimal-UI">
+        {values && (
+          <Backdrop open={isSubmitting} sx={{ zIndex: 9999 }}>
+            <CircularProgress />
+          </Backdrop>
+        )}
 
-      <Container maxWidth={themeStretch ? false : 'lg'}>
-        {/* <HeaderBreadcrumbs
+        <Container maxWidth={themeStretch ? false : 'lg'}>
+          {/* <HeaderBreadcrumbs
           heading="Shop"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
@@ -166,48 +168,49 @@ export default function EcommerceShop() {
           ]}
         /> */}
 
-        {!isDefault && (
-          <Typography gutterBottom>
-            <Typography component="span" variant="subtitle1">
-              {filteredProducts.length}
+          {!isDefault && (
+            <Typography gutterBottom>
+              <Typography component="span" variant="subtitle1">
+                {filteredProducts.length}
+              </Typography>
+              &nbsp;Products found
             </Typography>
-            &nbsp;Products found
-          </Typography>
-        )}
+          )}
 
-        <Stack
-          direction="row"
-          flexWrap="wrap-reverse"
-          alignItems="center"
-          justifyContent="flex-end"
-          sx={{ mb: 5 }}
-        >
-          <ShopTagFiltered
-            filters={filters}
-            formik={formik}
-            isShowReset={openFilter}
-            onResetFilter={handleResetFilter}
-            isDefault={isDefault}
-          />
-
-          <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
-            <ShopFilterSidebar
+          <Stack
+            direction="row"
+            flexWrap="wrap-reverse"
+            alignItems="center"
+            justifyContent="flex-end"
+            sx={{ mb: 5 }}
+          >
+            <ShopTagFiltered
+              filters={filters}
               formik={formik}
-              isOpenFilter={openFilter}
+              isShowReset={openFilter}
               onResetFilter={handleResetFilter}
-              onOpenFilter={handleOpenFilter}
-              onCloseFilter={handleCloseFilter}
+              isDefault={isDefault}
             />
-            <ShopProductSort />
-          </Stack>
-        </Stack>
 
-        <ShopProductList
-          products={filteredProducts}
-          isLoad={!filteredProducts && !initialValues}
-        />
-        <CartWidget />
-      </Container>
-    </Page>
+            <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
+              <ShopFilterSidebar
+                formik={formik}
+                isOpenFilter={openFilter}
+                onResetFilter={handleResetFilter}
+                onOpenFilter={handleOpenFilter}
+                onCloseFilter={handleCloseFilter}
+              />
+              <ShopProductSort />
+            </Stack>
+          </Stack>
+
+          <ShopProductList
+            products={filteredProducts}
+            isLoad={!filteredProducts && !initialValues}
+          />
+          <CartWidget />
+        </Container>
+      </Page>
+    </DashboardLayout>
   );
 }
