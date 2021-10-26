@@ -5,8 +5,8 @@ import '../src/_apis_';
 // import '../src/locales/i18n';
 
 // highlight
-import '../src/utils/highlight';
-
+// import '../src/utils/highlight';
+// read the blog here: https://sunde.dev/blog/Beautify_your_markdown_Nextjs_blog_with_Highlightjs
 // scroll bar
 import 'simplebar/src/simplebar.css';
 
