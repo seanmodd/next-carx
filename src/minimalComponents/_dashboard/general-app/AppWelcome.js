@@ -49,7 +49,7 @@ export default function AppWelcome({ displayName }) {
           there isn't anything
         </Typography>
 
-        <Button variant="contained" to="#" component={RouterLink}>
+        <Button variant="contained" href="#" component={RouterLink}>
           Go Now
         </Button>
       </CardContent>

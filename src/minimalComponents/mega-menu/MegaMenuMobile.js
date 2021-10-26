@@ -110,7 +110,7 @@ function SubMenu({ parent, pathname }) {
                       {subheader}
                     </Typography>
                     {items.map((link) => (
-                      <ListItemButton key={link.title} component={RouterLink} to={link.path} sx={{ px: 1.5 }}>
+                      <ListItemButton key={link.title} component={RouterLink} href={link.path} sx={{ px: 1.5 }}>
                         <ListItemIcon
                           sx={{
                             mr: 0.5,
@@ -139,7 +139,7 @@ function SubMenu({ parent, pathname }) {
     );
   }
 
-  return <ParentItem component={RouterLink} title={title} icon={icon} to={path} />;
+  return <ParentItem component={RouterLink} title={title} icon={icon} href={path} />;
 }
 
 MegaMenuMobile.propTypes = {
@@ -178,7 +178,7 @@ export default function MegaMenuMobile({ navConfig }) {
         PaperProps={{ sx: { pb: 5, width: DRAWER_WIDTH } }}
       >
         <Scrollbar>
-          <Link component={RouterLink} to="/" sx={{ display: 'inline-flex' }}>
+          <Link component={RouterLink} href="/" sx={{ display: 'inline-flex' }}>
             <Logo sx={{ mx: PADDING, my: 3 }} />
           </Link>
           <Typography variant="h6" sx={{ px: 2, mb: 2, display: 'flex', alignItems: 'center' }}>

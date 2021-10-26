@@ -111,7 +111,7 @@ export default function PricingPlanCard({ card, index }) {
       </Stack>
 
       <Button
-        to={PATH_DASHBOARD.root}
+        href={PATH_DASHBOARD.root}
         fullWidth
         size="large"
         variant="contained"

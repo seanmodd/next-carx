@@ -28,7 +28,7 @@ export default function AccountBillingInvoiceHistory({ invoices }) {
               {fDate(invoice.createdAt)}
             </Typography>
             <Typography variant="body2">{fCurrency(invoice.price)}</Typography>
-            <Link component={RouterLink} to="#">
+            <Link component={RouterLink} href="#">
               PDF
             </Link>
           </Stack>

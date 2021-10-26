@@ -22,7 +22,7 @@ function LinkItem({ link }) {
   const { href, name, icon } = link;
   return (
     <Link
-      to={href}
+      href={href}
       key={name}
       variant="body2"
       component={RouterLink}

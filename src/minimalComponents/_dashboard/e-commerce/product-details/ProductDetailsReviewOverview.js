@@ -95,7 +95,7 @@ export default function ProductDetailsReviewOverview({ product, onOpen }) {
       </GridStyle>
 
       <GridStyle item xs={12} md={4}>
-        <ScrollLink to="move_add_review" spy smooth offset={-200}>
+        <ScrollLink href="move_add_review" spy smooth offset={-200}>
           <Button size="large" onClick={onOpen} variant="outlined" startIcon={<Icon icon={edit2Fill} />}>
             Write your review
           </Button>

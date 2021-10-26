@@ -165,7 +165,7 @@ export default function FeaturedProduct({
         <Grid item classes={{ root: classes.exploreContainer }}>
           <Button
             component={Link}
-            to={`/dashboard/${node.category.name.toLowerCase()}/${node.name
+            href={`/dashboard/${node.category.name.toLowerCase()}/${node.name
               .split(" ")[0]
               .toLowerCase()}${
               hasStyles ? `?style=${node.variants[0].style}` : ""

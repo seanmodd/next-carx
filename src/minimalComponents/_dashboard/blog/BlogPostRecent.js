@@ -90,7 +90,7 @@ function PostItem({ post }) {
           </Typography>
 
           <Link
-            to={linkTo}
+            href={linkTo}
             color="inherit"
             variant="subtitle2"
             component={RouterLink}

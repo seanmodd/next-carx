@@ -37,7 +37,7 @@ function ParentItem({ path, title, open, hasSub, ...other }) {
 
   return (
     <Link
-      to={path}
+      href={path}
       component={RouterLink}
       underline="none"
       color="inherit"
@@ -111,7 +111,7 @@ function MegaMenuItem({ parent }) {
                         noWrap
                         key={link.title}
                         component={RouterLink}
-                        to={link.path}
+                        href={link.path}
                         underline="none"
                         sx={{
                           typography: 'body2',
@@ -131,7 +131,7 @@ function MegaMenuItem({ parent }) {
 
             <Stack spacing={3}>
               <Link
-                to={more.path}
+                href={more.path}
                 component={RouterLink}
                 sx={{ typography: 'body2', display: 'inline-flex', fontSize: 13 }}
               >

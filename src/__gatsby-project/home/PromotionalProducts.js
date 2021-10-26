@@ -1,4 +1,4 @@
-//! Check the url to={`/dashboard/${slides[selectedSlide].url}`}
+//! Check the url href={`/dashboard/${slides[selectedSlide].url}`}
 //! Problem: This is where the react spring animations are, they're potentially outdated
 //! Uninstalled "react-spring": "^9.2.4", "react-spring-3d-carousel": "^1.2.1", from package.json
 //! Uninstalled and deleted gatsby plugin called 'react-spring-3d-carousel' from gatsby-node.js
@@ -186,8 +186,8 @@ export default function PromotionalProducts() {
           {slides[selectedSlide].description}
         </Typography>
 
-        {/* <Button component={Link} to={slides[selectedSlide].url}> */}
-        <Button component={Link} to={`/dashboard/${slides[selectedSlide].url}`}>
+        {/* <Button component={Link} href={slides[selectedSlide].url}> */}
+        <Button component={Link} href={`/dashboard/${slides[selectedSlide].url}`}>
           <Typography variant="h4" classes={{ root: classes.explore }}>
             Explore
           </Typography>

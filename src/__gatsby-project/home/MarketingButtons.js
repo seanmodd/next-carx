@@ -85,7 +85,7 @@ export default function MarketingButtons() {
             direction="column"
             classes={{ root: classes.button }}
             component={button.link ? Link : 'a'}
-            to={button.link ? button.link : undefined}
+            href={button.link ? button.link : undefined}
             href={button.href ? button.href : undefined}
           >
             <Grid item>

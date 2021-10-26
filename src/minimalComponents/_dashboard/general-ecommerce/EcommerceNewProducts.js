@@ -73,7 +73,7 @@ function CarouselItem({ item }) {
         <Typography noWrap variant="h5" sx={{ mt: 1, mb: 3 }}>
           {name}
         </Typography>
-        <Button to="#" variant="contained" component={RouterLink}>
+        <Button href="#" variant="contained" component={RouterLink}>
           Buy Now
         </Button>
       </CardContent>

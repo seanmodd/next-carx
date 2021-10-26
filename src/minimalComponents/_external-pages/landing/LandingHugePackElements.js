@@ -116,7 +116,7 @@ export default function LandingHugePackElements() {
                   color="inherit"
                   variant="outlined"
                   component={RouterLink}
-                  to={PATH_PAGE.components}
+                  href={PATH_PAGE.components}
                 >
                   View All Components
                 </Button>

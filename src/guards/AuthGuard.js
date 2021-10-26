@@ -9,7 +9,7 @@ import Login from '../pages/authentication/Login';
 // ----------------------------------------------------------------------
 
 AuthGuard.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default function AuthGuard({ children }) {
@@ -26,7 +26,7 @@ export default function AuthGuard({ children }) {
 
   if (requestedLocation && pathname !== requestedLocation) {
     setRequestedLocation(null);
-    return <Navigate to={requestedLocation} />;
+    return <Navigate href={requestedLocation} />;
   }
 
   return <>{children}</>;

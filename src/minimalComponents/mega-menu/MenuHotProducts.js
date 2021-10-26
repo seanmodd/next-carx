@@ -20,7 +20,7 @@ export default function MenuHotProducts({ tags, ...other }) {
         <Link
           component={RouterLink}
           key={tag.name}
-          to={tag.path}
+          href={tag.path}
           underline="none"
           variant="caption"
           sx={{

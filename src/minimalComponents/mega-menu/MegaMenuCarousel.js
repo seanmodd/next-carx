@@ -55,7 +55,7 @@ export default function MegaMenuCarousel({ products, numberShow, sx }) {
               component={RouterLink}
               color="inherit"
               underline="none"
-              to={product.path}
+              href={product.path}
               sx={{
                 display: 'block',
                 transition: (theme) => theme.transitions.create('all'),

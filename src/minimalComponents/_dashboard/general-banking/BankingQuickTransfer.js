@@ -231,7 +231,7 @@ export default function BankingQuickTransfer() {
             <Typography variant="overline" sx={{ color: 'text.secondary' }}>
               Recent
             </Typography>
-            <Link component={RouterLink} to="#" sx={{ typography: 'button' }}>
+            <Link component={RouterLink} href="#" sx={{ typography: 'button' }}>
               View All
             </Link>
           </Stack>

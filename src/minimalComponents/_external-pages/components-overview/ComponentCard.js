@@ -17,7 +17,7 @@ export default function ComponentCard({ item }) {
   return (
     <Grid item xs={12} sm={6} md={3}>
       <MotionInView variants={varFadeInUp}>
-        <Link component={RouterLink} to={href} underline="none">
+        <Link component={RouterLink} href={href} underline="none">
           <Paper
             sx={{
               p: 1,

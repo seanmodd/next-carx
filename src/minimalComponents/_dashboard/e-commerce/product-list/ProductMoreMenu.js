@@ -47,7 +47,7 @@ export default function ProductMoreMenu({ onDelete, productName }) {
 
         <MenuItem
           component={RouterLink}
-          to={`${PATH_DASHBOARD.eCommerce.root}/product/${paramCase(productName)}/edit`}
+          href={`${PATH_DASHBOARD.eCommerce.root}/product/${paramCase(productName)}/edit`}
           sx={{ color: 'text.secondary' }}
         >
           <ListItemIcon>

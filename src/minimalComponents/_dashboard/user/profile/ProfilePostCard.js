@@ -77,7 +77,7 @@ export default function ProfilePostCard({ post }) {
         disableTypography
         avatar={<MyAvatar />}
         title={
-          <Link to="#" variant="subtitle2" color="text.primary" component={RouterLink}>
+          <Link href="#" variant="subtitle2" color="text.primary" component={RouterLink}>
             {user.displayName}
           </Link>
         }

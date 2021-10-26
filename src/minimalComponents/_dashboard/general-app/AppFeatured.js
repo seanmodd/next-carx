@@ -43,7 +43,7 @@ function CarouselItem({ item, isActive }) {
   const { image, title, description } = item;
 
   return (
-    <RouterLink to="#">
+    <RouterLink href="#">
       <Box sx={{ position: 'relative' }}>
         <Box
           sx={{

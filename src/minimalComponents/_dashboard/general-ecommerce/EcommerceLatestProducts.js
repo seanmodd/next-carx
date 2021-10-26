@@ -69,7 +69,7 @@ function ProductItem({ product }) {
       <Box sx={{ flexGrow: 1, minWidth: 200 }}>
         <Link
           component={RouterLink}
-          to="#"
+          href="#"
           sx={{ color: 'text.primary', typography: 'subtitle2' }}
         >
           {name}

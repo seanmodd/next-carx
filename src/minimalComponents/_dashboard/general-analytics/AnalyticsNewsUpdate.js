@@ -39,7 +39,7 @@ function NewsItem({ news }) {
     <Stack direction="row" alignItems="center" spacing={2}>
       <Box component="img" alt={title} src={image} sx={{ width: 48, height: 48, borderRadius: 1.5 }} />
       <Box sx={{ minWidth: 240 }}>
-        <Link component={RouterLink} to="#" color="inherit">
+        <Link component={RouterLink} href="#" color="inherit">
           <Typography variant="subtitle2" noWrap>
             {title}
           </Typography>
@@ -72,7 +72,7 @@ export default function AnalyticsNewsUpdate() {
 
       <Box sx={{ p: 2, textAlign: 'right' }}>
         <Button
-          to="#"
+          href="#"
           size="small"
           color="inherit"
           component={RouterLink}

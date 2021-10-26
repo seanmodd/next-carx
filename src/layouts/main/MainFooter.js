@@ -65,19 +65,19 @@ export default function MainFooter() {
   return (
     <RootStyle>
       <Divider />
-      <Container maxWidth='lg' sx={{ pt: 10 }}>
+      <Container maxWidth="lg" sx={{ pt: 10 }}>
         <Grid
           container
           justifyContent={{ xs: 'center', md: 'space-between' }}
           sx={{ textAlign: { xs: 'center', md: 'left' } }}
         >
           <Grid item xs={12} sx={{ mb: 3 }}>
-            <ScrollLink to='move_top' spy smooth>
+            <ScrollLink href="move_top" spy smooth>
               <Logo sx={{ mx: { xs: 'auto', md: 'inherit' } }} />
             </ScrollLink>
           </Grid>
           <Grid item xs={8} md={3}>
-            <Typography variant='body2' sx={{ pr: { md: 5 } }}>
+            <Typography variant="body2" sx={{ pr: { md: 5 } }}>
               The starting point for your next project with Minimal UI Kit,
               built on the newest version of Material-UI ©, ready to be
               customized to your style.
@@ -85,12 +85,12 @@ export default function MainFooter() {
 
             <Stack
               spacing={1.5}
-              direction='row'
+              direction="row"
               justifyContent={{ xs: 'center', md: 'flex-start' }}
               sx={{ mt: 5, mb: { xs: 5, md: 0 } }}
             >
               {SOCIALS.map((social) => (
-                <IconButton key={social.name} color='primary' sx={{ p: 1 }}>
+                <IconButton key={social.name} color="primary" sx={{ p: 1 }}>
                   <Icon icon={social.icon} width={16} height={16} />
                 </IconButton>
               ))}
@@ -101,20 +101,20 @@ export default function MainFooter() {
             <Stack
               spacing={5}
               direction={{ xs: 'column', md: 'row' }}
-              justifyContent='space-between'
+              justifyContent="space-between"
             >
               {LINKS.map((list) => {
                 const { headline, children } = list;
                 return (
                   <Stack key={headline} spacing={2}>
-                    <Typography component='p' variant='overline'>
+                    <Typography component="p" variant="overline">
                       {headline}
                     </Typography>
                     {children.map((link) => (
                       <NextLink key={link.name} href={link.href} passHref>
                         <Link
-                          color='inherit'
-                          variant='body2'
+                          color="inherit"
+                          variant="body2"
                           sx={{ display: 'block' }}
                         >
                           {link.name}
@@ -129,8 +129,8 @@ export default function MainFooter() {
         </Grid>
 
         <Typography
-          component='p'
-          variant='body2'
+          component="p"
+          variant="body2"
           sx={{
             mt: 10,
             pb: 5,

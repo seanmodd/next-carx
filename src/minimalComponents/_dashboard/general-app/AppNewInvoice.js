@@ -163,7 +163,7 @@ export default function AppNewInvoice() {
 
       <Box sx={{ p: 2, textAlign: 'right' }}>
         <Button
-          to="#"
+          href="#"
           size="small"
           color="inherit"
           component={RouterLink}

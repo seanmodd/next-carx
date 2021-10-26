@@ -133,7 +133,7 @@ export default function BlogPostsSearch({ sx }) {
           const parts = parse(title, matches);
           return (
             <li {...props}>
-              <Link to={linkTo(title)} component={RouterLink} underline="none">
+              <Link href={linkTo(title)} component={RouterLink} underline="none">
                 {parts.map((part, index) => (
                   <Typography
                     key={index}

@@ -36,15 +36,15 @@ export default function MainLayout({ children }) {
             bgcolor: 'background.default',
           }}
         >
-          <Container maxWidth='lg'>
-            <ScrollLink to='move_top' spy smooth>
+          <Container maxWidth="lg">
+            <ScrollLink href="move_top" spy smooth>
               <Logo sx={{ mb: 1, mx: 'auto', cursor: 'pointer' }} />
             </ScrollLink>
 
-            <Typography variant='caption' component='p'>
+            <Typography variant="caption" component="p">
               © All rights reserved
               <br /> made by &nbsp;
-              <Link href='https://minimals.cc/'>minimals.cc</Link>
+              <Link href="https://minimals.cc/">minimals.cc</Link>
             </Typography>
           </Container>
         </Box>

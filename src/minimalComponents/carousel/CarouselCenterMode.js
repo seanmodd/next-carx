@@ -94,7 +94,7 @@ function CarouselItem({ item }) {
           {title}
         </Typography>
         <Link
-          to="#"
+          href="#"
           color="inherit"
           variant="overline"
           component={RouterLink}

@@ -106,7 +106,7 @@ export default function CallToAction() {
             <Grid item>
               <Button
                 component={Link}
-                to="/dashboard/contact"
+                href="/dashboard/contact"
                 variant="outlined"
                 color="primary"
               >
@@ -118,7 +118,7 @@ export default function CallToAction() {
                 variant="contained"
                 color="primary"
                 component={Link}
-                to="/dashboard/account"
+                href="/dashboard/account"
                 classes={{ root: classes.account }}
               >
                 Create Account

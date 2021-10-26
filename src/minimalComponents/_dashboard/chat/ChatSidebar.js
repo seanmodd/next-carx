@@ -142,7 +142,7 @@ export default function ChatSidebar() {
           {!isCollapse && (
             <MIconButton
               // @ts-ignore
-              to={PATH_DASHBOARD.chat.new}
+              href={PATH_DASHBOARD.chat.new}
               component={RouterLink}
             >
               <Icon icon={editFill} width={20} height={20} />

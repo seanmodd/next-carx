@@ -91,7 +91,7 @@ function FriendCard({ friend }) {
       }}
     >
       <Avatar alt={name} src={avatarUrl} sx={{ width: 64, height: 64, mb: 3 }} />
-      <Link to="#" variant="subtitle1" color="text.primary" component={RouterLink}>
+      <Link href="#" variant="subtitle1" color="text.primary" component={RouterLink}>
         {name}
       </Link>
       <Typography variant="body2" sx={{ color: 'text.secondary' }}>

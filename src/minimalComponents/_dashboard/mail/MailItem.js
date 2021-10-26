@@ -114,7 +114,7 @@ export default function MailItem({ mail, isDense, isSelected, onSelect, onDesele
         color="inherit"
         underline="none"
         component={RouterLink}
-        to={linkTo(params, mail.id)}
+        href={linkTo(params, mail.id)}
         sx={{ display: 'flex', ...(isDense && { py: 1 }) }}
       >
         <MAvatar

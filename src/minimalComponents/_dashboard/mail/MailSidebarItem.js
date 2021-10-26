@@ -54,7 +54,7 @@ export default function MailSidebarItem({ label, ...other }) {
 
   return (
     <ListItemButton
-      to={linkTo(label)}
+      href={linkTo(label)}
       component={RouterLink}
       sx={{
         px: 3,

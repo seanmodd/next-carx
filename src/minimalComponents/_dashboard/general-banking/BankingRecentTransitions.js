@@ -311,7 +311,7 @@ export default function BankingRecentTransitions() {
 
         <Box sx={{ p: 2, textAlign: 'right' }}>
           <Button
-            to="#"
+            href="#"
             size="small"
             color="inherit"
             component={RouterLink}
