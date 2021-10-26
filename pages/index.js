@@ -14,6 +14,7 @@ import {
   LandingCleanInterfaces,
   LandingHugePackElements,
 } from 'src/components/_external-pages/landing';
+import CallToAction from 'src/__gatsby-project/home/CallToAction';
 
 // ----------------------------------------------------------------------
 
@@ -37,14 +38,15 @@ export default function LandingPage() {
         id="move_top"
       >
         <LandingHero />
+        {/* <CallToAction /> */}
         <ContentStyle>
-          <LandingMinimal />
-          <LandingHugePackElements />
-          <LandingDarkMode />
-          <LandingThemeColor />
-          <LandingCleanInterfaces />
-          <LandingPricingPlans />
-          <LandingAdvertisement />
+          {/* <LandingMinimal /> */}
+          {/* <LandingHugePackElements /> */}
+          {/* <LandingDarkMode /> */}
+          {/* <LandingThemeColor /> */}
+          {/* <LandingCleanInterfaces /> */}
+          {/* <LandingPricingPlans /> */}
+          {/* <LandingAdvertisement /> */}
         </ContentStyle>
       </RootStyle>
     </MainLayout>
