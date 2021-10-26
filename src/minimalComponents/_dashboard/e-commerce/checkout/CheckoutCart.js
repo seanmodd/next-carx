@@ -1,6 +1,6 @@
 import { sum } from 'lodash';
 import { Icon } from '@iconify/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'next';
 import { useFormik, Form, FormikProvider } from 'formik';
 import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
 // material
@@ -12,7 +12,7 @@ import {
   onNextStep,
   applyDiscount,
   increaseQuantity,
-  decreaseQuantity
+  decreaseQuantity,
 } from '../../../../redux/slices/product';
 // routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';
@@ -61,7 +61,7 @@ export default function CheckoutCart() {
         console.error(error);
         setErrors(error.message);
       }
-    }
+    },
   });
 
   const { values, handleSubmit } = formik;
@@ -77,7 +77,10 @@ export default function CheckoutCart() {
                 title={
                   <Typography variant="h6">
                     Card
-                    <Typography component="span" sx={{ color: 'text.secondary' }}>
+                    <Typography
+                      component="span"
+                      sx={{ color: 'text.secondary' }}
+                    >
                       &nbsp;({totalItems} item)
                     </Typography>
                   </Typography>
@@ -121,7 +124,13 @@ export default function CheckoutCart() {
               subtotal={subtotal}
               onApplyDiscount={handleApplyDiscount}
             />
-            <Button fullWidth size="large" type="submit" variant="contained" disabled={values.products.length === 0}>
+            <Button
+              fullWidth
+              size="large"
+              type="submit"
+              variant="contained"
+              disabled={values.products.length === 0}
+            >
               Check Out
             </Button>
           </Grid>

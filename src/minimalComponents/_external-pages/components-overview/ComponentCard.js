@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'next';
 // material
 import { Box, Link, Grid, Paper, Typography, CardActionArea } from '@mui/material';
 //

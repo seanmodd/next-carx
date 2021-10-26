@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { format } from 'date-fns';
 import { sentenceCase } from 'change-case';
 import { Icon } from '@iconify/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'next';
 import bookFill from '@iconify/icons-eva/book-fill';
 import heartFill from '@iconify/icons-eva/heart-fill';
 import shareFill from '@iconify/icons-eva/share-fill';

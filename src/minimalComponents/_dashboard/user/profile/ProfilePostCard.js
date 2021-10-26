@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 import { useState, useRef } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'next';
 import roundSend from '@iconify/icons-ic/round-send';
 import heartFill from '@iconify/icons-eva/heart-fill';
 import shareFill from '@iconify/icons-eva/share-fill';

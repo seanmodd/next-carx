@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'next';
 // material
 import { alpha, useTheme, styled } from '@mui/material/styles';
 import { Box, Card, Button, CardContent, Typography } from '@mui/material';
@@ -15,13 +15,13 @@ const NAMES = [
   'Nike Zoom Gravity',
   'Nike DBreak-Type',
   'Kyrie Flytrap 3 EP Basketball Shoe',
-  'Nike Air Max Fusion Men'
+  'Nike Air Max Fusion Men',
 ];
 
 const PRODUCTS = [...Array(5)].map((_, index) => ({
   id: mockData.id(index),
   name: NAMES[index],
-  image: mockData.image.product(index)
+  image: mockData.image.product(index),
 }));
 
 const CarouselImgStyle = styled('img')(({ theme }) => ({
@@ -29,8 +29,8 @@ const CarouselImgStyle = styled('img')(({ theme }) => ({
   height: 280,
   objectFit: 'cover',
   [theme.breakpoints.up('xl')]: {
-    height: 320
-  }
+    height: 320,
+  },
 }));
 
 // ----------------------------------------------------------------------
@@ -38,8 +38,8 @@ const CarouselImgStyle = styled('img')(({ theme }) => ({
 CarouselItem.propTypes = {
   item: PropTypes.shape({
     image: PropTypes.string,
-    name: PropTypes.string
-  })
+    name: PropTypes.string,
+  }),
 };
 
 function CarouselItem({ item }) {
@@ -54,7 +54,7 @@ function CarouselItem({ item }) {
           width: '100%',
           height: '100%',
           position: 'absolute',
-          bgcolor: (theme) => alpha(theme.palette.grey[900], 0.72)
+          bgcolor: (theme) => alpha(theme.palette.grey[900], 0.72),
         }}
       />
       <CardContent
@@ -64,7 +64,7 @@ function CarouselItem({ item }) {
           maxWidth: '80%',
           textAlign: 'left',
           position: 'absolute',
-          color: 'common.white'
+          color: 'common.white',
         }}
       >
         <Typography variant="overline" sx={{ opacity: 0.48 }}>
@@ -92,7 +92,7 @@ export default function EcommerceNewProducts() {
     slidesToShow: 1,
     slidesToScroll: 1,
     rtl: Boolean(theme.direction === 'rtl'),
-    ...CarouselControlsPaging1({ color: 'primary.main' })
+    ...CarouselControlsPaging1({ color: 'primary.main' }),
   };
 
   return (

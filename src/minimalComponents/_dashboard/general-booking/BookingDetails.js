@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { format } from 'date-fns';
 import { sentenceCase } from 'change-case';
 import { Icon } from '@iconify/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'next';
 import shareFill from '@iconify/icons-eva/share-fill';
 import printerFill from '@iconify/icons-eva/printer-fill';
 import downloadFill from '@iconify/icons-eva/download-fill';
@@ -28,7 +28,7 @@ import {
   TableHead,
   CardHeader,
   Typography,
-  TableContainer
+  TableContainer,
 } from '@mui/material';
 // utils
 import mockData from '../../../utils/mock-data';
@@ -47,7 +47,7 @@ const MOCK_BOOKINGS = [...Array(5)].map((_, index) => ({
   checkOut: mockData.time(index),
   phoneNumber: mockData.phoneNumber(index),
   status: (index === 1 && 'pending') || (index === 3 && 'un_paid') || 'paid',
-  roomType: (index === 1 && 'double') || (index === 3 && 'king') || 'single'
+  roomType: (index === 1 && 'double') || (index === 3 && 'king') || 'single',
 }));
 
 // ----------------------------------------------------------------------
@@ -56,7 +56,7 @@ MoreMenuButton.propTypes = {
   onDelete: PropTypes.func,
   onDownload: PropTypes.func,
   onPrint: PropTypes.func,
-  onShare: PropTypes.func
+  onShare: PropTypes.func,
 };
 
 function MoreMenuButton({ onDownload, onPrint, onShare, onDelete }) {
@@ -84,7 +84,7 @@ function MoreMenuButton({ onDownload, onPrint, onShare, onDelete }) {
         anchorEl={menuRef.current}
         onClose={handleClose}
         PaperProps={{
-          sx: { width: 200, maxWidth: '100%' }
+          sx: { width: 200, maxWidth: '100%' },
         }}
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
@@ -156,14 +156,20 @@ export default function BookingDetails() {
                       </Stack>
                     </TableCell>
 
-                    <TableCell>{format(new Date(row.checkIn), 'dd MMM yyyy')}</TableCell>
-                    <TableCell>{format(new Date(row.checkOut), 'dd MMM yyyy')}</TableCell>
+                    <TableCell>
+                      {format(new Date(row.checkIn), 'dd MMM yyyy')}
+                    </TableCell>
+                    <TableCell>
+                      {format(new Date(row.checkOut), 'dd MMM yyyy')}
+                    </TableCell>
 
                     <TableCell>
                       <Label
                         variant={isLight ? 'ghost' : 'filled'}
                         color={
-                          (row.status === 'paid' && 'success') || (row.status === 'pending' && 'warning') || 'error'
+                          (row.status === 'paid' && 'success') ||
+                          (row.status === 'pending' && 'warning') ||
+                          'error'
                         }
                       >
                         {sentenceCase(row.status)}
@@ -171,7 +177,9 @@ export default function BookingDetails() {
                     </TableCell>
 
                     <TableCell>{row.phoneNumber}</TableCell>
-                    <TableCell sx={{ textTransform: 'capitalize' }}>{row.roomType}</TableCell>
+                    <TableCell sx={{ textTransform: 'capitalize' }}>
+                      {row.roomType}
+                    </TableCell>
 
                     <TableCell align="right">
                       <MoreMenuButton

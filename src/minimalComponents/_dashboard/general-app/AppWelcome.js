@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'next';
 // material
 import { styled } from '@mui/material/styles';
 import { Typography, Button, Card, CardContent } from '@mui/material';
@@ -16,14 +16,14 @@ const RootStyle = styled(Card)(({ theme }) => ({
     display: 'flex',
     textAlign: 'left',
     alignItems: 'center',
-    justifyContent: 'space-between'
-  }
+    justifyContent: 'space-between',
+  },
 }));
 
 // ----------------------------------------------------------------------
 
 AppWelcome.propTypes = {
-  displayName: PropTypes.string
+  displayName: PropTypes.string,
 };
 
 export default function AppWelcome({ displayName }) {
@@ -33,7 +33,7 @@ export default function AppWelcome({ displayName }) {
         sx={{
           p: { md: 0 },
           pl: { md: 5 },
-          color: 'grey.800'
+          color: 'grey.800',
         }}
       >
         <Typography gutterBottom variant="h4">
@@ -41,8 +41,12 @@ export default function AppWelcome({ displayName }) {
           <br /> {!displayName ? '...' : displayName}!
         </Typography>
 
-        <Typography variant="body2" sx={{ pb: { xs: 3, xl: 5 }, maxWidth: 480, mx: 'auto' }}>
-          If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
+        <Typography
+          variant="body2"
+          sx={{ pb: { xs: 3, xl: 5 }, maxWidth: 480, mx: 'auto' }}
+        >
+          If you are going to use a passage of Lorem Ipsum, you need to be sure
+          there isn't anything
         </Typography>
 
         <Button variant="contained" to="#" component={RouterLink}>
@@ -54,7 +58,7 @@ export default function AppWelcome({ displayName }) {
         sx={{
           p: 3,
           width: 360,
-          margin: { xs: 'auto', md: 'inherit' }
+          margin: { xs: 'auto', md: 'inherit' },
         }}
       />
     </RootStyle>

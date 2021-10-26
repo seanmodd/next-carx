@@ -1,7 +1,7 @@
 import { filter } from 'lodash';
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'next';
 import searchFill from '@iconify/icons-eva/search-fill';
 import twitterFill from '@iconify/icons-eva/twitter-fill';
 import linkedinFill from '@iconify/icons-eva/linkedin-fill';

@@ -21,7 +21,7 @@ import useSettings from 'src/hooks/useSettings';
 // components
 // import Page from 'src/minimalComponents/Page';
 import Page from 'src/components/Page';
-// import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
+import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
 import {
   ShopTagFiltered,
   ShopProductSort,
@@ -30,6 +30,7 @@ import {
 } from 'src/minimalComponents/_dashboard/e-commerce/shop';
 import CartWidget from 'src/minimalComponents/_dashboard/e-commerce/CartWidget';
 import DashboardLayout from 'src/layouts/dashboard';
+import AuthLayout from 'src/layouts/AuthLayout';
 
 // ----------------------------------------------------------------------
 
@@ -148,6 +149,7 @@ export default function EcommerceShop() {
 
   return (
     <DashboardLayout>
+      {/* <AuthLayout> */}
       <Page title="Ecommerce: Shop | Minimal-UI">
         {values && (
           <Backdrop open={isSubmitting} sx={{ zIndex: 9999 }}>
@@ -156,17 +158,17 @@ export default function EcommerceShop() {
         )}
 
         <Container maxWidth={themeStretch ? false : 'lg'}>
-          {/* <HeaderBreadcrumbs
-          heading="Shop"
-          links={[
-            { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            {
-              name: 'E-Commerce',
-              href: PATH_DASHBOARD.eCommerce.root,
-            },
-            { name: 'Shop' },
-          ]}
-        /> */}
+          <HeaderBreadcrumbs
+            heading="Shop"
+            links={[
+              { name: 'Dashboard', href: PATH_DASHBOARD.root },
+              {
+                name: 'E-Commerce',
+                href: PATH_DASHBOARD.eCommerce.root,
+              },
+              { name: 'Shop' },
+            ]}
+          />
 
           {!isDefault && (
             <Typography gutterBottom>
@@ -211,6 +213,7 @@ export default function EcommerceShop() {
           <CartWidget />
         </Container>
       </Page>
+      {/* </AuthLayout> */}
     </DashboardLayout>
   );
 }

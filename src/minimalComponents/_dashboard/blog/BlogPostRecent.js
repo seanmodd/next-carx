@@ -2,11 +2,19 @@ import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 import { paramCase } from 'change-case';
 import eyeFill from '@iconify/icons-eva/eye-fill';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'next';
 import shareFill from '@iconify/icons-eva/share-fill';
 import messageCircleFill from '@iconify/icons-eva/message-circle-fill';
 // material
-import { Box, Grid, Link, Card, Avatar, Typography, CardContent } from '@mui/material';
+import {
+  Box,
+  Grid,
+  Link,
+  Card,
+  Avatar,
+  Typography,
+  CardContent,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
@@ -23,13 +31,13 @@ const CoverImgStyle = styled('img')({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  position: 'absolute'
+  position: 'absolute',
 });
 
 // ----------------------------------------------------------------------
 
 PostItem.propTypes = {
-  post: PropTypes.object
+  post: PropTypes.object,
 };
 
 function PostItem({ post }) {
@@ -39,7 +47,7 @@ function PostItem({ post }) {
   const POST_INFO = [
     { number: comment, icon: messageCircleFill },
     { number: view, icon: eyeFill },
-    { number: share, icon: shareFill }
+    { number: share, icon: shareFill },
   ];
 
   return (
@@ -54,7 +62,7 @@ function PostItem({ post }) {
               height: 36,
               zIndex: 9,
               bottom: -15,
-              position: 'absolute'
+              position: 'absolute',
             }}
           />
           <Avatar
@@ -66,14 +74,18 @@ function PostItem({ post }) {
               width: 32,
               height: 32,
               bottom: -16,
-              position: 'absolute'
+              position: 'absolute',
             }}
           />
           <CoverImgStyle alt="cover" src={cover} />
         </Box>
 
         <CardContent sx={{ pt: 4.5 }}>
-          <Typography gutterBottom variant="caption" sx={{ color: 'text.disabled', display: 'block' }}>
+          <Typography
+            gutterBottom
+            variant="caption"
+            sx={{ color: 'text.disabled', display: 'block' }}
+          >
             {fDate(createdAt)}
           </Typography>
 
@@ -87,7 +99,7 @@ function PostItem({ post }) {
               overflow: 'hidden',
               WebkitLineClamp: 2,
               display: '-webkit-box',
-              WebkitBoxOrient: 'vertical'
+              WebkitBoxOrient: 'vertical',
             }}
           >
             {title}
@@ -99,7 +111,7 @@ function PostItem({ post }) {
               display: 'flex',
               flexWrap: 'wrap',
               color: 'text.disabled',
-              justifyContent: 'flex-end'
+              justifyContent: 'flex-end',
             }}
           >
             {POST_INFO.map((info, index) => (
@@ -108,11 +120,17 @@ function PostItem({ post }) {
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
-                  ml: index === 0 ? 0 : 1.5
+                  ml: index === 0 ? 0 : 1.5,
                 }}
               >
-                <Box component={Icon} icon={info.icon} sx={{ width: 16, height: 16, mr: 0.5 }} />
-                <Typography variant="caption">{fShortenNumber(info.number)}</Typography>
+                <Box
+                  component={Icon}
+                  icon={info.icon}
+                  sx={{ width: 16, height: 16, mr: 0.5 }}
+                />
+                <Typography variant="caption">
+                  {fShortenNumber(info.number)}
+                </Typography>
               </Box>
             ))}
           </Box>
@@ -123,7 +141,7 @@ function PostItem({ post }) {
 }
 
 BlogPostRecent.propTypes = {
-  posts: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired,
 };
 
 export default function BlogPostRecent({ posts }) {

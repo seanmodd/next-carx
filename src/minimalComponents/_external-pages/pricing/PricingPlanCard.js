@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'next';
 import checkmarkFill from '@iconify/icons-eva/checkmark-fill';
 // material
 import { styled } from '@mui/material/styles';

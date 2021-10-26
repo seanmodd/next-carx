@@ -4,11 +4,18 @@ import { useState } from 'react';
 import { paramCase } from 'change-case';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'next';
 import searchFill from '@iconify/icons-eva/search-fill';
 // material
 import { styled } from '@mui/material/styles';
-import { Box, Link, TextField, Typography, Autocomplete, InputAdornment } from '@mui/material';
+import {
+  Box,
+  Link,
+  TextField,
+  Typography,
+  Autocomplete,
+  InputAdornment,
+} from '@mui/material';
 // utils
 import axios from '../../../utils/axios';
 // routes
@@ -23,38 +30,39 @@ const RootStyle = styled('div')(({ theme }) => ({
     width: 200,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.easeInOut,
-      duration: theme.transitions.duration.shorter
+      duration: theme.transitions.duration.shorter,
     }),
     '&.Mui-focused': {
       width: 240,
       '& .MuiAutocomplete-inputRoot': {
-        boxShadow: theme.customShadows.z12
-      }
-    }
+        boxShadow: theme.customShadows.z12,
+      },
+    },
   },
   '& .MuiAutocomplete-inputRoot': {
     '& fieldset': {
       borderWidth: `1px !important`,
-      borderColor: `${theme.palette.grey[500_32]} !important`
-    }
+      borderColor: `${theme.palette.grey[500_32]} !important`,
+    },
   },
   '& .MuiAutocomplete-option': {
     '&:not(:last-of-type)': {
-      borderBottom: `solid 1px ${theme.palette.divider}`
-    }
-  }
+      borderBottom: `solid 1px ${theme.palette.divider}`,
+    },
+  },
 }));
 
 // ----------------------------------------------------------------------
 
 BlogPostsSearch.propTypes = {
-  sx: PropTypes.object
+  sx: PropTypes.object,
 };
 
 export default function BlogPostsSearch({ sx }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const linkTo = (title) => `${PATH_DASHBOARD.blog.root}/post/${paramCase(title)}`;
+  const linkTo = (title) =>
+    `${PATH_DASHBOARD.blog.root}/post/${paramCase(title)}`;
 
   const handleChangeSearch = async (event) => {
     try {
@@ -62,7 +70,7 @@ export default function BlogPostsSearch({ sx }) {
       setSearchQuery(value);
       if (value) {
         const response = await axios.get('/api/blog/posts/search', {
-          params: { query: value }
+          params: { query: value },
         });
         setSearchResults(response.data.results);
       } else {
@@ -78,10 +86,10 @@ export default function BlogPostsSearch({ sx }) {
       sx={{
         ...(!searchQuery && {
           '& .MuiAutocomplete-noOptions': {
-            display: 'none'
-          }
+            display: 'none',
+          },
         }),
-        ...sx
+        ...sx,
       }}
     >
       <Autocomplete
@@ -109,13 +117,13 @@ export default function BlogPostsSearch({ sx }) {
                         ml: 1,
                         width: 20,
                         height: 20,
-                        color: 'text.disabled'
+                        color: 'text.disabled',
                       }}
                     />
                   </InputAdornment>
                   {params.InputProps.startAdornment}
                 </>
-              )
+              ),
             }}
           />
         )}

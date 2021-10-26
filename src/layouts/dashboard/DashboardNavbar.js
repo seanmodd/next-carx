@@ -19,7 +19,7 @@ const DRAWER_WIDTH = 280;
 const COLLAPSE_WIDTH = 102;
 
 const APPBAR_MOBILE = 64;
-const APPBAR_DESKTOP = 92;
+const APPBAR_DESKTOP = 75;
 
 const RootStyle = styled(AppBar)(({ theme }) => ({
   boxShadow: 'none',
@@ -57,7 +57,7 @@ export default function DashboardNavbar({ onOpenSidebar }) {
       }}
     >
       <ToolbarStyle>
-        <MHidden width='lgUp'>
+        <MHidden width="lgUp">
           <IconButton
             onClick={onOpenSidebar}
             sx={{ mr: 1, color: 'text.primary' }}
@@ -70,8 +70,8 @@ export default function DashboardNavbar({ onOpenSidebar }) {
         <Box sx={{ flexGrow: 1 }} />
 
         <Stack
-          direction='row'
-          alignItems='center'
+          direction="row"
+          alignItems="center"
           spacing={{ xs: 0.5, sm: 1.5 }}
         >
           <LanguagePopover />

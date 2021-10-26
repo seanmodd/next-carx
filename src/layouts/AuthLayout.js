@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'next';
 // material
 import { styled } from '@mui/material/styles';
 import { Typography } from '@mui/material';
 // components
-import Logo from '../minimalComponents/Logo';
+import Logo from 'src/minimalComponents/Logo';
 //
-import { MHidden } from '../minimalComponents/@material-extend';
+import { MHidden } from 'src/minimalComponents/@material-extend';
 
 // ----------------------------------------------------------------------
 
@@ -22,20 +22,20 @@ const HeaderStyle = styled('header')(({ theme }) => ({
   justifyContent: 'space-between',
   [theme.breakpoints.up('md')]: {
     alignItems: 'flex-start',
-    padding: theme.spacing(7, 5, 0, 7)
-  }
+    padding: theme.spacing(7, 5, 0, 7),
+  },
 }));
 
 // ----------------------------------------------------------------------
 
 AuthLayout.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 export default function AuthLayout({ children }) {
   return (
     <HeaderStyle>
-      <RouterLink to="/">
+      <RouterLink href="/">
         <Logo />
       </RouterLink>
 
@@ -43,7 +43,7 @@ export default function AuthLayout({ children }) {
         <Typography
           variant="body2"
           sx={{
-            mt: { md: -2 }
+            mt: { md: -2 },
           }}
         >
           {children}

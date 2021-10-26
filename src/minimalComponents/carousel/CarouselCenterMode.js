@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import Slider from 'react-slick';
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'next';
 import arrowForwardFill from '@iconify/icons-eva/arrow-forward-fill';
 // material
 import { alpha, useTheme, styled } from '@mui/material/styles';
