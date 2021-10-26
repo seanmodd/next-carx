@@ -33,8 +33,8 @@ export default function LandingPage() {
   return (
     <MainLayout>
       <RootStyle
-        title='The starting point for your next project | Minimal-UI'
-        id='move_top'
+        title="The starting point for your next project | Minimal-UI"
+        id="move_top"
       >
         <LandingHero />
         <ContentStyle>
