@@ -1,7 +1,8 @@
 import { useRef } from 'react';
 import Slider from 'react-slick';
 import PropTypes from 'prop-types';
-import { NavLink as RouterLink } from 'react-router-dom';
+// import { NavLink as RouterLink } from 'react-router-dom';
+import Link from 'next/link'
 // material
 import { useTheme } from '@mui/material/styles';
 import { Box, Link, Typography } from '@mui/material';
@@ -52,7 +53,7 @@ export default function MegaMenuCarousel({ products, numberShow, sx }) {
         {products.map((product) => (
           <Box key={product.name} sx={{ px: 1, textAlign: 'center' }}>
             <Link
-              component={RouterLink}
+              component={Link}
               color="inherit"
               underline="none"
               href={product.path}

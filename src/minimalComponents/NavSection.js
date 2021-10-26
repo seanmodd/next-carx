@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
-import {
-  NavLink as RouterLink,
-  matchPath,
-  useLocation,
-} from 'react-router-dom';
+import { matchPath, useLocation } from 'react-router-dom';
+import Link from 'next/link';
 import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
 import arrowIosDownwardFill from '@iconify/icons-eva/arrow-ios-downward-fill';
 // material
@@ -134,7 +131,7 @@ function NavItem({ item, isShow }) {
                 return (
                   <ListItemStyle
                     key={title}
-                    component={RouterLink}
+                    component={Link}
                     href={path}
                     sx={{
                       ...(isActiveSub && activeSubStyle),
@@ -173,7 +170,7 @@ function NavItem({ item, isShow }) {
 
   return (
     <ListItemStyle
-      component={RouterLink}
+      component={Link}
       href={path}
       sx={{
         ...(isActiveRoot && activeRootStyle),

@@ -1,11 +1,21 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
-import { NavLink as RouterLink } from 'react-router-dom';
+// import { NavLink as RouterLink } from 'react-router-dom';
+import Link from 'next/link';
 import chevronRightFill from '@iconify/icons-eva/chevron-right-fill';
 // material
 import { alpha } from '@mui/material/styles';
-import { Box, Link, List, Paper, ListItem, Typography, Divider, Stack } from '@mui/material';
+import {
+  Box,
+  List,
+  Paper,
+  ListItem,
+  Typography,
+  Divider,
+  Stack,
+  Link as MuiLink,
+} from '@mui/material';
 //
 import MenuHotProducts from './MenuHotProducts';
 import MegaMenuCarousel from './MegaMenuCarousel';
@@ -20,7 +30,7 @@ const ITEM_ON_ROW = {
   width: 'calc((100%/3) - 16px)',
   '&:nth-of-type(3n+1)': { order: 1 },
   '&:nth-of-type(3n+2)': { order: 2 },
-  '&:nth-of-type(3n)': { order: 3 }
+  '&:nth-of-type(3n)': { order: 3 },
 };
 
 // ----------------------------------------------------------------------
@@ -29,19 +39,20 @@ ParentItem.propTypes = {
   path: PropTypes.string,
   title: PropTypes.string,
   open: PropTypes.bool,
-  hasSub: PropTypes.bool
+  hasSub: PropTypes.bool,
 };
 
 function ParentItem({ path, title, open, hasSub, ...other }) {
   const activeStyle = {
     color: 'primary.main',
-    bgcolor: (theme) => alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity)
+    bgcolor: (theme) =>
+      alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
   };
 
   return (
     <ListItem
       href={path}
-      component={RouterLink}
+      component={Link}
       sx={{
         pl: 2.5,
         pr: 1.5,
@@ -53,18 +64,24 @@ function ParentItem({ path, title, open, hasSub, ...other }) {
         justifyContent: 'space-between',
         transition: (theme) => theme.transitions.create('all'),
         '&:hover': activeStyle,
-        ...(open && activeStyle)
+        ...(open && activeStyle),
       }}
       {...other}
     >
       {title}
-      {hasSub && <Box component={Icon} icon={chevronRightFill} sx={{ ml: 1, width: 20, height: 20 }} />}
+      {hasSub && (
+        <Box
+          component={Icon}
+          icon={chevronRightFill}
+          sx={{ ml: 1, width: 20, height: 20 }}
+        />
+      )}
     </ListItem>
   );
 }
 
 MegaMenuItem.propTypes = {
-  parent: PropTypes.object
+  parent: PropTypes.object,
 };
 
 function MegaMenuItem({ parent }) {
@@ -82,7 +99,14 @@ function MegaMenuItem({ parent }) {
   if (children) {
     return (
       <>
-        <ParentItem onMouseEnter={handleOpen} onMouseLeave={handleClose} path={path} title={title} open={open} hasSub>
+        <ParentItem
+          onMouseEnter={handleOpen}
+          onMouseLeave={handleClose}
+          path={path}
+          title={title}
+          open={open}
+          hasSub
+        >
           {title}
         </ParentItem>
 
@@ -97,35 +121,48 @@ function MegaMenuItem({ parent }) {
               width: MENU_PAPER_WIDTH,
               borderRadius: 2,
               position: 'absolute',
-              boxShadow: (theme) => theme.customShadows.z20
+              boxShadow: (theme) => theme.customShadows.z20,
             }}
           >
-            <Stack flexWrap="wrap" alignContent="space-between" height={CONTENT_HEIGHT}>
+            <Stack
+              flexWrap="wrap"
+              alignContent="space-between"
+              height={CONTENT_HEIGHT}
+            >
               {children.map((list) => {
                 const { subheader, items } = list;
 
                 return (
-                  <Stack key={subheader} spacing={1.25} sx={{ mb: 2.5, ...ITEM_ON_ROW }}>
-                    <Typography variant="subtitle1" sx={{ fontWeight: 'fontWeightBold' }} noWrap>
+                  <Stack
+                    key={subheader}
+                    spacing={1.25}
+                    sx={{ mb: 2.5, ...ITEM_ON_ROW }}
+                  >
+                    <Typography
+                      variant="subtitle1"
+                      sx={{ fontWeight: 'fontWeightBold' }}
+                      noWrap
+                    >
                       {subheader}
                     </Typography>
                     {items.map((link) => (
-                      <Link
+                      <MuiLink
                         noWrap
                         key={link.title}
-                        component={RouterLink}
+                        component={Link}
                         href={link.path}
                         underline="none"
                         sx={{
                           typography: 'body2',
                           color: 'text.primary',
                           fontSize: 13,
-                          transition: (theme) => theme.transitions.create('all'),
-                          '&:hover': { color: 'primary.main' }
+                          transition: (theme) =>
+                            theme.transitions.create('all'),
+                          '&:hover': { color: 'primary.main' },
                         }}
                       >
                         {link.title}
-                      </Link>
+                      </MuiLink>
                     ))}
                   </Stack>
                 );
@@ -133,16 +170,24 @@ function MegaMenuItem({ parent }) {
             </Stack>
 
             <Stack spacing={3}>
-              <Link
+              <MuiLink
                 href={more.path}
-                component={RouterLink}
-                sx={{ typography: 'body2', display: 'inline-flex', fontSize: 13 }}
+                component={Link}
+                sx={{
+                  typography: 'body2',
+                  display: 'inline-flex',
+                  fontSize: 13,
+                }}
               >
                 {more.title}
-              </Link>
+              </MuiLink>
 
               <Divider />
-              <MegaMenuCarousel products={products} numberShow={6} sx={{ '& .controlsArrows': { mt: 5 } }} />
+              <MegaMenuCarousel
+                products={products}
+                numberShow={6}
+                sx={{ '& .controlsArrows': { mt: 5 } }}
+              />
               <Divider />
 
               <MenuHotProducts tags={tags} />
@@ -161,7 +206,7 @@ function MegaMenuItem({ parent }) {
 }
 
 MegaMenuDesktopVertical.propTypes = {
-  navConfig: PropTypes.array
+  navConfig: PropTypes.array,
 };
 
 export default function MegaMenuDesktopVertical({ navConfig, ...other }) {

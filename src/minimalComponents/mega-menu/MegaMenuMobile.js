@@ -3,7 +3,9 @@ import { Icon } from '@iconify/react';
 import { useState, useEffect } from 'react';
 import listFill from '@iconify/icons-eva/list-fill';
 import menu2Fill from '@iconify/icons-eva/menu-2-fill';
-import { NavLink as RouterLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+// import { NavLink as RouterLink} from 'react-router-dom';
+import Link from 'next/link'
 import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
 import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
 // material
@@ -109,8 +111,8 @@ function SubMenu({ parent, pathname }) {
                     >
                       {subheader}
                     </Typography>
-                    {items.map((link) => (
-                      <ListItemButton key={link.title} component={RouterLink} href={link.path} sx={{ px: 1.5 }}>
+                    {items.map((mylink) => (
+                      <ListItemButton key={mylink.title} component={Link} href={mylink.path} sx={{ px: 1.5 }}>
                         <ListItemIcon
                           sx={{
                             mr: 0.5,
@@ -124,7 +126,7 @@ function SubMenu({ parent, pathname }) {
                           <Box sx={{ width: 4, height: 4, bgcolor: 'currentColor', borderRadius: '50%' }} />
                         </ListItemIcon>
                         <ListItemText
-                          primary={link.title}
+                          primary={mylink.title}
                           primaryTypographyProps={{ typography: 'body2', noWrap: true }}
                         />
                       </ListItemButton>
@@ -139,7 +141,7 @@ function SubMenu({ parent, pathname }) {
     );
   }
 
-  return <ParentItem component={RouterLink} title={title} icon={icon} href={path} />;
+  return <ParentItem component={Link} title={title} icon={icon} href={path} />;
 }
 
 MegaMenuMobile.propTypes = {
@@ -178,7 +180,7 @@ export default function MegaMenuMobile({ navConfig }) {
         PaperProps={{ sx: { pb: 5, width: DRAWER_WIDTH } }}
       >
         <Scrollbar>
-          <Link component={RouterLink} href="/" sx={{ display: 'inline-flex' }}>
+          <Link component={Link} href="/" sx={{ display: 'inline-flex' }}>
             <Logo sx={{ mx: PADDING, my: 3 }} />
           </Link>
           <Typography variant="h6" sx={{ px: 2, mb: 2, display: 'flex', alignItems: 'center' }}>

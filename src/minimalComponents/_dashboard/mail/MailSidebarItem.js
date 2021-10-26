@@ -11,7 +11,8 @@ import roundForum from '@iconify/icons-ic/round-forum';
 import trash2Fill from '@iconify/icons-eva/trash-2-fill';
 import roundReport from '@iconify/icons-ic/round-report';
 import roundLabelImportant from '@iconify/icons-ic/round-label-important';
-import { NavLink as RouterLink } from 'react-router-dom';
+// import { NavLink as RouterLink } from 'react-router-dom';
+import Link from 'next/link'
 // material
 import { Typography, ListItemText, ListItemIcon, ListItemButton } from '@mui/material';
 // routes
@@ -55,7 +56,7 @@ export default function MailSidebarItem({ label, ...other }) {
   return (
     <ListItemButton
       href={linkTo(label)}
-      component={RouterLink}
+      component={Link}
       sx={{
         px: 3,
         height: 48,
