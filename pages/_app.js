@@ -50,7 +50,32 @@ import ProgressBar from 'src/components/ProgressBar';
 import LoadingScreen from 'src/components/LoadingScreen';
 import ThemePrimaryColor from 'src/components/ThemePrimaryColor';
 
-// ----------------------------------------------------------------------
+//! ----------------------------------------------------------------------
+//! all imports below from full javascript version... not sure about relevancy for next.js for some...
+//! ----------------------------------------------------------------------
+
+import { HelmetProvider } from 'react-helmet-async';
+import { Provider as ReduxProvider } from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+// material
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// redux
+import { store, persistor } from 'src/redux/store';
+// contexts
+//* already imported above
+// import { SettingsProvider } from 'src/contexts/SettingsContext';
+//* already imported above
+// import { CollapseDrawerProvider } from 'src/contexts/CollapseDrawerContext';
+// components
+//* already imported above
+// import LoadingScreen from 'src/minimalComponents/LoadingScreen';
+
+import { AuthProvider } from 'src/contexts/JWTContext';
+// import { AuthProvider } from './contexts/FirebaseContext';
+// import { AuthProvider } from './contexts/AwsCognitoContext';
+// import { AuthProvider } from './contexts/Auth0Context';
+//! All imports from full javascript version end here ...
 
 const clientSideEmotionCache = createEmotionCache();
 
