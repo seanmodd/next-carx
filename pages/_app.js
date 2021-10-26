@@ -83,31 +83,41 @@ export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   console.log('props: ', props);
   return (
-    <SettingsProvider>
-      <CollapseDrawerProvider>
-        <CacheProvider value={emotionCache}>
-          <Head>
-            <meta
-              name="viewport"
-              content="initial-scale=1, width=device-width"
-            />
-          </Head>
+    <HelmetProvider>
+      <ReduxProvider store={store}>
+        <PersistGate loading={<LoadingScreen />} persistor={persistor}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <SettingsProvider>
+              <CollapseDrawerProvider>
+                <CacheProvider value={emotionCache}>
+                  <Head>
+                    <meta
+                      name="viewport"
+                      content="initial-scale=1, width=device-width"
+                    />
+                  </Head>
 
-          <ThemeConfig>
-            <ThemePrimaryColor>
-              <RtlLayout>
-                <NoSsr>
-                  <Settings />
-                </NoSsr>
-                <GlobalStyles />
-                <ProgressBar />
-                <LoadingScreen />
-                <Component {...pageProps} />
-              </RtlLayout>
-            </ThemePrimaryColor>
-          </ThemeConfig>
-        </CacheProvider>
-      </CollapseDrawerProvider>
-    </SettingsProvider>
+                  <ThemeConfig>
+                    <ThemePrimaryColor>
+                      <RtlLayout>
+                        <NoSsr>
+                          <Settings />
+                        </NoSsr>
+                        <GlobalStyles />
+                        <ProgressBar />
+                        <LoadingScreen />
+                        <AuthProvider>
+                          <Component {...pageProps} />
+                        </AuthProvider>
+                      </RtlLayout>
+                    </ThemePrimaryColor>
+                  </ThemeConfig>
+                </CacheProvider>
+              </CollapseDrawerProvider>
+            </SettingsProvider>
+          </LocalizationProvider>
+        </PersistGate>
+      </ReduxProvider>
+    </HelmetProvider>
   );
 }
