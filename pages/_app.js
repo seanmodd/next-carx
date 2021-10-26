@@ -51,7 +51,7 @@ import LoadingScreen from 'src/components/LoadingScreen';
 import ThemePrimaryColor from 'src/components/ThemePrimaryColor';
 
 //! ----------------------------------------------------------------------
-//! all imports below from full javascript version... not sure about relevancy for next.js for some...
+//! all imports below are from index.js full javascript version... not sure about relevancy for next.js for some...
 //! ----------------------------------------------------------------------
 
 import { HelmetProvider } from 'react-helmet-async';
@@ -75,6 +75,11 @@ import { AuthProvider } from 'src/contexts/JWTContext';
 // import { AuthProvider } from './contexts/FirebaseContext';
 // import { AuthProvider } from './contexts/AwsCognitoContext';
 // import { AuthProvider } from './contexts/Auth0Context';
+//! below is from App.js within javascript version...
+import GoogleAnalytics from 'src/minimalComponents/GoogleAnalytics';
+import NotistackProvider from 'src/minimalComponents/NotistackProvider';
+import ThemeLocalization from 'src/minimalComponents/ThemeLocalization';
+import { BaseOptionChartStyle } from 'src/minimalComponents/charts/BaseOptionChart';
 //! All imports from full javascript version end here ...
 
 const clientSideEmotionCache = createEmotionCache();
@@ -103,12 +108,16 @@ export default function MyApp(props) {
                         <NoSsr>
                           <Settings />
                         </NoSsr>
-                        <GlobalStyles />
-                        <ProgressBar />
-                        <LoadingScreen />
-                        <AuthProvider>
-                          <Component {...pageProps} />
-                        </AuthProvider>
+                        <NotistackProvider>
+                          <GlobalStyles />
+                          <ProgressBar />
+                          <LoadingScreen />
+                          <BaseOptionChartStyle />
+                          <GoogleAnalytics />
+                          <AuthProvider>
+                            <Component {...pageProps} />
+                          </AuthProvider>
+                        </NotistackProvider>
                       </RtlLayout>
                     </ThemePrimaryColor>
                   </ThemeConfig>
