@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { paramCase } from 'change-case';
-import { Link as RouterLink } from 'react-router-dom';
+// ? replaced already
+import { Link as RouterLink } from 'next/link';
 // material
 import { Box, Card, Link, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -19,13 +20,13 @@ const ProductImgStyle = styled('img')({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  position: 'absolute'
+  position: 'absolute',
 });
 
 // ----------------------------------------------------------------------
 
 ShopProductCard.propTypes = {
-  product: PropTypes.object
+  product: PropTypes.object,
 };
 
 export default function ShopProductCard({ product }) {
@@ -44,7 +45,7 @@ export default function ShopProductCard({ product }) {
               right: 16,
               zIndex: 9,
               position: 'absolute',
-              textTransform: 'uppercase'
+              textTransform: 'uppercase',
             }}
           >
             {status}
@@ -60,7 +61,11 @@ export default function ShopProductCard({ product }) {
           </Typography>
         </Link>
 
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
           <ColorPreview colors={colors} />
           <Typography variant="subtitle1">
             <Typography
@@ -68,7 +73,7 @@ export default function ShopProductCard({ product }) {
               variant="body1"
               sx={{
                 color: 'text.disabled',
-                textDecoration: 'line-through'
+                textDecoration: 'line-through',
               }}
             >
               {priceSale && fCurrency(priceSale)}

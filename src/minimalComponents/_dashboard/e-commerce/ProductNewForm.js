@@ -1,7 +1,8 @@
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { useSnackbar } from 'notistack';
-import { useNavigate } from 'react-router-dom';
+//* replace
+// import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 // material
@@ -23,7 +24,7 @@ import {
   Autocomplete,
   InputAdornment,
   FormHelperText,
-  FormControlLabel
+  FormControlLabel,
 } from '@mui/material';
 // utils
 import fakeRequest from '../../../utils/fakeRequest';
@@ -39,8 +40,14 @@ const GENDER_OPTION = ['Men', 'Women', 'Kids'];
 
 const CATEGORY_OPTION = [
   { group: 'Clothing', classify: ['Shirts', 'T-shirts', 'Jeans', 'Leather'] },
-  { group: 'Tailored', classify: ['Suits', 'Blazers', 'Trousers', 'Waistcoats'] },
-  { group: 'Accessories', classify: ['Shoes', 'Backpacks and bags', 'Bracelets', 'Face masks'] }
+  {
+    group: 'Tailored',
+    classify: ['Suits', 'Blazers', 'Trousers', 'Waistcoats'],
+  },
+  {
+    group: 'Accessories',
+    classify: ['Shoes', 'Backpacks and bags', 'Bracelets', 'Face masks'],
+  },
 ];
 
 const TAGS_OPTION = [
@@ -56,31 +63,31 @@ const TAGS_OPTION = [
   'The Kid',
   'Inglourious Basterds',
   'Snatch',
-  '3 Idiots'
+  '3 Idiots',
 ];
 
 const LabelStyle = styled(Typography)(({ theme }) => ({
   ...theme.typography.subtitle2,
   color: theme.palette.text.secondary,
-  marginBottom: theme.spacing(1)
+  marginBottom: theme.spacing(1),
 }));
 
 // ----------------------------------------------------------------------
 
 ProductNewForm.propTypes = {
   isEdit: PropTypes.bool,
-  currentProduct: PropTypes.object
+  currentProduct: PropTypes.object,
 };
 
 export default function ProductNewForm({ isEdit, currentProduct }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
   const NewProductSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
     description: Yup.string().required('Description is required'),
     images: Yup.array().min(1, 'Images is required'),
-    price: Yup.number().required('Price is required')
+    price: Yup.number().required('Price is required'),
   });
 
   const formik = useFormik({
@@ -97,25 +104,35 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
       inStock: Boolean(currentProduct?.inventoryType !== 'out_of_stock'),
       taxes: true,
       gender: currentProduct?.gender || GENDER_OPTION[2],
-      category: currentProduct?.category || CATEGORY_OPTION[0].classify[1]
+      category: currentProduct?.category || CATEGORY_OPTION[0].classify[1],
     },
     validationSchema: NewProductSchema,
-    onSubmit: async (values, { setSubmitting, resetForm, setErrors }) => {
-      try {
-        await fakeRequest(500);
-        resetForm();
-        setSubmitting(false);
-        enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', { variant: 'success' });
-        navigate(PATH_DASHBOARD.eCommerce.list);
-      } catch (error) {
-        console.error(error);
-        setSubmitting(false);
-        setErrors(error);
-      }
-    }
+    // onSubmit: async (values, { setSubmitting, resetForm, setErrors }) => {
+    //   try {
+    //     await fakeRequest(500);
+    //     resetForm();
+    //     setSubmitting(false);
+    //     enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', {
+    //       variant: 'success',
+    //     });
+    //     navigate(PATH_DASHBOARD.eCommerce.list);
+    //   } catch (error) {
+    //     console.error(error);
+    //     setSubmitting(false);
+    //     setErrors(error);
+    //   }
+    // },
   });
 
-  const { errors, values, touched, handleSubmit, isSubmitting, setFieldValue, getFieldProps } = formik;
+  const {
+    errors,
+    values,
+    touched,
+    handleSubmit,
+    isSubmitting,
+    setFieldValue,
+    getFieldProps,
+  } = formik;
 
   const handleDrop = useCallback(
     (acceptedFiles) => {
@@ -123,7 +140,7 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
         'images',
         acceptedFiles.map((file) =>
           Object.assign(file, {
-            preview: URL.createObjectURL(file)
+            preview: URL.createObjectURL(file),
           })
         )
       );
@@ -197,21 +214,39 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
             <Stack spacing={3}>
               <Card sx={{ p: 3 }}>
                 <FormControlLabel
-                  control={<Switch {...getFieldProps('inStock')} checked={values.inStock} />}
+                  control={
+                    <Switch
+                      {...getFieldProps('inStock')}
+                      checked={values.inStock}
+                    />
+                  }
                   label="In stock"
                   sx={{ mb: 2 }}
                 />
 
                 <Stack spacing={3}>
-                  <TextField fullWidth label="Product Code" {...getFieldProps('code')} />
-                  <TextField fullWidth label="Product SKU" {...getFieldProps('sku')} />
+                  <TextField
+                    fullWidth
+                    label="Product Code"
+                    {...getFieldProps('code')}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Product SKU"
+                    {...getFieldProps('sku')}
+                  />
 
                   <div>
                     <LabelStyle>Gender</LabelStyle>
                     <RadioGroup {...getFieldProps('gender')} row>
                       <Stack spacing={1} direction="row">
                         {GENDER_OPTION.map((gender) => (
-                          <FormControlLabel key={gender} value={gender} control={<Radio />} label={gender} />
+                          <FormControlLabel
+                            key={gender}
+                            value={gender}
+                            control={<Radio />}
+                            label={gender}
+                          />
                         ))}
                       </Stack>
                     </RadioGroup>
@@ -219,7 +254,12 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
 
                   <FormControl fullWidth>
                     <InputLabel>Category</InputLabel>
-                    <Select label="Category" native {...getFieldProps('category')} value={values.category}>
+                    <Select
+                      label="Category"
+                      native
+                      {...getFieldProps('category')}
+                      value={values.category}
+                    >
                       {CATEGORY_OPTION.map((category) => (
                         <optgroup key={category.group} label={category.group}>
                           {category.classify.map((classify) => (
@@ -241,10 +281,17 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
                     options={TAGS_OPTION.map((option) => option)}
                     renderTags={(value, getTagProps) =>
                       value.map((option, index) => (
-                        <Chip {...getTagProps({ index })} key={option} size="small" label={option} />
+                        <Chip
+                          {...getTagProps({ index })}
+                          key={option}
+                          size="small"
+                          label={option}
+                        />
                       ))
                     }
-                    renderInput={(params) => <TextField label="Tags" {...params} />}
+                    renderInput={(params) => (
+                      <TextField label="Tags" {...params} />
+                    )}
                   />
                 </Stack>
               </Card>
@@ -257,8 +304,10 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
                     label="Regular Price"
                     {...getFieldProps('price')}
                     InputProps={{
-                      startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                      type: 'number'
+                      startAdornment: (
+                        <InputAdornment position="start">$</InputAdornment>
+                      ),
+                      type: 'number',
                     }}
                     error={Boolean(touched.price && errors.price)}
                     helperText={touched.price && errors.price}
@@ -270,20 +319,33 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
                     label="Sale Price"
                     {...getFieldProps('priceSale')}
                     InputProps={{
-                      startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                      type: 'number'
+                      startAdornment: (
+                        <InputAdornment position="start">$</InputAdornment>
+                      ),
+                      type: 'number',
                     }}
                   />
                 </Stack>
 
                 <FormControlLabel
-                  control={<Switch {...getFieldProps('taxes')} checked={values.taxes} />}
+                  control={
+                    <Switch
+                      {...getFieldProps('taxes')}
+                      checked={values.taxes}
+                    />
+                  }
                   label="Price includes taxes"
                   sx={{ mt: 2 }}
                 />
               </Card>
 
-              <LoadingButton type="submit" fullWidth variant="contained" size="large" loading={isSubmitting}>
+              <LoadingButton
+                type="submit"
+                fullWidth
+                variant="contained"
+                size="large"
+                loading={isSubmitting}
+              >
                 {!isEdit ? 'Create Product' : 'Save Changes'}
               </LoadingButton>
             </Stack>

@@ -1,6 +1,7 @@
 import { sum } from 'lodash';
 import { Icon } from '@iconify/react';
-import { Link as RouterLink } from 'react-router-dom';
+// ? replaced already
+import Link from 'next/link';
 import shoppingCartFill from '@iconify/icons-eva/shopping-cart-fill';
 // material
 import { styled } from '@mui/material/styles';
@@ -12,7 +13,7 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 
 // ----------------------------------------------------------------------
 
-const RootStyle = styled(RouterLink)(({ theme }) => ({
+const RootStyle = styled(Link)(({ theme }) => ({
   zIndex: 999,
   right: 0,
   display: 'flex',
@@ -30,7 +31,7 @@ const RootStyle = styled(RouterLink)(({ theme }) => ({
   borderTopLeftRadius: theme.shape.borderRadiusMd,
   borderBottomLeftRadius: theme.shape.borderRadiusMd,
   transition: theme.transitions.create('opacity'),
-  '&:hover': { opacity: 0.72 }
+  '&:hover': { opacity: 0.72 },
 }));
 
 // ----------------------------------------------------------------------
@@ -40,7 +41,7 @@ export default function CartWidget() {
   const totalItems = sum(checkout.cart.map((item) => item.quantity));
 
   return (
-    <RootStyle to={PATH_DASHBOARD.eCommerce.checkout}>
+    <RootStyle href={PATH_DASHBOARD.eCommerce.checkout}>
       <Badge showZero badgeContent={totalItems} color="error" max={99}>
         <Icon icon={shoppingCartFill} width={24} height={24} />
       </Badge>
