@@ -46,7 +46,11 @@ export default async (req, res) => {
         }
       `,
     });
-    console.log('data.variants : ', data.variants);
+    console.log(
+      '🚀 ~ file: searchvariants.js ~ line 49 ~ data.variants',
+      data.variants
+    );
+
     res.status(200).json({ characters: data.variants, error: null });
   } catch (error) {
     console.log('error: ', error);

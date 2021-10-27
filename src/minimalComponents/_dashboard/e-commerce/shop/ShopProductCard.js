@@ -29,9 +29,19 @@ ShopProductCard.propTypes = {
   product: PropTypes.object,
 };
 
-export default function ShopProductCard({ product }) {
-  const { name, cover, price, colors, status, priceSale } = product;
-  const linkTo = `${PATH_DASHBOARD.eCommerce.root}/product/${paramCase(name)}`;
+export default function ShopProductCard(props) {
+  console.log(
+    '🚀 ~ file: ShopProductCard.js ~ line 33 ~ ShopProductCard ~ props',
+    props
+  );
+  console.log(
+    '🚀 ~ file: ShopProductCard.js ~ line 33 ~ ShopProductCard ~ props.product',
+    props.product
+  );
+  // const { name, cover, price, colors, status, priceSale } = product;
+  const { name, price, status, id, cover } = props.product;
+  // const linkTo = `${PATH_DASHBOARD.eCommerce.root}/product/${paramCase(name)}`;
+  const linkTo = `/dashboard/cars/${id}`;
 
   return (
     <Card>
@@ -53,20 +63,19 @@ export default function ShopProductCard({ product }) {
         )}
         <ProductImgStyle alt={name} src={cover} />
       </Box>
-
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link href={linkTo} color="inherit" component={RouterLink}>
+        <Link to={linkTo} color="inherit" component={RouterLink}>
           <Typography variant="subtitle2" noWrap>
+            {/* {product.carName} */}
             {name}
           </Typography>
         </Link>
-
         <Stack
           direction="row"
           alignItems="center"
           justifyContent="space-between"
         >
-          <ColorPreview colors={colors} />
+          {/* <ColorPreview colors={colors} /> */}
           <Typography variant="subtitle1">
             <Typography
               component="span"
@@ -76,7 +85,8 @@ export default function ShopProductCard({ product }) {
                 textDecoration: 'line-through',
               }}
             >
-              {priceSale && fCurrency(priceSale)}
+              {/* {priceSale && fCurrency(priceSale)} */}
+              {price && fCurrency(price)}
             </Typography>
             &nbsp;
             {fCurrency(price)}
@@ -86,3 +96,52 @@ export default function ShopProductCard({ product }) {
     </Card>
   );
 }
+// <Card>
+// HERE
+// <Box sx={{ pt: '100%', position: 'relative' }}>
+//   {status && (
+//     <Label
+//       variant="filled"
+//       color={(status === 'sale' && 'error') || 'info'}
+//       sx={{
+//         top: 16,
+//         right: 16,
+//         zIndex: 9,
+//         position: 'absolute',
+//         textTransform: 'uppercase',
+//       }}
+//     >
+//       {status}
+//     </Label>
+//   )}
+//   <ProductImgStyle alt={name} src={cover} />
+// </Box>
+// <Stack spacing={2} sx={{ p: 3 }}>
+//   <Link to={linkTo} color="inherit" component={RouterLink}>
+//     <Typography variant="subtitle2" noWrap>
+//       {name}
+//     </Typography>
+//   </Link>
+//   <Stack
+//     direction="row"
+//     alignItems="center"
+//     justifyContent="space-between"
+//   >
+//     <ColorPreview colors={colors} />
+//     <Typography variant="subtitle1">
+//       <Typography
+//         component="span"
+//         variant="body1"
+//         sx={{
+//           color: 'text.disabled',
+//           textDecoration: 'line-through',
+//         }}
+//       >
+//         {priceSale && fCurrency(priceSale)}
+//       </Typography>
+//       &nbsp;
+//       {fCurrency(price)}
+//     </Typography>
+//   </Stack>
+// </Stack>
+// </Card>
