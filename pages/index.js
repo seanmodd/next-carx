@@ -1,54 +1,29 @@
-// layouts
-import MainLayout from 'src/layouts/main';
-// material
-import { styled } from '@mui/material/styles';
-// components
-import Page from 'src/components/Page';
-import {
-  LandingHero,
-  LandingMinimal,
-  LandingDarkMode,
-  LandingThemeColor,
-  LandingPricingPlans,
-  LandingAdvertisement,
-  LandingCleanInterfaces,
-  LandingHugePackElements,
-} from 'src/components/_external-pages/landing';
-import CallToAction from 'src/__gatsby-project/home/CallToAction';
+import Link from 'next/link';
 
-// ----------------------------------------------------------------------
+import React, { useState, useEffect } from 'react';
 
-const RootStyle = styled(Page)({
-  height: '100%',
-});
+import Layout from 'src/__gatsby/ui/layout';
 
-const ContentStyle = styled('div')(({ theme }) => ({
-  overflow: 'hidden',
-  position: 'relative',
-  backgroundColor: theme.palette.background.default,
-}));
+import CallToAction from 'src/__gatsby/home/CallToAction';
 
-// ----------------------------------------------------------------------
+function IndexPage() {
+  // console.log('🚀 ~ file: other.js ~ line 11 ~ IndexPage ~ Link', Link);
+  // const [activeLink, setActiveLink] = useState('');
 
-export default function LandingPage() {
+  // useEffect(() => {
+  //   setActiveLink(window && window.location ? window.location.pathname : '');
+  // }, []);
+  // console.log(
+  //   '🚀 ~ file: other.js ~ line 12 ~ IndexPage ~ activeLink',
+  //   activeLink
+  // );
   return (
-    <MainLayout>
-      <RootStyle
-        title="The starting point for your next project | Minimal-UI"
-        id="move_top"
-      >
-        <LandingHero />
-        {/* <CallToAction /> */}
-        <ContentStyle>
-          {/* <LandingMinimal /> */}
-          {/* <LandingHugePackElements /> */}
-          {/* <LandingDarkMode /> */}
-          {/* <LandingThemeColor /> */}
-          {/* <LandingCleanInterfaces /> */}
-          {/* <LandingPricingPlans /> */}
-          {/* <LandingAdvertisement /> */}
-        </ContentStyle>
-      </RootStyle>
-    </MainLayout>
+    <Layout>
+      {/* <SEO title="Home" /> */}
+
+      <CallToAction />
+    </Layout>
   );
 }
+
+export default IndexPage;

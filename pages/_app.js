@@ -84,6 +84,11 @@ import { BaseOptionChartStyle } from 'src/minimalComponents/charts/BaseOptionCha
 import { UserWrapper, FeedbackWrapper, CartWrapper } from 'src/contexts';
 import { ApolloWrapper } from 'src/apollo/ApolloWrapper';
 //! All imports from full javascript version end here ...
+//! below is from root-wrapper.js within gatsby version...
+import { ThemeProvider } from '@material-ui/core/styles';
+import MainLayout from 'src/layouts/main';
+import theme from '../theme';
+
 const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
@@ -111,24 +116,28 @@ export default function MyApp(props) {
                         <NoSsr>
                           <Settings />
                         </NoSsr>
-                        <ApolloWrapper>
-                          <NotistackProvider>
-                            <GlobalStyles />
-                            <ProgressBar />
-                            <LoadingScreen />
-                            <BaseOptionChartStyle />
-                            <GoogleAnalytics />
-                            <UserWrapper>
-                              <FeedbackWrapper>
-                                <CartWrapper>
-                                  <AuthProvider>
-                                    <Component {...pageProps} />
-                                  </AuthProvider>
-                                </CartWrapper>
-                              </FeedbackWrapper>
-                            </UserWrapper>
-                          </NotistackProvider>
-                        </ApolloWrapper>
+                        <ThemeProvider theme={theme}>
+                          <ApolloWrapper>
+                            <NotistackProvider>
+                              <GlobalStyles />
+                              <ProgressBar />
+                              <LoadingScreen />
+                              <BaseOptionChartStyle />
+                              <GoogleAnalytics />
+                              <UserWrapper>
+                                <FeedbackWrapper>
+                                  <CartWrapper>
+                                    <AuthProvider>
+                                      <MainLayout>
+                                        <Component {...pageProps} />
+                                      </MainLayout>
+                                    </AuthProvider>
+                                  </CartWrapper>
+                                </FeedbackWrapper>
+                              </UserWrapper>
+                            </NotistackProvider>
+                          </ApolloWrapper>
+                        </ThemeProvider>
                       </RtlLayout>
                     </ThemePrimaryColor>
                   </ThemeConfig>

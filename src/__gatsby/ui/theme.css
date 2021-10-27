@@ -1,0 +1,11 @@
+@font-face {
+  font-family: ProximaNova;
+  src: url(../../../resources/fonts/ProximaNova-Black.otf) format('opentype'), url(../../../resources/fonts/ProximaNova-Black.otf) format('opentype'), url(../fonts/ProximaNova-Bold.otf) format('opentype'), url(../../../resources/fonts/ProximaNova-BoldIt.otf) format('opentype'), url(../fonts/ProximaNova-Extrabld.otf) format('opentype'), url(../fonts/ProximaNova-Light.otf) format('opentype'), url(../fonts/ProximaNova-LightIt.otf) format('opentype'), url(../fonts/ProximaNova-RegularIt.otf) format('opentype'), url(../fonts/ProximaNova-Semibold.otf) format('opentype'), url(../fonts/ProximaNova-SemiboldIt.otf) format('opentype'), url(../fonts/ProximaNovaCond-Light.otf) format('opentype'), url(../fonts/ProximaNovaCond-LightIt.otf) format('opentype'), url(../fonts/ProximaNovaCond-Regular.otf) format('opentype'), url(../fonts/ProximaNovaCond-RegularIt.otf) format('opentype'), url(../fonts/ProximaNovaCond-Semibold.otf) format('opentype'), url(../fonts/ProximaNovaCond-SemiboldIt.otf) format('opentype');
+}
+
+h1 {
+  font-size: 5rem;
+  font-weight: 700;
+  font-family: ProximaNova;
+  margin-top: 5px;
+}

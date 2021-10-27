@@ -1,9 +1,17 @@
 // next
-import NextLink from 'next/link';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 // material
 import { styled } from '@mui/material/styles';
-import { Box, Button, AppBar, Toolbar, Container } from '@mui/material';
+import {
+  Typography,
+  Box,
+  Button,
+  AppBar,
+  Toolbar,
+  Container,
+} from '@mui/material';
+import React, { useState, useEffect } from 'react';
 // hooks
 import useOffSetTop from '../../hooks/useOffSetTop';
 // components
@@ -48,8 +56,21 @@ const ToolbarShadowStyle = styled('div')(({ theme }) => ({
 
 export default function MainNavbar() {
   const isOffset = useOffSetTop(100);
-  const { pathname } = useRouter();
-  const isHome = pathname === '/';
+  // const { pathname } = useRouter()
+  //! New for gatsby configuration
+  const [activePathname, setActivePathname] = useState('');
+  useEffect(() => {
+    setActivePathname(
+      window && window.location ? window.location.pathname : ''
+    );
+  }, []);
+  console.log(
+    'From MainNavbar.js - this is the activePathname',
+    activePathname
+  );
+
+  // const isHome = pathname === '/'
+  const isHome = activePathname === '/';
 
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent' }}>
@@ -63,38 +84,50 @@ export default function MainNavbar() {
         }}
       >
         <Container
-          maxWidth='lg'
+          maxWidth="lg"
           sx={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
           }}
         >
-          <NextLink href='/'>
+          <Link href="/">
             <Logo />
-          </NextLink>
-          <Label color='info' sx={{ ml: 1 }}>
-            Next Js v2.6.0
+          </Link>
+          <Label style={{ fontFamily: 'Inter' }} color="info" sx={{ ml: 1 }}>
+            Car X
           </Label>
           <Box sx={{ flexGrow: 1 }} />
 
-          <MHidden width='mdDown'>
+          <MHidden width="mdDown">
             <MenuDesktop
               isOffset={isOffset}
               isHome={isHome}
               navConfig={navConfig}
             />
           </MHidden>
-
           <Button
-            variant='contained'
-            target='_blank'
-            href='https://material-ui.com/store/items/minimal-dashboard/'
+            style={{
+              textColor: '#ffff',
+              fontColor: '#fff',
+              color: '#fff',
+            }}
+            variant="contained"
+            target="_blank"
           >
-            Purchase Now
+            <Link
+              style={{
+                textColor: '#ffff',
+                fontColor: '#fff',
+                color: '#fff',
+              }}
+              href="/dashboard/home"
+            >
+              <Typography> Get Started </Typography>
+            </Link>
           </Button>
 
-          <MHidden width='mdUp'>
+          <MHidden width="mdUp">
             <MenuMobile
               isOffset={isOffset}
               isHome={isHome}
