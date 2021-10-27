@@ -37,14 +37,14 @@ export default function MainLayout({ children }) {
           }}
         >
           <Container maxWidth="lg">
-            <ScrollLink href="move_top" spy smooth>
+            <ScrollLink to="move_top" spy smooth>
               <Logo sx={{ mb: 1, mx: 'auto', cursor: 'pointer' }} />
             </ScrollLink>
 
             <Typography variant="caption" component="p">
               © All rights reserved
               <br /> made by &nbsp;
-              <Link href="https://minimals.cc/">minimals.cc</Link>
+              <Link href="https://shopcarx.com/">shopcarx.com</Link>
             </Typography>
           </Container>
         </Box>

@@ -80,7 +80,7 @@ export default function CallToAction() {
               align={matchesMD ? 'center' : undefined}
               variant="body1"
             >
-              At CAR X our mission is to provide you with the car shopping
+              At CarX our mission is to provide you with the car shopping
               experience you deserve.
             </Typography>
           </Grid>

@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import googleFill from '@iconify/icons-eva/google-fill';
 import twitterFill from '@iconify/icons-eva/twitter-fill';
@@ -5,12 +6,13 @@ import facebookFill from '@iconify/icons-eva/facebook-fill';
 import linkedinFill from '@iconify/icons-eva/linkedin-fill';
 import { Link as ScrollLink } from 'react-scroll';
 // next
-import NextLink from 'next/link';
+import Link from 'next/link';
+
 // material
 import { styled } from '@mui/material/styles';
 import {
   Grid,
-  Link,
+  Link as MuiLink,
   Stack,
   Divider,
   Container,
@@ -31,25 +33,25 @@ const SOCIALS = [
 
 const LINKS = [
   {
-    headline: 'Minimal',
+    headline: 'Car X',
     children: [
-      { name: 'About us', href: '#' },
-      { name: 'Contact us', href: '#' },
+      { name: 'About', href: '#' },
+      { name: 'Contact', href: '#' },
       { name: 'FAQs', href: '#' },
     ],
   },
   {
     headline: 'Legal',
     children: [
-      { name: 'Terms and Condition', href: '#' },
+      { name: 'Terms', href: '#' },
       { name: 'Privacy Policy', href: '#' },
     ],
   },
   {
     headline: 'Contact',
     children: [
-      { name: 'support@minimals.cc', href: '#' },
-      { name: 'Los Angeles, 359  Hidden Valley Road', href: '#' },
+      { name: 'sean@senpex.com', href: '#' },
+      { name: '3566 Stevens Creek Blvd, San Jose, CA 95117', href: '#' },
     ],
   },
 ];
@@ -72,16 +74,15 @@ export default function MainFooter() {
           sx={{ textAlign: { xs: 'center', md: 'left' } }}
         >
           <Grid item xs={12} sx={{ mb: 3 }}>
-            <ScrollLink href="move_top" spy smooth>
+            <ScrollLink to="move_top" spy smooth>
               <Logo sx={{ mx: { xs: 'auto', md: 'inherit' } }} />
             </ScrollLink>
           </Grid>
           <Grid item xs={8} md={3}>
             <Typography variant="body2" sx={{ pr: { md: 5 } }}>
-              The starting point for your next project with Minimal UI Kit,
-              built on the newest version of Material-UI ©, ready to be
-              customized to your style.
+              Welcome to CarX©
             </Typography>
+            <Typography variant="body2" sx={{ pr: { md: 5 } }} />
 
             <Stack
               spacing={1.5}
@@ -110,16 +111,27 @@ export default function MainFooter() {
                     <Typography component="p" variant="overline">
                       {headline}
                     </Typography>
-                    {children.map((link) => (
-                      <NextLink key={link.name} href={link.href} passHref>
-                        <Link
+                    {children.map((mylink) => (
+                      <Link
+                        style={{ textDecoration: 'none' }}
+                        key={mylink.name}
+                        href={mylink.href}
+                      >
+                        <MuiLink
                           color="inherit"
                           variant="body2"
-                          sx={{ display: 'block' }}
+                          // sx={{ display: 'block' }}
+                          sx={{
+                            // color: theme => alpha(theme.primary.grey[900], 0.72),
+                            color: (theme) => theme.palette.primary.main,
+                            typography: 'body2',
+                            py: 1,
+                            px: 2.5,
+                          }}
                         >
-                          {link.name}
-                        </Link>
-                      </NextLink>
+                          {mylink.name}
+                        </MuiLink>
+                      </Link>
                     ))}
                   </Stack>
                 );

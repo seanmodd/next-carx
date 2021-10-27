@@ -57,7 +57,7 @@ function IconBullet({ type = 'item' }) {
   return (
     <Box sx={{ width: 24, height: 16, display: 'flex', alignItems: 'center' }}>
       <Box
-        component='span'
+        component="span"
         sx={{
           ml: '2px',
           width: 4,
@@ -122,7 +122,7 @@ function MenuDesktopItem({
 
         <Popover
           open={isOpen}
-          anchorReference='anchorPosition'
+          anchorReference="anchorPosition"
           anchorPosition={{ top: 80, left: 0 }}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
           transformOrigin={{ vertical: 'top', horizontal: 'center' }}
@@ -163,7 +163,7 @@ function MenuDesktopItem({
                         typography: 'overline',
                       }}
                     >
-                      <IconBullet type='subheader' /> {subheader}
+                      <IconBullet type="subheader" /> {subheader}
                     </ListSubheader>
 
                     {items.map((item) => (
@@ -188,13 +188,13 @@ function MenuDesktopItem({
                             >
                               <Box
                                 component={motion.img}
-                                whileTap='tap'
-                                whileHover='hover'
+                                whileTap="tap"
+                                whileHover="hover"
                                 variants={{
                                   hover: { scale: 1.02 },
                                   tap: { scale: 0.98 },
                                 }}
-                                src='/static/illustrations/illustration_dashboard.png'
+                                src="/static/illustrations/illustration_dashboard.png"
                               />
                             </CardActionArea>
                           ) : (
@@ -220,7 +220,7 @@ function MenuDesktopItem({
     <NextLink key={title} href={path} passHref>
       <LinkStyle
         sx={{
-          ...(isHome && { color: 'common.white' }),
+          ...(isHome && { color: 'text.primary' }),
           ...(isOffset && { color: 'text.primary' }),
           ...(isActive && { color: 'primary.main' }),
         }}
@@ -257,7 +257,7 @@ export default function MenuDesktop({ isOffset, isHome, navConfig }) {
   };
 
   return (
-    <Stack direction='row'>
+    <Stack direction="row">
       {navConfig.map((link) => (
         <MenuDesktopItem
           key={link.title}

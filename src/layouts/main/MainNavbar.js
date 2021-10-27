@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 // hooks
+import { useTheme } from '@mui/material/styles';
 import useOffSetTop from '../../hooks/useOffSetTop';
 // components
 import Logo from '../../components/Logo';
@@ -55,6 +56,10 @@ const ToolbarShadowStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function MainNavbar() {
+  const theme = useTheme();
+  const PRIMARY_LIGHT = theme.palette.primary.light;
+  const PRIMARY_MAIN = theme.palette.primary.main;
+  const PRIMARY_DARK = theme.palette.primary.dark;
   const isOffset = useOffSetTop(100);
   // const { pathname } = useRouter()
   //! New for gatsby configuration
@@ -94,8 +99,17 @@ export default function MainNavbar() {
           <Link href="/">
             <Logo />
           </Link>
-          <Label style={{ fontFamily: 'Inter' }} color="info" sx={{ ml: 1 }}>
-            Car X
+          <Label
+            sx={{
+              fontFamily: 'Barlow',
+              backgroundColor: PRIMARY_LIGHT,
+              color: '#000000',
+              ml: 1,
+              pb: 1,
+              pt: 0.75,
+            }}
+          >
+            CarX
           </Label>
           <Box sx={{ flexGrow: 1 }} />
 
@@ -123,7 +137,12 @@ export default function MainNavbar() {
               }}
               href="/dashboard/home"
             >
-              <Typography> Get Started </Typography>
+              <Typography
+                sx={{ fontFamily: 'barlow', color: '#FFF', fontWeight: 600 }}
+              >
+                {' '}
+                Get Started{' '}
+              </Typography>
             </Link>
           </Button>
 
