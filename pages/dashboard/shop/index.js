@@ -20,7 +20,7 @@ import fakeRequest from 'src/utils/fakeRequest';
 import useSettings from 'src/hooks/useSettings';
 // components
 // import Page from 'src/minimalComponents/Page';
-import Page from 'src/components/Page';
+import Page from 'src/minimalComponents/Page';
 import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
 import {
   ShopTagFiltered,

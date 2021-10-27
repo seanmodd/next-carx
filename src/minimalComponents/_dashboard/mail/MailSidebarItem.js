@@ -11,10 +11,15 @@ import roundForum from '@iconify/icons-ic/round-forum';
 import trash2Fill from '@iconify/icons-eva/trash-2-fill';
 import roundReport from '@iconify/icons-ic/round-report';
 import roundLabelImportant from '@iconify/icons-ic/round-label-important';
-// import { NavLink as RouterLink } from 'react-router-dom';
-import Link from 'next/link'
+
+import Link from 'next/link';
 // material
-import { Typography, ListItemText, ListItemIcon, ListItemButton } from '@mui/material';
+import {
+  Typography,
+  ListItemText,
+  ListItemIcon,
+  ListItemButton,
+} from '@mui/material';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 
@@ -31,7 +36,7 @@ const LABEL_ICONS = {
   important: roundLabelImportant,
   id_social: shareFill,
   id_promotions: roundLabel,
-  id_forums: roundForum
+  id_forums: roundForum,
 };
 
 const linkTo = (label) => {
@@ -47,7 +52,7 @@ const linkTo = (label) => {
 };
 
 MailSidebarItem.propTypes = {
-  label: PropTypes.object.isRequired
+  label: PropTypes.object.isRequired,
 };
 
 export default function MailSidebarItem({ label, ...other }) {
@@ -66,18 +71,25 @@ export default function MailSidebarItem({ label, ...other }) {
         '&.active': {
           color: 'text.primary',
           fontWeight: 'fontWeightMedium',
-          bgcolor: 'action.selected'
-        }
+          bgcolor: 'action.selected',
+        },
       }}
       {...other}
     >
       <ListItemIcon>
-        <Icon icon={LABEL_ICONS[label.id]} style={{ color: label.color }} width={24} height={24} />
+        <Icon
+          icon={LABEL_ICONS[label.id]}
+          style={{ color: label.color }}
+          width={24}
+          height={24}
+        />
       </ListItemIcon>
 
       <ListItemText disableTypography primary={label.name} />
 
-      {isUnread && <Typography variant="caption">{label.unreadCount}</Typography>}
+      {isUnread && (
+        <Typography variant="caption">{label.unreadCount}</Typography>
+      )}
     </ListItemButton>
   );
 }

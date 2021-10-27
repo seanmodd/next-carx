@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 // material
 import { Box, Divider, Stack } from '@mui/material';
+import { useRouter } from 'next/router';
 // redux
 import { useDispatch, useSelector } from '../../../redux/store';
 import {
@@ -10,7 +11,7 @@ import {
   getConversation,
   getParticipants,
   markConversationAsRead,
-  resetActiveConversation
+  resetActiveConversation,
 } from '../../../redux/slices/chat';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
@@ -25,7 +26,9 @@ import ChatHeaderCompose from './ChatHeaderCompose';
 
 const conversationSelector = (state) => {
   const { conversations, activeConversationId } = state.chat;
-  const conversation = activeConversationId ? conversations.byId[activeConversationId] : null;
+  const conversation = activeConversationId
+    ? conversations.byId[activeConversationId]
+    : null;
   if (conversation) {
     return conversation;
   }
@@ -34,7 +37,7 @@ const conversationSelector = (state) => {
     messages: [],
     participants: [],
     unreadCount: 0,
-    type: ''
+    type: '',
   };
   return initState;
 };
@@ -42,13 +45,20 @@ const conversationSelector = (state) => {
 export default function ChatWindow() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { pathname } = useRouter();
+  console.log(
+    '🚀 ~ file: ChatWindow.js ~ line 47 ~ ChatWindow ~ pathname',
+    pathname
+  );
   const { conversationKey } = useParams();
-  const { contacts, recipients, participants, activeConversationId } = useSelector((state) => state.chat);
+  const { contacts, recipients, participants, activeConversationId } =
+    useSelector((state) => state.chat);
   const conversation = useSelector((state) => conversationSelector(state));
 
   const mode = conversationKey ? 'DETAIL' : 'COMPOSE';
-  const displayParticipants = participants.filter((item) => item.id !== '8864c717-587d-472a-929a-8e5f298024da-0');
+  const displayParticipants = participants.filter(
+    (item) => item.id !== '8864c717-587d-472a-929a-8e5f298024da-0'
+  );
 
   useEffect(() => {
     const getDetails = async () => {
@@ -113,7 +123,12 @@ export default function ChatWindow() {
           />
         </Stack>
 
-        {mode === 'DETAIL' && <ChatRoom conversation={conversation} participants={displayParticipants} />}
+        {mode === 'DETAIL' && (
+          <ChatRoom
+            conversation={conversation}
+            participants={displayParticipants}
+          />
+        )}
       </Box>
     </Stack>
   );

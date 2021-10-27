@@ -1,13 +1,21 @@
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
-import { useParams, Link as RouterLink } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import Link from 'next/link';
 import starFill from '@iconify/icons-eva/star-fill';
 import linkFill from '@iconify/icons-eva/link-fill';
 import starOutline from '@iconify/icons-eva/star-outline';
 import roundLabelImportant from '@iconify/icons-ic/round-label-important';
 // material
 import { styled } from '@mui/material/styles';
-import { Box, Link, Tooltip, Typography, Stack, Checkbox } from '@mui/material';
+import {
+  Box,
+  Link as MuiLink,
+  Tooltip,
+  Typography,
+  Stack,
+  Checkbox,
+} from '@mui/material';
 // redux
 import { useSelector } from '../../../redux/store';
 // utils
@@ -30,21 +38,21 @@ const RootStyle = styled('div')(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.divider}`,
   [theme.breakpoints.up('md')]: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   '&:hover': {
     zIndex: 999,
     position: 'relative',
     boxShadow: theme.customShadows.z24,
-    '& .showActions': { opacity: 1 }
-  }
+    '& .showActions': { opacity: 1 },
+  },
 }));
 
-const WrapStyle = styled(Link)(({ theme }) => ({
+const WrapStyle = styled(MuiLink)(({ theme }) => ({
   minWidth: 0,
   display: 'flex',
   padding: theme.spacing(2, 0),
-  transition: theme.transitions.create('padding')
+  transition: theme.transitions.create('padding'),
 }));
 
 // ----------------------------------------------------------------------
@@ -67,24 +75,32 @@ MailItem.propTypes = {
   isDense: PropTypes.bool,
   isSelected: PropTypes.bool.isRequired,
   onDeselect: PropTypes.func,
-  onSelect: PropTypes.func
+  onSelect: PropTypes.func,
 };
 
-export default function MailItem({ mail, isDense, isSelected, onSelect, onDeselect, ...other }) {
+export default function MailItem({
+  mail,
+  isDense,
+  isSelected,
+  onSelect,
+  onDeselect,
+  ...other
+}) {
   const params = useParams();
   const { labels } = useSelector((state) => state.mail);
   const isAttached = mail.files.length > 0;
 
-  const handleChangeCheckbox = (event) => (event.target.checked ? onSelect() : onDeselect());
+  const handleChangeCheckbox = (event) =>
+    event.target.checked ? onSelect() : onDeselect();
 
   return (
     <RootStyle
       sx={{
         ...(!mail.isUnread && {
           color: 'text.primary',
-          backgroundColor: 'background.paper'
+          backgroundColor: 'background.paper',
         }),
-        ...(isSelected && { bgcolor: 'action.selected' })
+        ...(isSelected && { bgcolor: 'action.selected' }),
       }}
       {...other}
     >
@@ -113,7 +129,7 @@ export default function MailItem({ mail, isDense, isSelected, onSelect, onDesele
       <WrapStyle
         color="inherit"
         underline="none"
-        component={RouterLink}
+        component={Link}
         href={linkTo(params, mail.id)}
         sx={{ display: 'flex', ...(isDense && { py: 1 }) }}
       >
@@ -131,7 +147,7 @@ export default function MailItem({ mail, isDense, isSelected, onSelect, onDesele
             ml: 2,
             minWidth: 0,
             alignItems: 'center',
-            display: { md: 'flex' }
+            display: { md: 'flex' },
           }}
         >
           <Typography
@@ -140,7 +156,7 @@ export default function MailItem({ mail, isDense, isSelected, onSelect, onDesele
             sx={{
               pr: 2,
               minWidth: 200,
-              ...(!mail.isUnread && { fontWeight: 'fontWeightBold' })
+              ...(!mail.isUnread && { fontWeight: 'fontWeightBold' }),
             }}
           >
             {mail.from.name}
@@ -150,17 +166,20 @@ export default function MailItem({ mail, isDense, isSelected, onSelect, onDesele
             noWrap
             variant="body2"
             sx={{
-              pr: 2
+              pr: 2,
             }}
           >
-            <Box component="span" sx={{ ...(!mail.isUnread && { fontWeight: 'fontWeightBold' }) }}>
+            <Box
+              component="span"
+              sx={{ ...(!mail.isUnread && { fontWeight: 'fontWeightBold' }) }}
+            >
               {mail.subject}
             </Box>
             &nbsp;-&nbsp;
             <Box
               component="span"
               sx={{
-                ...(!mail.isUnread && { color: 'text.secondary' })
+                ...(!mail.isUnread && { color: 'text.secondary' }),
               }}
             >
               {mail.message}
@@ -179,7 +198,8 @@ export default function MailItem({ mail, isDense, isSelected, onSelect, onDesele
                       mx: 0.5,
                       textTransform: 'capitalize',
                       bgcolor: label.color,
-                      color: (theme) => theme.palette.getContrastText(label.color)
+                      color: (theme) =>
+                        theme.palette.getContrastText(label.color),
                     }}
                   >
                     {label.name}
@@ -196,7 +216,7 @@ export default function MailItem({ mail, isDense, isSelected, onSelect, onDesele
                   mx: 2,
                   width: 20,
                   height: 20,
-                  flexShrink: 0
+                  flexShrink: 0,
                 }}
               />
             )}
@@ -208,7 +228,7 @@ export default function MailItem({ mail, isDense, isSelected, onSelect, onDesele
               flexShrink: 0,
               minWidth: 120,
               textAlign: 'right',
-              ...(!mail.isUnread && { fontWeight: 'fontWeightBold' })
+              ...(!mail.isUnread && { fontWeight: 'fontWeightBold' }),
             }}
           >
             {fDate(mail.createdAt)}

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, Link as RouterLink, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Link from 'next/link';
 import { Icon } from '@iconify/react';
+import { useRouter } from 'next/router';
 import editFill from '@iconify/icons-eva/edit-fill';
 import peopleFill from '@iconify/icons-eva/people-fill';
 import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
@@ -27,7 +29,9 @@ import ChatConversationList from './ChatConversationList';
 const DRAWER_WIDTH = 320;
 const COLLAPSE_WIDTH = 96;
 
-const ToggleButtonStyle = styled((props) => <IconButton disableRipple {...props} />)(({ theme }) => ({
+const ToggleButtonStyle = styled((props) => (
+  <IconButton disableRipple {...props} />
+))(({ theme }) => ({
   left: 0,
   zIndex: 9,
   width: 32,
@@ -39,8 +43,8 @@ const ToggleButtonStyle = styled((props) => <IconButton disableRipple {...props}
   backgroundColor: theme.palette.primary.main,
   boxShadow: theme.customShadows.primary,
   '&:hover': {
-    backgroundColor: theme.palette.primary.darker
-  }
+    backgroundColor: theme.palette.primary.darker,
+  },
 }));
 
 // ----------------------------------------------------------------------
@@ -48,13 +52,19 @@ const ToggleButtonStyle = styled((props) => <IconButton disableRipple {...props}
 export default function ChatSidebar() {
   const theme = useTheme();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { pathname } = useRouter();
+  console.log(
+    '🚀 ~ file: ChatSidebar.js ~ line 55 ~ ChatSidebar ~ pathname',
+    pathname
+  );
 
   const [openSidebar, setOpenSidebar] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isSearchFocused, setSearchFocused] = useState(false);
-  const { conversations, activeConversationId } = useSelector((state) => state.chat);
+  const { conversations, activeConversationId } = useSelector(
+    (state) => state.chat
+  );
 
   const displayResults = searchQuery && isSearchFocused;
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -97,7 +107,7 @@ export default function ChatSidebar() {
       setSearchQuery(value);
       if (value) {
         const response = await axios.get('/api/chat/search', {
-          params: { query: value }
+          params: { query: value },
         });
         setSearchResults(response.data.results);
       } else {
@@ -136,14 +146,18 @@ export default function ChatSidebar() {
           )}
 
           <MIconButton onClick={handleToggleSidebar}>
-            <Icon width={20} height={20} icon={openSidebar ? arrowIosBackFill : arrowIosForwardFill} />
+            <Icon
+              width={20}
+              height={20}
+              icon={openSidebar ? arrowIosBackFill : arrowIosForwardFill}
+            />
           </MIconButton>
 
           {!isCollapse && (
             <MIconButton
               // @ts-ignore
               href={PATH_DASHBOARD.chat.new}
-              component={RouterLink}
+              component={Link}
             >
               <Icon icon={editFill} width={20} height={20} />
             </MIconButton>
@@ -169,7 +183,11 @@ export default function ChatSidebar() {
             sx={{ ...(isSearchFocused && { display: 'none' }) }}
           />
         ) : (
-          <ChatSearchResults query={searchQuery} results={searchResults} onSelectContact={handleSelectContact} />
+          <ChatSearchResults
+            query={searchQuery}
+            results={searchResults}
+            onSelectContact={handleSelectContact}
+          />
         )}
       </Scrollbar>
     </>
@@ -190,7 +208,7 @@ export default function ChatSidebar() {
           open={openSidebar}
           onClose={handleCloseSidebar}
           sx={{
-            '& .MuiDrawer-paper': { width: DRAWER_WIDTH }
+            '& .MuiDrawer-paper': { width: DRAWER_WIDTH },
           }}
         >
           {renderContent}
@@ -207,7 +225,7 @@ export default function ChatSidebar() {
             transition: theme.transitions.create('width'),
             '& .MuiDrawer-paper': {
               position: 'static',
-              width: DRAWER_WIDTH
+              width: DRAWER_WIDTH,
             },
             ...(isCollapse && {
               width: COLLAPSE_WIDTH,
@@ -215,9 +233,9 @@ export default function ChatSidebar() {
                 width: COLLAPSE_WIDTH,
                 position: 'static',
                 transform: 'none !important',
-                visibility: 'visible !important'
-              }
-            })
+                visibility: 'visible !important',
+              },
+            }),
           }}
         >
           {renderContent}

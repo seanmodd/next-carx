@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
+
+import { useRouter } from 'next/router';
 import { forwardRef, useEffect, useCallback } from 'react';
 // material
 import { Box } from '@mui/material';
@@ -10,11 +11,11 @@ import track from '../utils/analytics';
 // ----------------------------------------------------------------------
 
 const Page = forwardRef(({ children, title = '', ...other }, ref) => {
-  const { pathname } = useLocation();
-
+  const { pathname } = useRouter();
+  console.log('🚀 ~ file: Page.js ~ line 16 ~ Page ~ pathname', pathname);
   const sendPageViewEvent = useCallback(() => {
     track.pageview({
-      page_path: pathname
+      page_path: pathname,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -35,7 +36,7 @@ const Page = forwardRef(({ children, title = '', ...other }, ref) => {
 
 Page.propTypes = {
   children: PropTypes.node.isRequired,
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 export default Page;

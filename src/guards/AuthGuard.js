@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 // hooks
 import useAuth from '../hooks/useAuth';
@@ -14,7 +15,12 @@ AuthGuard.propTypes = {
 
 export default function AuthGuard({ children }) {
   const { isAuthenticated } = useAuth();
-  const { pathname } = useLocation();
+
+  const { pathname } = useRouter();
+  console.log(
+    '🚀 ~ file: AuthGuard.js ~ line 20 ~ AuthGuard ~ pathname',
+    pathname
+  );
   const [requestedLocation, setRequestedLocation] = useState(null);
 
   if (!isAuthenticated) {

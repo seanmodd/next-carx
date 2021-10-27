@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
-import { useLocation } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import plusFill from '@iconify/icons-eva/plus-fill';
 // material
 import { Box, List, Drawer, Button, Divider } from '@mui/material';
@@ -17,11 +17,16 @@ import MailSidebarItem from './MailSidebarItem';
 MailSidebar.propTypes = {
   isOpenSidebar: PropTypes.bool,
   onOpenCompose: PropTypes.func,
-  onCloseSidebar: PropTypes.func
+  onCloseSidebar: PropTypes.func,
 };
 
-export default function MailSidebar({ isOpenSidebar, onOpenCompose, onCloseSidebar }) {
-  const { pathname } = useLocation();
+export default function MailSidebar({
+  isOpenSidebar,
+  onOpenCompose,
+  onCloseSidebar,
+}) {
+  const { pathname } = useRouter();
+  console.log('🚀 ~ file: MailSidebar.js ~ line 29 ~ pathname', pathname);
   const { labels } = useSelector((state) => state.mail);
 
   useEffect(() => {
@@ -39,7 +44,12 @@ export default function MailSidebar({ isOpenSidebar, onOpenCompose, onCloseSideb
   const renderContent = (
     <Scrollbar>
       <Box sx={{ p: 3 }}>
-        <Button fullWidth variant="contained" startIcon={<Icon icon={plusFill} />} onClick={handleOpenCompose}>
+        <Button
+          fullWidth
+          variant="contained"
+          startIcon={<Icon icon={plusFill} />}
+          onClick={handleOpenCompose}
+        >
           Compose
         </Button>
       </Box>
@@ -68,7 +78,10 @@ export default function MailSidebar({ isOpenSidebar, onOpenCompose, onCloseSideb
       </MHidden>
 
       <MHidden width="mdDown">
-        <Drawer variant="permanent" PaperProps={{ sx: { width: 280, position: 'relative' } }}>
+        <Drawer
+          variant="permanent"
+          PaperProps={{ sx: { width: 280, position: 'relative' } }}
+        >
           {renderContent}
         </Drawer>
       </MHidden>

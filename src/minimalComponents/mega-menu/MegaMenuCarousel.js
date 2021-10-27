@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import Slider from 'react-slick';
 import PropTypes from 'prop-types';
-// import { NavLink as RouterLink } from 'react-router-dom';
+
 import Link from 'next/link'
 // material
 import { useTheme } from '@mui/material/styles';

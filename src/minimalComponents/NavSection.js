@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
-import { matchPath, useLocation } from 'react-router-dom';
+import { matchPath } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
 import arrowIosDownwardFill from '@iconify/icons-eva/arrow-ios-downward-fill';
@@ -68,7 +69,11 @@ NavItem.propTypes = {
 
 function NavItem({ item, isShow }) {
   const theme = useTheme();
-  const { pathname } = useLocation();
+  const { pathname } = useRouter();
+  console.log(
+    '🚀 ~ file: NavSection.js ~ line 73 ~ NavItem ~ pathname',
+    pathname
+  );
   const { title, path, icon, info, children } = item;
   const isActiveRoot = path
     ? !!matchPath({ path, end: false }, pathname)

@@ -3,16 +3,15 @@ import { Icon } from '@iconify/react';
 import { useState, useEffect } from 'react';
 import listFill from '@iconify/icons-eva/list-fill';
 import menu2Fill from '@iconify/icons-eva/menu-2-fill';
-import { useLocation } from 'react-router-dom';
-// import { NavLink as RouterLink} from 'react-router-dom';
-import Link from 'next/link'
+
+import Link from 'next/link';
 import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
 import arrowIosForwardFill from '@iconify/icons-eva/arrow-ios-forward-fill';
 // material
 import {
   Box,
   List,
-  Link,
+  Link as MuiLink,
   Stack,
   Drawer,
   Button,
@@ -21,7 +20,7 @@ import {
   IconButton,
   ListItemText,
   ListItemIcon,
-  ListItemButton
+  ListItemButton,
 } from '@mui/material';
 //
 import Logo from '../Logo';
@@ -38,14 +37,16 @@ const DRAWER_WIDTH = 260;
 ParentItem.propTypes = {
   icon: PropTypes.node,
   title: PropTypes.string,
-  hasSub: PropTypes.bool
+  hasSub: PropTypes.bool,
 };
 
 function ParentItem({ icon, title, hasSub, ...other }) {
   return (
     <ListItemButton sx={{ textTransform: 'capitalize', height: 44 }} {...other}>
       <ListItemIcon sx={{ width: 22, height: 22 }}>{icon}</ListItemIcon>
-      <ListItemText primaryTypographyProps={{ typography: 'body2' }}>{title}</ListItemText>
+      <ListItemText primaryTypographyProps={{ typography: 'body2' }}>
+        {title}
+      </ListItemText>
       {hasSub && <Box component={Icon} icon={arrowIosForwardFill} />}
     </ListItemButton>
   );
@@ -53,7 +54,7 @@ function ParentItem({ icon, title, hasSub, ...other }) {
 
 SubMenu.propTypes = {
   parent: PropTypes.object,
-  pathname: PropTypes.string
+  pathname: PropTypes.string,
 };
 
 function SubMenu({ parent, pathname }) {
@@ -90,7 +91,11 @@ function SubMenu({ parent, pathname }) {
             <IconButton onClick={handleClose}>
               <Icon icon={arrowIosBackFill} width={20} height={20} />
             </IconButton>
-            <Typography noWrap variant="subtitle1" sx={{ ml: 1, textTransform: 'capitalize' }}>
+            <Typography
+              noWrap
+              variant="subtitle1"
+              sx={{ ml: 1, textTransform: 'capitalize' }}
+            >
               {title}
             </Typography>
           </Stack>
@@ -112,7 +117,12 @@ function SubMenu({ parent, pathname }) {
                       {subheader}
                     </Typography>
                     {items.map((mylink) => (
-                      <ListItemButton key={mylink.title} component={Link} href={mylink.path} sx={{ px: 1.5 }}>
+                      <ListItemButton
+                        key={mylink.title}
+                        component={Link}
+                        href={mylink.path}
+                        sx={{ px: 1.5 }}
+                      >
                         <ListItemIcon
                           sx={{
                             mr: 0.5,
@@ -120,14 +130,24 @@ function SubMenu({ parent, pathname }) {
                             height: ICON_SIZE,
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'center'
+                            justifyContent: 'center',
                           }}
                         >
-                          <Box sx={{ width: 4, height: 4, bgcolor: 'currentColor', borderRadius: '50%' }} />
+                          <Box
+                            sx={{
+                              width: 4,
+                              height: 4,
+                              bgcolor: 'currentColor',
+                              borderRadius: '50%',
+                            }}
+                          />
                         </ListItemIcon>
                         <ListItemText
                           primary={mylink.title}
-                          primaryTypographyProps={{ typography: 'body2', noWrap: true }}
+                          primaryTypographyProps={{
+                            typography: 'body2',
+                            noWrap: true,
+                          }}
                         />
                       </ListItemButton>
                     ))}
@@ -145,11 +165,15 @@ function SubMenu({ parent, pathname }) {
 }
 
 MegaMenuMobile.propTypes = {
-  navConfig: PropTypes.array
+  navConfig: PropTypes.array,
 };
 
 export default function MegaMenuMobile({ navConfig }) {
-  const { pathname } = useLocation();
+  const { pathname } = useRouter();
+  console.log(
+    '🚀 ~ file: MegaMenuMobile.js ~ line 175 ~ MegaMenuMobile ~ pathname',
+    pathname
+  );
   const [openDrawer, setOpenDrawer] = useState(false);
 
   useEffect(() => {
@@ -169,7 +193,11 @@ export default function MegaMenuMobile({ navConfig }) {
 
   return (
     <>
-      <Button variant="contained" onClick={handleDrawerOpen} startIcon={<Icon icon={menu2Fill} />}>
+      <Button
+        variant="contained"
+        onClick={handleDrawerOpen}
+        startIcon={<Icon icon={menu2Fill} />}
+      >
         Menu Mobile
       </Button>
 
@@ -180,11 +208,19 @@ export default function MegaMenuMobile({ navConfig }) {
         PaperProps={{ sx: { pb: 5, width: DRAWER_WIDTH } }}
       >
         <Scrollbar>
-          <Link component={Link} href="/" sx={{ display: 'inline-flex' }}>
+          <MuiLink component={Link} href="/" sx={{ display: 'inline-flex' }}>
             <Logo sx={{ mx: PADDING, my: 3 }} />
-          </Link>
-          <Typography variant="h6" sx={{ px: 2, mb: 2, display: 'flex', alignItems: 'center' }}>
-            <Box component={Icon} icon={listFill} sx={{ mr: 1, width: 24, height: 24 }} /> Categories
+          </MuiLink>
+          <Typography
+            variant="h6"
+            sx={{ px: 2, mb: 2, display: 'flex', alignItems: 'center' }}
+          >
+            <Box
+              component={Icon}
+              icon={listFill}
+              sx={{ mr: 1, width: 24, height: 24 }}
+            />{' '}
+            Categories
           </Typography>
 
           {navConfig.map((parent) => (
