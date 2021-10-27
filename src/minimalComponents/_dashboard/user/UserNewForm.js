@@ -1,12 +1,24 @@
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
+
 import { useSnackbar } from 'notistack';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { Form, FormikProvider, useFormik } from 'formik';
 // material
 import { LoadingButton } from '@mui/lab';
-import { Box, Card, Grid, Stack, Switch, TextField, Typography, FormHelperText, FormControlLabel } from '@mui/material';
+import {
+  Box,
+  Card,
+  Grid,
+  Stack,
+  Switch,
+  TextField,
+  Typography,
+  FormHelperText,
+  FormControlLabel,
+} from '@mui/material';
 // utils
 import { fData } from '../../../utils/formatNumber';
 import fakeRequest from '../../../utils/fakeRequest';
@@ -21,11 +33,12 @@ import countries from './countries';
 
 UserNewForm.propTypes = {
   isEdit: PropTypes.bool,
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
 };
 
 export default function UserNewForm({ isEdit, currentUser }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
   const NewUserSchema = Yup.object().shape({
@@ -38,7 +51,7 @@ export default function UserNewForm({ isEdit, currentUser }) {
     state: Yup.string().required('State is required'),
     city: Yup.string().required('City is required'),
     role: Yup.string().required('Role Number is required'),
-    avatarUrl: Yup.mixed().required('Avatar is required')
+    avatarUrl: Yup.mixed().required('Avatar is required'),
   });
 
   const formik = useFormik({
@@ -56,7 +69,7 @@ export default function UserNewForm({ isEdit, currentUser }) {
       isVerified: currentUser?.isVerified || true,
       status: currentUser?.status,
       company: currentUser?.company || '',
-      role: currentUser?.role || ''
+      role: currentUser?.role || '',
     },
     validationSchema: NewUserSchema,
     onSubmit: async (values, { setSubmitting, resetForm, setErrors }) => {
@@ -64,17 +77,28 @@ export default function UserNewForm({ isEdit, currentUser }) {
         await fakeRequest(500);
         resetForm();
         setSubmitting(false);
-        enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', { variant: 'success' });
-        navigate(PATH_DASHBOARD.user.list);
+        enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', {
+          variant: 'success',
+        });
+        // navigate(PATH_DASHBOARD.user.list);
+        router.push(PATH_DASHBOARD.user.list);
       } catch (error) {
         console.error(error);
         setSubmitting(false);
         setErrors(error);
       }
-    }
+    },
   });
 
-  const { errors, values, touched, handleSubmit, isSubmitting, setFieldValue, getFieldProps } = formik;
+  const {
+    errors,
+    values,
+    touched,
+    handleSubmit,
+    isSubmitting,
+    setFieldValue,
+    getFieldProps,
+  } = formik;
 
   const handleDrop = useCallback(
     (acceptedFiles) => {
@@ -82,7 +106,7 @@ export default function UserNewForm({ isEdit, currentUser }) {
       if (file) {
         setFieldValue('avatarUrl', {
           ...file,
-          preview: URL.createObjectURL(file)
+          preview: URL.createObjectURL(file),
         });
       }
     },
@@ -98,7 +122,12 @@ export default function UserNewForm({ isEdit, currentUser }) {
               {isEdit && (
                 <Label
                   color={values.status !== 'active' ? 'error' : 'success'}
-                  sx={{ textTransform: 'uppercase', position: 'absolute', top: 24, right: 24 }}
+                  sx={{
+                    textTransform: 'uppercase',
+                    position: 'absolute',
+                    top: 24,
+                    right: 24,
+                  }}
                 >
                   {values.status}
                 </Label>
@@ -119,7 +148,7 @@ export default function UserNewForm({ isEdit, currentUser }) {
                         mx: 'auto',
                         display: 'block',
                         textAlign: 'center',
-                        color: 'text.secondary'
+                        color: 'text.secondary',
                       }}
                     >
                       Allowed *.jpeg, *.jpg, *.png, *.gif
@@ -137,7 +166,12 @@ export default function UserNewForm({ isEdit, currentUser }) {
                   labelPlacement="start"
                   control={
                     <Switch
-                      onChange={(event) => setFieldValue('status', event.target.checked ? 'banned' : 'active')}
+                      onChange={(event) =>
+                        setFieldValue(
+                          'status',
+                          event.target.checked ? 'banned' : 'active'
+                        )
+                      }
                       checked={values.status !== 'active'}
                     />
                   }
@@ -146,25 +180,42 @@ export default function UserNewForm({ isEdit, currentUser }) {
                       <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
                         Banned
                       </Typography>
-                      <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: 'text.secondary' }}
+                      >
                         Apply disable account
                       </Typography>
                     </>
                   }
-                  sx={{ mx: 0, mb: 3, width: 1, justifyContent: 'space-between' }}
+                  sx={{
+                    mx: 0,
+                    mb: 3,
+                    width: 1,
+                    justifyContent: 'space-between',
+                  }}
                 />
               )}
 
               <FormControlLabel
                 labelPlacement="start"
-                control={<Switch {...getFieldProps('isVerified')} checked={values.isVerified} />}
+                control={
+                  <Switch
+                    {...getFieldProps('isVerified')}
+                    checked={values.isVerified}
+                  />
+                }
                 label={
                   <>
                     <Typography variant="subtitle2" sx={{ mb: 0.5 }}>
                       Email Verified
                     </Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                      Disabling this will automatically send the user a verification email
+                    <Typography
+                      variant="body2"
+                      sx={{ color: 'text.secondary' }}
+                    >
+                      Disabling this will automatically send the user a
+                      verification email
                     </Typography>
                   </>
                 }
@@ -176,7 +227,10 @@ export default function UserNewForm({ isEdit, currentUser }) {
           <Grid item xs={12} md={8}>
             <Card sx={{ p: 3 }}>
               <Stack spacing={3}>
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
+                <Stack
+                  direction={{ xs: 'column', sm: 'row' }}
+                  spacing={{ xs: 3, sm: 2 }}
+                >
                   <TextField
                     fullWidth
                     label="Full Name"
@@ -193,7 +247,10 @@ export default function UserNewForm({ isEdit, currentUser }) {
                   />
                 </Stack>
 
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
+                <Stack
+                  direction={{ xs: 'column', sm: 'row' }}
+                  spacing={{ xs: 3, sm: 2 }}
+                >
                   <TextField
                     fullWidth
                     label="Phone Number"
@@ -220,7 +277,10 @@ export default function UserNewForm({ isEdit, currentUser }) {
                   </TextField>
                 </Stack>
 
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
+                <Stack
+                  direction={{ xs: 'column', sm: 'row' }}
+                  spacing={{ xs: 3, sm: 2 }}
+                >
                   <TextField
                     fullWidth
                     label="State/Region"
@@ -237,7 +297,10 @@ export default function UserNewForm({ isEdit, currentUser }) {
                   />
                 </Stack>
 
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
+                <Stack
+                  direction={{ xs: 'column', sm: 'row' }}
+                  spacing={{ xs: 3, sm: 2 }}
+                >
                   <TextField
                     fullWidth
                     label="Address"
@@ -245,10 +308,17 @@ export default function UserNewForm({ isEdit, currentUser }) {
                     error={Boolean(touched.address && errors.address)}
                     helperText={touched.address && errors.address}
                   />
-                  <TextField fullWidth label="Zip/Code" {...getFieldProps('zipCode')} />
+                  <TextField
+                    fullWidth
+                    label="Zip/Code"
+                    {...getFieldProps('zipCode')}
+                  />
                 </Stack>
 
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 3, sm: 2 }}>
+                <Stack
+                  direction={{ xs: 'column', sm: 'row' }}
+                  spacing={{ xs: 3, sm: 2 }}
+                >
                   <TextField
                     fullWidth
                     label="Company"
@@ -265,8 +335,14 @@ export default function UserNewForm({ isEdit, currentUser }) {
                   />
                 </Stack>
 
-                <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
-                  <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+                <Box
+                  sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}
+                >
+                  <LoadingButton
+                    type="submit"
+                    variant="contained"
+                    loading={isSubmitting}
+                  >
                     {!isEdit ? 'Create User' : 'Save Changes'}
                   </LoadingButton>
                 </Box>

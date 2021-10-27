@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 // hooks
@@ -32,7 +32,13 @@ export default function AuthGuard({ children }) {
 
   if (requestedLocation && pathname !== requestedLocation) {
     setRequestedLocation(null);
-    return <Navigate href={requestedLocation} />;
+    return (
+      <>
+        <button> 😮 Check src/guards/AuthGuard.js!</button>
+        {/* 
+     <Navigate href={requestedLocation} /> */}
+      </>
+    );
   }
 
   return <>{children}</>;

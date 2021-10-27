@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react';
 import { sentenceCase } from 'change-case';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import plusFill from '@iconify/icons-eva/plus-fill';
 import minusFill from '@iconify/icons-eva/minus-fill';
 import twitterFill from '@iconify/icons-eva/twitter-fill';
@@ -21,7 +22,7 @@ import {
   Divider,
   TextField,
   Typography,
-  FormHelperText
+  FormHelperText,
 } from '@mui/material';
 // redux
 import { useDispatch, useSelector } from '../../../../redux/store';
@@ -40,27 +41,29 @@ import ColorSinglePicker from '../../../ColorSinglePicker';
 const SOCIALS = [
   {
     name: 'Facebook',
-    icon: <Icon icon={facebookFill} width={20} height={20} color="#1877F2" />
+    icon: <Icon icon={facebookFill} width={20} height={20} color="#1877F2" />,
   },
   {
     name: 'Instagram',
-    icon: <Icon icon={instagramFilled} width={20} height={20} color="#D7336D" />
+    icon: (
+      <Icon icon={instagramFilled} width={20} height={20} color="#D7336D" />
+    ),
   },
   {
     name: 'Linkedin',
-    icon: <Icon icon={linkedinFill} width={20} height={20} color="#006097" />
+    icon: <Icon icon={linkedinFill} width={20} height={20} color="#006097" />,
   },
   {
     name: 'Twitter',
-    icon: <Icon icon={twitterFill} width={20} height={20} color="#1C9CEA" />
-  }
+    icon: <Icon icon={twitterFill} width={20} height={20} color="#1C9CEA" />,
+  },
 ];
 
 const RootStyle = styled('div')(({ theme }) => ({
   padding: theme.spacing(3),
   [theme.breakpoints.up(1368)]: {
-    padding: theme.spacing(5, 8)
-  }
+    padding: theme.spacing(5, 8),
+  },
 }));
 
 // ----------------------------------------------------------------------
@@ -89,10 +92,15 @@ const Incrementer = (props) => {
         borderRadius: 1,
         display: 'flex',
         alignItems: 'center',
-        borderColor: 'grey.50032'
+        borderColor: 'grey.50032',
       }}
     >
-      <MIconButton size="small" color="inherit" disabled={value <= 1} onClick={decrementQuantity}>
+      <MIconButton
+        size="small"
+        color="inherit"
+        disabled={value <= 1}
+        onClick={decrementQuantity}
+      >
         <Icon icon={minusFill} width={16} height={16} />
       </MIconButton>
       <Typography
@@ -101,12 +109,17 @@ const Incrementer = (props) => {
         sx={{
           width: 40,
           textAlign: 'center',
-          display: 'inline-block'
+          display: 'inline-block',
         }}
       >
         {value}
       </Typography>
-      <MIconButton size="small" color="inherit" disabled={value >= available} onClick={incrementQuantity}>
+      <MIconButton
+        size="small"
+        color="inherit"
+        disabled={value >= available}
+        onClick={incrementQuantity}
+      >
         <Icon icon={plusFill} width={16} height={16} />
       </MIconButton>
     </Box>
@@ -115,7 +128,8 @@ const Incrementer = (props) => {
 
 export default function ProductDetailsSumary() {
   const theme = useTheme();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const router = useRouter();
   const dispatch = useDispatch();
   const { product, checkout } = useSelector((state) => state.product);
   const {
@@ -130,11 +144,14 @@ export default function ProductDetailsSumary() {
     priceSale,
     totalRating,
     totalReview,
-    inventoryType
+    inventoryType,
   } = product;
 
   const alreadyProduct = checkout.cart.map((item) => item.id).includes(id);
-  const isMaxQuantity = checkout.cart.filter((item) => item.id === id).map((item) => item.quantity)[0] >= available;
+  const isMaxQuantity =
+    checkout.cart
+      .filter((item) => item.id === id)
+      .map((item) => item.quantity)[0] >= available;
 
   const onAddCart = (product) => {
     dispatch(addCart(product));
@@ -154,23 +171,24 @@ export default function ProductDetailsSumary() {
       price,
       color: colors[0],
       size: sizes[4],
-      quantity: available < 1 ? 0 : 1
+      quantity: available < 1 ? 0 : 1,
     },
     onSubmit: async (values, { setSubmitting }) => {
       try {
         if (!alreadyProduct) {
           onAddCart({
             ...values,
-            subtotal: values.price * values.quantity
+            subtotal: values.price * values.quantity,
           });
         }
         setSubmitting(false);
         handleBuyNow();
-        navigate(PATH_DASHBOARD.eCommerce.checkout);
+        // navigate(PATH_DASHBOARD.eCommerce.checkout);
+        router.push(PATH_DASHBOARD.eCommerce.checkout);
       } catch (error) {
         setSubmitting(false);
       }
-    }
+    },
   });
 
   const { values, touched, errors, getFieldProps, handleSubmit } = formik;
@@ -178,7 +196,7 @@ export default function ProductDetailsSumary() {
   const handleAddCart = () => {
     onAddCart({
       ...values,
-      subtotal: values.price * values.quantity
+      subtotal: values.price * values.quantity,
     });
   };
 
@@ -199,7 +217,7 @@ export default function ProductDetailsSumary() {
               mt: 2,
               mb: 1,
               display: 'block',
-              color: status === 'sale' ? 'error.main' : 'info.main'
+              color: status === 'sale' ? 'error.main' : 'info.main',
             }}
           >
             {status}
@@ -209,7 +227,12 @@ export default function ProductDetailsSumary() {
             {name}
           </Typography>
 
-          <Stack spacing={0.5} direction="row" alignItems="center" sx={{ mb: 2 }}>
+          <Stack
+            spacing={0.5}
+            direction="row"
+            alignItems="center"
+            sx={{ mb: 2 }}
+          >
             <Rating value={totalRating} precision={0.1} readOnly />
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               ({fShortenNumber(totalReview)}
@@ -218,7 +241,10 @@ export default function ProductDetailsSumary() {
           </Stack>
 
           <Typography variant="h4" sx={{ mb: 3 }}>
-            <Box component="span" sx={{ color: 'text.disabled', textDecoration: 'line-through' }}>
+            <Box
+              component="span"
+              sx={{ color: 'text.disabled', textDecoration: 'line-through' }}
+            >
               {priceSale && fCurrency(priceSale)}
             </Box>
             &nbsp;{fCurrency(price)}
@@ -227,7 +253,11 @@ export default function ProductDetailsSumary() {
           <Divider sx={{ borderStyle: 'dashed' }} />
 
           <Stack spacing={3} sx={{ my: 3 }}>
-            <Stack direction="row" alignItems="center" justifyContent="space-between">
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+            >
               <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
                 Color
               </Typography>
@@ -237,8 +267,8 @@ export default function ProductDetailsSumary() {
                 sx={{
                   ...(colors.length > 4 && {
                     maxWidth: 144,
-                    justifyContent: 'flex-end'
-                  })
+                    justifyContent: 'flex-end',
+                  }),
                 }}
               />
             </Stack>
@@ -256,8 +286,8 @@ export default function ProductDetailsSumary() {
                   sx: {
                     textAlign: 'right',
                     margin: 0,
-                    mt: 1
-                  }
+                    mt: 1,
+                  },
                 }}
                 helperText={
                   <Link href="#" underline="always" color="text.primary">
@@ -285,19 +315,25 @@ export default function ProductDetailsSumary() {
                     mt: 1,
                     display: 'block',
                     textAlign: 'right',
-                    color: 'text.secondary'
+                    color: 'text.secondary',
                   }}
                 >
                   Available: {available}
                 </Typography>
 
-                <FormHelperText error>{touched.quantity && errors.quantity}</FormHelperText>
+                <FormHelperText error>
+                  {touched.quantity && errors.quantity}
+                </FormHelperText>
               </div>
             </Stack>
           </Stack>
           <Divider sx={{ borderStyle: 'dashed' }} />
 
-          <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }} sx={{ mt: 5 }}>
+          <Stack
+            spacing={2}
+            direction={{ xs: 'column', sm: 'row' }}
+            sx={{ mt: 5 }}
+          >
             <Button
               fullWidth
               disabled={isMaxQuantity}

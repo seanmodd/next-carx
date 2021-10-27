@@ -31,6 +31,7 @@ import {
 import CartWidget from 'src/minimalComponents/_dashboard/e-commerce/CartWidget';
 import DashboardLayout from 'src/layouts/dashboard';
 import AuthLayout from 'src/layouts/AuthLayout';
+import GuestGuard from 'src/guards/GuestGuard';
 
 // ----------------------------------------------------------------------
 
@@ -148,72 +149,81 @@ export default function EcommerceShop() {
   };
 
   return (
-    <DashboardLayout>
-      {/* <AuthLayout> */}
-      <Page title="Ecommerce: Shop | Minimal-UI">
-        {values && (
-          <Backdrop open={isSubmitting} sx={{ zIndex: 9999 }}>
-            <CircularProgress />
-          </Backdrop>
-        )}
+    <GuestGuard>
+      <DashboardLayout>
+        <GuestGuard>
+          {/* <AuthLayout> */}
+          <Page title="Ecommerce: Shop | Minimal-UI">
+            {values && (
+              <Backdrop open={isSubmitting} sx={{ zIndex: 9999 }}>
+                <CircularProgress />
+              </Backdrop>
+            )}
 
-        <Container maxWidth={themeStretch ? false : 'lg'}>
-          <HeaderBreadcrumbs
-            heading="Shop"
-            links={[
-              { name: 'Dashboard', href: PATH_DASHBOARD.root },
-              {
-                name: 'E-Commerce',
-                href: PATH_DASHBOARD.eCommerce.root,
-              },
-              { name: 'Shop' },
-            ]}
-          />
-
-          {!isDefault && (
-            <Typography gutterBottom>
-              <Typography component="span" variant="subtitle1">
-                {filteredProducts.length}
-              </Typography>
-              &nbsp;Products found
-            </Typography>
-          )}
-
-          <Stack
-            direction="row"
-            flexWrap="wrap-reverse"
-            alignItems="center"
-            justifyContent="flex-end"
-            sx={{ mb: 5 }}
-          >
-            <ShopTagFiltered
-              filters={filters}
-              formik={formik}
-              isShowReset={openFilter}
-              onResetFilter={handleResetFilter}
-              isDefault={isDefault}
-            />
-
-            <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
-              <ShopFilterSidebar
-                formik={formik}
-                isOpenFilter={openFilter}
-                onResetFilter={handleResetFilter}
-                onOpenFilter={handleOpenFilter}
-                onCloseFilter={handleCloseFilter}
+            <Container maxWidth={themeStretch ? false : 'lg'}>
+              <HeaderBreadcrumbs
+                heading="Shop"
+                links={[
+                  { name: 'Dashboard', href: PATH_DASHBOARD.root },
+                  {
+                    name: 'E-Commerce',
+                    href: PATH_DASHBOARD.eCommerce.root,
+                  },
+                  { name: 'Shop' },
+                ]}
               />
-              <ShopProductSort />
-            </Stack>
-          </Stack>
 
-          <ShopProductList
-            products={filteredProducts}
-            isLoad={!filteredProducts && !initialValues}
-          />
-          <CartWidget />
-        </Container>
-      </Page>
-      {/* </AuthLayout> */}
-    </DashboardLayout>
+              {!isDefault && (
+                <Typography gutterBottom>
+                  <Typography component="span" variant="subtitle1">
+                    {filteredProducts.length}
+                  </Typography>
+                  &nbsp;Products found
+                </Typography>
+              )}
+
+              <Stack
+                direction="row"
+                flexWrap="wrap-reverse"
+                alignItems="center"
+                justifyContent="flex-end"
+                sx={{ mb: 5 }}
+              >
+                <ShopTagFiltered
+                  filters={filters}
+                  formik={formik}
+                  isShowReset={openFilter}
+                  onResetFilter={handleResetFilter}
+                  isDefault={isDefault}
+                />
+
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  flexShrink={0}
+                  sx={{ my: 1 }}
+                >
+                  <ShopFilterSidebar
+                    formik={formik}
+                    isOpenFilter={openFilter}
+                    onResetFilter={handleResetFilter}
+                    onOpenFilter={handleOpenFilter}
+                    onCloseFilter={handleCloseFilter}
+                  />
+                  <ShopProductSort />
+                </Stack>
+              </Stack>
+
+              <ShopProductList
+                products={filteredProducts}
+                isLoad={!filteredProducts && !initialValues}
+              />
+              <CartWidget />
+            </Container>
+          </Page>
+          {/* </AuthLayout> */}
+        </GuestGuard>
+      </DashboardLayout>
+    </GuestGuard>
   );
 }

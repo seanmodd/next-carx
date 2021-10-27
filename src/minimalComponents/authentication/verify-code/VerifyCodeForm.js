@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { useSnackbar } from 'notistack';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { Form, FormikProvider, useFormik } from 'formik';
 // material
 import { OutlinedInput, FormHelperText, Stack } from '@mui/material';
@@ -15,12 +16,16 @@ import fakeRequest from '../../../utils/fakeRequest';
 // eslint-disable-next-line consistent-return
 function maxLength(object) {
   if (object.target.value.length > object.target.maxLength) {
-    return (object.target.value = object.target.value.slice(0, object.target.maxLength));
+    return (object.target.value = object.target.value.slice(
+      0,
+      object.target.maxLength
+    ));
   }
 }
 
 export default function VerifyCodeForm() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
   const VerifyCodeSchema = Yup.object().shape({
@@ -29,7 +34,7 @@ export default function VerifyCodeForm() {
     code3: Yup.number().required('Code is required'),
     code4: Yup.number().required('Code is required'),
     code5: Yup.number().required('Code is required'),
-    code6: Yup.number().required('Code is required')
+    code6: Yup.number().required('Code is required'),
   });
 
   const formik = useFormik({
@@ -39,17 +44,26 @@ export default function VerifyCodeForm() {
       code3: '',
       code4: '',
       code5: '',
-      code6: ''
+      code6: '',
     },
     validationSchema: VerifyCodeSchema,
     onSubmit: async () => {
       await fakeRequest(500);
       enqueueSnackbar('Verify success', { variant: 'success' });
-      navigate(PATH_DASHBOARD.root);
-    }
+      // navigate(PATH_DASHBOARD.root);
+      router.push(PATH_DASHBOARD.root);
+    },
   });
 
-  const { values, errors, isValid, touched, isSubmitting, handleSubmit, getFieldProps } = formik;
+  const {
+    values,
+    errors,
+    isValid,
+    touched,
+    isSubmitting,
+    handleSubmit,
+    getFieldProps,
+  } = formik;
 
   return (
     <FormikProvider value={formik}>
@@ -69,8 +83,8 @@ export default function VerifyCodeForm() {
                   p: 0,
                   textAlign: 'center',
                   width: { xs: 36, sm: 56 },
-                  height: { xs: 36, sm: 56 }
-                }
+                  height: { xs: 36, sm: 56 },
+                },
               }}
             />
           ))}
@@ -80,7 +94,14 @@ export default function VerifyCodeForm() {
           {!isValid && 'Code is required'}
         </FormHelperText>
 
-        <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={isSubmitting} sx={{ mt: 3 }}>
+        <LoadingButton
+          fullWidth
+          size="large"
+          type="submit"
+          variant="contained"
+          loading={isSubmitting}
+          sx={{ mt: 3 }}
+        >
           Verify
         </LoadingButton>
       </Form>

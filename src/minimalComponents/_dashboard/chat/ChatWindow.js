@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+
 // material
 import { Box, Divider, Stack } from '@mui/material';
 import { useRouter } from 'next/router';
@@ -44,7 +46,8 @@ const conversationSelector = (state) => {
 
 export default function ChatWindow() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const router = useRouter();
   const { pathname } = useRouter();
   console.log(
     '🚀 ~ file: ChatWindow.js ~ line 47 ~ ChatWindow ~ pathname',
@@ -67,7 +70,8 @@ export default function ChatWindow() {
         await dispatch(getConversation(conversationKey));
       } catch (error) {
         console.error(error);
-        navigate(PATH_DASHBOARD.chat.new);
+        // navigate(PATH_DASHBOARD.chat.new);
+        router.push(PATH_DASHBOARD.chat.new);
       }
     };
     if (conversationKey) {

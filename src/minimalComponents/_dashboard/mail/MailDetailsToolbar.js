@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { Icon } from '@iconify/react';
 import roundReply from '@iconify/icons-ic/round-reply';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/router';
 import moreVerticalFill from '@iconify/icons-eva/more-vertical-fill';
 import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
 // material
@@ -23,28 +25,32 @@ const RootStyle = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: theme.spacing(0, 2),
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
 }));
 
 // ----------------------------------------------------------------------
 
 MailDetailsToolbar.propTypes = {
-  mail: PropTypes.object
+  mail: PropTypes.object,
 };
 
 export default function MailDetailsToolbar({ mail, ...other }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const router = useRouter();
   const { systemLabel, customLabel } = useParams();
   const baseUrl = PATH_DASHBOARD.mail.root;
 
   const handleBack = () => {
     if (systemLabel) {
-      return navigate(`${baseUrl}/${systemLabel}`);
+      // return navigate(`${baseUrl}/${systemLabel}`);
+      return router.push(`${baseUrl}/${systemLabel}`);
     }
     if (customLabel) {
-      return navigate(`${baseUrl}/label/${customLabel}`);
+      // return navigate(`${baseUrl}/label/${customLabel}`);
+      return router.push(`${baseUrl}/label/${customLabel}`);
     }
-    return navigate(`${baseUrl}/inbox`);
+    // return navigate(`${baseUrl}/inbox`);
+    return router.push(`${baseUrl}/inbox`);
   };
 
   return (
@@ -56,7 +62,11 @@ export default function MailDetailsToolbar({ mail, ...other }) {
           </IconButton>
         </Tooltip>
 
-        <MAvatar alt={mail.from.name} src={mail.from.avatar} color={createAvatar(mail.from.name).color}>
+        <MAvatar
+          alt={mail.from.name}
+          src={mail.from.avatar}
+          color={createAvatar(mail.from.name).color}
+        >
           {createAvatar(mail.from.name).name}
         </MAvatar>
 
@@ -67,7 +77,10 @@ export default function MailDetailsToolbar({ mail, ...other }) {
           <Link variant="caption" sx={{ color: 'text.secondary' }}>
             &nbsp; {`<${mail.from.email}>`}
           </Link>
-          <Typography variant="caption" sx={{ color: 'text.secondary', display: 'block' }}>
+          <Typography
+            variant="caption"
+            sx={{ color: 'text.secondary', display: 'block' }}
+          >
             To:&nbsp;
             {mail.to.map((person) => (
               <Link color="inherit" key={person.email}>

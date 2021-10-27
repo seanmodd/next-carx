@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 // material
 import { List } from '@mui/material';
 // routes
@@ -12,11 +13,17 @@ import ChatConversationItem from './ChatConversationItem';
 ChatConversationList.propTypes = {
   conversations: PropTypes.object,
   isOpenSidebar: PropTypes.bool,
-  activeConversationId: PropTypes.string
+  activeConversationId: PropTypes.string,
 };
 
-export default function ChatConversationList({ conversations, isOpenSidebar, activeConversationId, ...other }) {
-  const navigate = useNavigate();
+export default function ChatConversationList({
+  conversations,
+  isOpenSidebar,
+  activeConversationId,
+  ...other
+}) {
+  // const navigate = useNavigate();
+  const router = useRouter();
 
   const handleSelectConversation = (conversationId) => {
     let conversationKey = '';
@@ -25,11 +32,13 @@ export default function ChatConversationList({ conversations, isOpenSidebar, act
       conversationKey = conversation.id;
     } else {
       const otherParticipant = conversation.participants.find(
-        (participant) => participant.id !== '8864c717-587d-472a-929a-8e5f298024da-0'
+        (participant) =>
+          participant.id !== '8864c717-587d-472a-929a-8e5f298024da-0'
       );
       conversationKey = otherParticipant.username;
     }
-    navigate(`${PATH_DASHBOARD.chat.root}/${conversationKey}`);
+    // navigate(`${PATH_DASHBOARD.chat.root}/${conversationKey}`);
+    router.push(`${PATH_DASHBOARD.chat.root}/${conversationKey}`);
   };
 
   return (

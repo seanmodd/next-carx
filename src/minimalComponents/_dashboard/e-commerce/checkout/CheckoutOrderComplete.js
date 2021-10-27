@@ -1,5 +1,6 @@
 import { Icon } from '@iconify/react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import filePdfFilled from '@iconify/icons-ant-design/file-pdf-filled';
 import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
 // material
@@ -21,20 +22,22 @@ const DialogStyle = styled(DialogAnimate)(({ theme }) => ({
     margin: 0,
     [theme.breakpoints.up('md')]: {
       maxWidth: 'calc(100% - 48px)',
-      maxHeight: 'calc(100% - 48px)'
-    }
-  }
+      maxHeight: 'calc(100% - 48px)',
+    },
+  },
 }));
 
 // ----------------------------------------------------------------------
 
 export default function CheckoutOrderComplete({ ...other }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const router = useRouter();
   const dispatch = useDispatch();
 
   const handleResetStep = () => {
     dispatch(resetCart());
-    navigate(PATH_DASHBOARD.eCommerce.shop);
+    // navigate(PATH_DASHBOARD.eCommerce.shop);
+    router.push(PATH_DASHBOARD.eCommerce.shop);
   };
 
   return (
@@ -54,18 +57,30 @@ export default function CheckoutOrderComplete({ ...other }) {
 
           <Typography align="left">
             We will send you a notification within 5 days when it ships.
-            <br /> <br /> If you have any question or queries then fell to get in contact us. <br /> <br /> All the
-            best,
+            <br /> <br /> If you have any question or queries then fell to get
+            in contact us. <br /> <br /> All the best,
           </Typography>
         </Box>
 
         <Divider sx={{ my: 3 }} />
 
-        <Stack direction={{ xs: 'column-reverse', sm: 'row' }} justifyContent="space-between" spacing={2}>
-          <Button color="inherit" onClick={handleResetStep} startIcon={<Icon icon={arrowIosBackFill} />}>
+        <Stack
+          direction={{ xs: 'column-reverse', sm: 'row' }}
+          justifyContent="space-between"
+          spacing={2}
+        >
+          <Button
+            color="inherit"
+            onClick={handleResetStep}
+            startIcon={<Icon icon={arrowIosBackFill} />}
+          >
             Continue Shopping
           </Button>
-          <Button variant="contained" startIcon={<Icon icon={filePdfFilled} />} onClick={handleResetStep}>
+          <Button
+            variant="contained"
+            startIcon={<Icon icon={filePdfFilled} />}
+            onClick={handleResetStep}
+          >
             Download as PDF
           </Button>
         </Stack>

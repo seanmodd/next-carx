@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 // hooks
 import useAuth from '../hooks/useAuth';
 // routes
@@ -15,8 +15,35 @@ export default function GuestGuard({ children }) {
   const { isAuthenticated } = useAuth();
 
   if (isAuthenticated) {
-    return <Navigate href={PATH_DASHBOARD.root} />;
+    console.log(
+      '🚀 ~ file: GuestGuard.js ~ line 18 ~ GuestGuard ~ isAuthenticated is true: ',
+      isAuthenticated
+    );
+    // return <Navigate href={PATH_DASHBOARD.root} />;
+
+    return (
+      <>
+        {/* <Navigate href={PATH_DASHBOARD.root} /> */}
+        <button style={{ backgroundColor: '#ff0000' }}>Authenticated</button>
+        {children}
+      </>
+    );
   }
+
+  console.log(
+    '🚀 ~ file: GuestGuard.js ~ line 18 ~ GuestGuard ~ isAuthenticated is false: ',
+    isAuthenticated
+  );
+
+  return (
+    <>
+      {/* <Navigate href={PATH_DASHBOARD.root} /> */}
+      <button style={{ backgroundColor: '#ff0000' }}>
+        Login! Still Guest currently.
+      </button>
+      {children}
+    </>
+  );
 
   return <>{children}</>;
 }

@@ -2,7 +2,8 @@ import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { useSnackbar } from 'notistack';
 //* replace
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 // material
@@ -81,6 +82,7 @@ ProductNewForm.propTypes = {
 
 export default function ProductNewForm({ isEdit, currentProduct }) {
   // const navigate = useNavigate();
+  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
   const NewProductSchema = Yup.object().shape({
@@ -107,21 +109,22 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
       category: currentProduct?.category || CATEGORY_OPTION[0].classify[1],
     },
     validationSchema: NewProductSchema,
-    // onSubmit: async (values, { setSubmitting, resetForm, setErrors }) => {
-    //   try {
-    //     await fakeRequest(500);
-    //     resetForm();
-    //     setSubmitting(false);
-    //     enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', {
-    //       variant: 'success',
-    //     });
-    //     navigate(PATH_DASHBOARD.eCommerce.list);
-    //   } catch (error) {
-    //     console.error(error);
-    //     setSubmitting(false);
-    //     setErrors(error);
-    //   }
-    // },
+    onSubmit: async (values, { setSubmitting, resetForm, setErrors }) => {
+      try {
+        await fakeRequest(500);
+        resetForm();
+        setSubmitting(false);
+        enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', {
+          variant: 'success',
+        });
+        // navigate(PATH_DASHBOARD.eCommerce.list);
+        router.push(PATH_DASHBOARD.eCommerce.list);
+      } catch (error) {
+        console.error(error);
+        setSubmitting(false);
+        setErrors(error);
+      }
+    },
   });
 
   const {

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
+
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import { useRouter } from 'next/router';
@@ -53,6 +54,7 @@ export default function ChatSidebar() {
   const theme = useTheme();
   const navigate = useNavigate();
   const { pathname } = useRouter();
+  const router = useRouter();
   console.log(
     '🚀 ~ file: ChatSidebar.js ~ line 55 ~ ChatSidebar ~ pathname',
     pathname
@@ -125,7 +127,8 @@ export default function ChatSidebar() {
   const handleSearchSelect = (username) => {
     setSearchFocused(false);
     setSearchQuery('');
-    navigate(`${PATH_DASHBOARD.chat.root}/${username}`);
+    // navigate(`${PATH_DASHBOARD.chat.root}/${username}`);
+    router.push(`${PATH_DASHBOARD.chat.root}/${username}`);
   };
 
   const handleSelectContact = (result) => {
