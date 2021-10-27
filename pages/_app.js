@@ -48,7 +48,7 @@ import Settings from 'src/components/settings';
 import RtlLayout from 'src/components/RtlLayout';
 import ProgressBar from 'src/components/ProgressBar';
 import LoadingScreen from 'src/components/LoadingScreen';
-import { UserWrapper, FeedbackWrapper, CartWrapper } from 'src/contexts';
+
 import ThemePrimaryColor from 'src/components/ThemePrimaryColor';
 
 //! ----------------------------------------------------------------------
@@ -81,8 +81,9 @@ import GoogleAnalytics from 'src/minimalComponents/GoogleAnalytics';
 import NotistackProvider from 'src/minimalComponents/NotistackProvider';
 import ThemeLocalization from 'src/minimalComponents/ThemeLocalization';
 import { BaseOptionChartStyle } from 'src/minimalComponents/charts/BaseOptionChart';
+import { UserWrapper, FeedbackWrapper, CartWrapper } from 'src/contexts';
+import { ApolloWrapper } from 'src/apollo/ApolloWrapper';
 //! All imports from full javascript version end here ...
-
 const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
@@ -110,22 +111,24 @@ export default function MyApp(props) {
                         <NoSsr>
                           <Settings />
                         </NoSsr>
-                        <NotistackProvider>
-                          <GlobalStyles />
-                          <ProgressBar />
-                          <LoadingScreen />
-                          <BaseOptionChartStyle />
-                          <GoogleAnalytics />
-                          <UserWrapper>
-                            <FeedbackWrapper>
-                              <CartWrapper>
-                                <AuthProvider>
-                                  <Component {...pageProps} />
-                                </AuthProvider>
-                              </CartWrapper>
-                            </FeedbackWrapper>
-                          </UserWrapper>
-                        </NotistackProvider>
+                        <ApolloWrapper>
+                          <NotistackProvider>
+                            <GlobalStyles />
+                            <ProgressBar />
+                            <LoadingScreen />
+                            <BaseOptionChartStyle />
+                            <GoogleAnalytics />
+                            <UserWrapper>
+                              <FeedbackWrapper>
+                                <CartWrapper>
+                                  <AuthProvider>
+                                    <Component {...pageProps} />
+                                  </AuthProvider>
+                                </CartWrapper>
+                              </FeedbackWrapper>
+                            </UserWrapper>
+                          </NotistackProvider>
+                        </ApolloWrapper>
                       </RtlLayout>
                     </ThemePrimaryColor>
                   </ThemeConfig>
