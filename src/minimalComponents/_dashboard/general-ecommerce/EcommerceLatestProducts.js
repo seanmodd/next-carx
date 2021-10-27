@@ -8,7 +8,7 @@ import { fCurrency } from '../../../utils/formatNumber';
 import mockData from '../../../utils/mock-data';
 //
 import Scrollbar from '../../Scrollbar';
-import ColorPreview from '../../ColorPreview';
+// import ColorPreview from '../../ColorPreview';
 
 // ----------------------------------------------------------------------
 
@@ -94,11 +94,11 @@ function ProductItem({ product }) {
         </Stack>
       </Box>
 
-      <ColorPreview
+      {/* <ColorPreview
         limit={3}
         colors={product.colors}
         sx={{ minWidth: 72, pr: 3 }}
-      />
+      /> */}
     </Stack>
   );
 }

@@ -9,7 +9,6 @@ import { createSlice } from '@reduxjs/toolkit';
 // import axios from '../../utils/axios';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://admin.shopcarx.com';
 // ----------------------------------------------------------------------
 
 const initialState = {
@@ -230,11 +229,7 @@ export function getProducts() {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get('/products');
-      console.log(
-        '🚀 ~ file: product.js ~ line 234 ~ return ~ response.data',
-        response.data
-      );
+      const response = await axios.get('/api/products');
       dispatch(slice.actions.getProductsSuccess(response.data.products));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
@@ -248,7 +243,7 @@ export function getProduct(name) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get('/products/product', {
+      const response = await axios.get('/api/products/product', {
         params: { name },
       });
       dispatch(slice.actions.getProductSuccess(response.data.product));
