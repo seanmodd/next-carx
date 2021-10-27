@@ -48,6 +48,7 @@ import Settings from 'src/components/settings';
 import RtlLayout from 'src/components/RtlLayout';
 import ProgressBar from 'src/components/ProgressBar';
 import LoadingScreen from 'src/components/LoadingScreen';
+import { UserWrapper, FeedbackWrapper, CartWrapper } from 'src/contexts';
 import ThemePrimaryColor from 'src/components/ThemePrimaryColor';
 
 //! ----------------------------------------------------------------------
@@ -86,7 +87,8 @@ const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-  console.log('props: ', props);
+  console.log('🚀 ~ file: _app.js ~ line 90 ~ MyApp ~ props', props);
+
   return (
     <HelmetProvider>
       <ReduxProvider store={store}>
@@ -114,9 +116,15 @@ export default function MyApp(props) {
                           <LoadingScreen />
                           <BaseOptionChartStyle />
                           <GoogleAnalytics />
-                          <AuthProvider>
-                            <Component {...pageProps} />
-                          </AuthProvider>
+                          <UserWrapper>
+                            <FeedbackWrapper>
+                              <CartWrapper>
+                                <AuthProvider>
+                                  <Component {...pageProps} />
+                                </AuthProvider>
+                              </CartWrapper>
+                            </FeedbackWrapper>
+                          </UserWrapper>
                         </NotistackProvider>
                       </RtlLayout>
                     </ThemePrimaryColor>
