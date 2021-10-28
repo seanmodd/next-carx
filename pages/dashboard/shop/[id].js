@@ -109,9 +109,11 @@ export default function EcommerceProductDetails(props) {
   console.log('From CarDetail.js page, this is checkout: ', checkout);
   const router = useRouter();
   const { id } = router.query;
+  console.log("🚀 🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮  ~ file: [id].js ~ line 112 ~ EcommerceProductDetails ~ id", id)
   useEffect(() => {
     dispatch(getProduct(id));
   }, [dispatch, id]);
+  console.log("🚀 🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟  ~ file: [id].js ~ line 115 ~ EcommerceProductDetails ~ id", id)
 
   const handleChangeTab = (event, newValue) => {
     setValue(newValue);
