@@ -11,17 +11,16 @@ import track from '../utils/analytics';
 // ----------------------------------------------------------------------
 
 const Page = forwardRef(({ children, title = '', ...other }, ref) => {
-  const { router } = useRouter();
-  console.log("🚀 ~ file: Page.js ~ line 15 ~ Page ~ router", router)
-  
+  const router = useRouter();
+  console.log('🚀 ~ file: Page.js ~ line 15 ~ Page ~ router', router);
 
   console.log(
-    '🚀 ~ file: Page.js ~ line 16 ~ Page ~ pathname.asPath is as follows:',
-    pathname.asPath
+    '🚀 ~ file: Page.js ~ line 16 ~ Page ~ router.asPath is as follows:',
+    router.asPath
   );
   const sendPageViewEvent = useCallback(() => {
     track.pageview({
-      page_path: pathname.asPath,
+      page_path: router.asPath,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
