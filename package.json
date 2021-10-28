@@ -9,7 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@apollo/client": "3.4.15",
+    "@apollo/client": "^3.4.16",
     "@auth0/auth0-spa-js": "1.18",
     "@emotion/cache": "^11.4.0",
     "@emotion/react": "^11.4.1",
