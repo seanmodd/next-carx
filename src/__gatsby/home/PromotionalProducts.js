@@ -15,9 +15,10 @@ import IconButton from '@material-ui/core/IconButton'
 import loadable from '@loadable/component'
 import clsx from 'clsx'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { Link, useStaticQuery, graphql } from 'gatsby'
+// import { Link, useStaticQuery, graphql } from 'gatsby'
+import Link from 'next/link'
 import { makeStyles } from '@material-ui/core/styles'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+// import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import promoAdornment from '../../images/promo-adornment.svg'
 import explore from '../../images/explore.svg'
@@ -97,72 +98,72 @@ export default function PromotionalProducts() {
 
   const matchesMD = useMediaQuery(theme => theme.breakpoints.down('md'))
 
-  const data = useStaticQuery(graphql`
-    query GetPromo {
-      allStrapiProduct(filter: { promo: { eq: true } }) {
-        edges {
-          node {
-            name
-            strapiId
-            description
-            category {
-              name
-            }
-            variants {
-              images {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
+  // const data = useStaticQuery(graphql`
+  //   query GetPromo {
+  //     allStrapiProduct(filter: { promo: { eq: true } }) {
+  //       edges {
+  //         node {
+  //           name
+  //           strapiId
+  //           description
+  //           category {
+  //             name
+  //           }
+  //           variants {
+  //             images {
+  //               localFile {
+  //                 childImageSharp {
+  //                   gatsbyImageData
+  //                 }
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
 
   const slides = []
 
-  data.allStrapiProduct.edges.map(({ node }, i) => {
-    const image = getImage(node.variants[0].images[0].localFile)
+  // data.allStrapiProduct.edges.map(({ node }, i) => {
+  //   const image = getImage(node.variants[0].images[0].localFile)
 
-    return slides.push({
-      key: i,
-      content: (
-        <Grid container direction="column" alignItems="center">
-          <Grid item>
-            <IconButton
-              disableRipple
-              onClick={() => setSelectedSlide(i)}
-              classes={{
-                root: clsx(classes.iconButton, {
-                  [classes.space]: selectedSlide !== i,
-                }),
-              }}
-            >
-              <GatsbyImage
-                image={image}
-                alt={`image-${i}`}
-                className={classes.carouselImage}
-                objectFit="contain"
-              />
-            </IconButton>
-          </Grid>
-          <Grid item>
-            {selectedSlide === i ? (
-              <Typography variant="h1" classes={{ root: classes.productName }}>
-                {node.category.name.toLowerCase()}
-              </Typography>
-            ) : null}
-          </Grid>
-        </Grid>
-      ),
-      description: node.description,
-      url: `/${node.category.name.toLowerCase()}`,
-    })
-  })
+  //   return slides.push({
+  //     key: i,
+  //     content: (
+  //       <Grid container direction="column" alignItems="center">
+  //         <Grid item>
+  //           <IconButton
+  //             disableRipple
+  //             onClick={() => setSelectedSlide(i)}
+  //             classes={{
+  //               root: clsx(classes.iconButton, {
+  //                 [classes.space]: selectedSlide !== i,
+  //               }),
+  //             }}
+  //           >
+  //             <GatsbyImage
+  //               image={image}
+  //               alt={`image-${i}`}
+  //               className={classes.carouselImage}
+  //               objectFit="contain"
+  //             />
+  //           </IconButton>
+  //         </Grid>
+  //         <Grid item>
+  //           {selectedSlide === i ? (
+  //             <Typography variant="h1" classes={{ root: classes.productName }}>
+  //               {node.category.name.toLowerCase()}
+  //             </Typography>
+  //           ) : null}
+  //         </Grid>
+  //       </Grid>
+  //     ),
+  //     description: node.description,
+  //     url: `/${node.category.name.toLowerCase()}`,
+  //   })
+  // })
 
   return (
     <Grid
@@ -187,12 +188,12 @@ export default function PromotionalProducts() {
         </Typography>
 
         {/* <Button component={Link} to={slides[selectedSlide].url}> */}
-        <Button component={Link} to={`/dashboard/${slides[selectedSlide].url}`}>
-          <Typography variant="h4" classes={{ root: classes.explore }}>
-            Explore
-          </Typography>
-          <img src={explore} alt="go to product page" />
-        </Button>
+        {/* <Button component={Link} to={`/dashboard/${slides[selectedSlide].url}`}> */}
+          {/* <Typography variant="h4" classes={{ root: classes.explore }}> */}
+            {/* Explore */}
+          {/* </Typography> */}
+          {/* <img src={explore} alt="go to product page" /> */}
+        {/* </Button> */}
       </Grid>
     </Grid>
   )
