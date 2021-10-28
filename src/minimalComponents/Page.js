@@ -11,11 +11,13 @@ import track from '../utils/analytics';
 // ----------------------------------------------------------------------
 
 const Page = forwardRef(({ children, title = '', ...other }, ref) => {
-  const { pathname } = useRouter();
+  const { router } = useRouter();
+  console.log("🚀 ~ file: Page.js ~ line 15 ~ Page ~ router", router)
+  
 
   console.log(
-    '🚀 ~ file: Page.js ~ line 16 ~ Page ~ pathname.pagePath is as follows:',
-    pathname
+    '🚀 ~ file: Page.js ~ line 16 ~ Page ~ pathname.asPath is as follows:',
+    pathname.asPath
   );
   const sendPageViewEvent = useCallback(() => {
     track.pageview({
