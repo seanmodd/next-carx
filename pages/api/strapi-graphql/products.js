@@ -1,3 +1,4 @@
+
 import { colors } from '@material-ui/core';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
@@ -7,6 +8,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+//* this file (api/strapi-graphql/products.js) gets referenced from Redux within "src/___redux/slices/product.js"
 export default async (req, res) => {
   const search = req.body;
   try {
