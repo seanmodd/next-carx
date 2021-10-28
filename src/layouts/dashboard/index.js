@@ -7,6 +7,7 @@ import useCollapseDrawer from '../../hooks/useCollapseDrawer';
 //
 import DashboardNavbar from './DashboardNavbar';
 import DashboardSidebar from './DashboardSidebar';
+import CartWidget from 'src/minimalComponents/_dashboard/e-commerce/CartWidget'
 
 // ----------------------------------------------------------------------
 
@@ -60,7 +61,9 @@ export default function DashboardLayout({ children }) {
           }),
         }}
       >
+
         {children}
+
       </MainStyle>
     </RootStyle>
   );

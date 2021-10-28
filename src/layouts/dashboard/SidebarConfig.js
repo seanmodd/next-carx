@@ -31,8 +31,8 @@ const sidebarConfig = [
         icon: ICONS.dashboard,
       },
       {
-        title: "Two",
-        path: PATH_DASHBOARD.general.pageTwo,
+        title: "Cars",
+        path: PATH_DASHBOARD.general.pageShop,
         icon: ICONS.ecommerce,
       },
       {

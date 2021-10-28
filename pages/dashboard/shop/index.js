@@ -151,6 +151,12 @@ export default function EcommerceShop() {
   return (
     <GuestGuard>
       <DashboardLayout>
+      <Stack       direction="row"
+                flexWrap="wrap-reverse"
+                alignItems="center"
+                justifyContent="flex-end"
+                sx={{ mb: 0, mt: 0, px: 15 }}><CartWidget />
+        </Stack>
         <GuestGuard>
           {/* <AuthLayout> */}
           <Page title="Ecommerce: Shop | Minimal-UI">
@@ -218,8 +224,9 @@ export default function EcommerceShop() {
                 products={filteredProducts}
                 isLoad={!filteredProducts && !initialValues}
               />
-              <CartWidget />
             </Container>
+              
+
           </Page>
           {/* </AuthLayout> */}
         </GuestGuard>
