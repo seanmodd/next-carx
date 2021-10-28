@@ -30,9 +30,17 @@ ShopProductCard.propTypes = {
 };
 
 export default function ShopProductCard({ product }) {
-  const { id, name, cover, price, colors, status, priceSale } = product;
+  const { id, name, cover, price, colors, status, priceSale, images } = product;
+  console.log(
+    '🚀 ~ file: ShopProductCard.js ~ line 34 ~ ShopProductCard ~ images[0]',
+    images[0]
+  );
+  console.log(
+    '🚀 ~ file: ShopProductCard.js ~ line 34 ~ ShopProductCard ~ product',
+    product
+  );
   // const linkTo = `${PATH_DASHBOARD.eCommerce.root}/product/${paramCase(name)}`;
-  const linkTo = `${PATH_DASHBOARD.eCommerce.root}/car/${id}`;
+  const linkTo = `/dashboard/shop/${id}`;
 
   return (
     <Card>
@@ -52,13 +60,13 @@ export default function ShopProductCard({ product }) {
             {status}
           </Label>
         )}
-        <ProductImgStyle alt={name} src={cover} />
+        <ProductImgStyle alt={name} src={images[0].url} />
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
         <Link href={linkTo} color="inherit" component={RouterLink}>
           <Typography variant="subtitle2" noWrap>
-            {name}
+            {product.car_name}
           </Typography>
         </Link>
 

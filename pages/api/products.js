@@ -2,7 +2,7 @@ import { colors } from '@material-ui/core';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: process.env.GATSBY_STRAPI_URL + "/graphql",
+  uri: `${process.env.GATSBY_STRAPI_URL}/graphql`,
   cache: new InMemoryCache(),
 });
 
@@ -22,6 +22,7 @@ export default async (req, res) => {
             size
             style
             price
+car_name
             product {
               id
               name
