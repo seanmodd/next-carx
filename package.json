@@ -71,7 +71,6 @@
     "formik": "^2.2.9",
     "framer-motion": "^4.1.17",
     "graphql": "^15.7.1",
-    "highlight.js": "^11.2.0",
     "history": "^5.0.1",
     "i18next": "^20.6.1",
     "i18next-browser-languagedetector": "^6.1.2",
