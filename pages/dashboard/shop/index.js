@@ -34,7 +34,7 @@ import AuthLayout from 'src/layouts/AuthLayout';
 import GuestGuard from 'src/guards/GuestGuard';
 
 //* All data here comes from src/___redux/slices/product.js lines 220+ where the getProducts function is being exported!
-//*This then calls an api with Axios which is referencing to localhost:3222/api/products which itself gets data from the graphql server on https://admin.shopcarx.com/graphql which comes back and retrieves data via a graphql setup
+//* This then calls an api with Axios which is referencing to localhost:3222/api/products which itself gets data from the graphql server on https://admin.shopcarx.com/graphql which comes back and retrieves data via a graphql setup
 // ----------------------------------------------------------------------
 
 function applyFilter(products, sortBy, filters) {
@@ -98,6 +98,10 @@ export default function EcommerceShop() {
   const dispatch = useDispatch();
   const [openFilter, setOpenFilter] = useState(false);
   const { products, sortBy, filters } = useSelector((state) => state.product);
+  console.log(
+    '🚀 ~ file: index.js ~ line 101 ~ EcommerceShop ~ products',
+    products
+  );
   const filteredProducts = applyFilter(products, sortBy, filters);
 
   const formik = useFormik({

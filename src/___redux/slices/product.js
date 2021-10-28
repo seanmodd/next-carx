@@ -239,12 +239,13 @@ export function getProducts() {
 
 // ----------------------------------------------------------------------
 
-export function getProduct(name) {
+export function getProduct(id) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get('/api/products/product', {
-        params: { name },
+      // const response = await axios.get('/api/products/product', {
+      const response = await axios.get('/api/strapi-graphql/products', {
+        params: { id },
       });
       dispatch(slice.actions.getProductSuccess(response.data.product));
     } catch (error) {

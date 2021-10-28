@@ -63,16 +63,30 @@ export default function MainNavbar() {
   const isOffset = useOffSetTop(100);
   // const { pathname } = useRouter()
   //! New for gatsby configuration
-  const [activePathname, setActivePathname] = useState('');
-  useEffect(() => {
-    setActivePathname(
-      window && window.location ? window.location.pathname : ''
-    );
-  }, []);
+  // const [activePathname, setActivePathname] = useState('');
+
+  const router = useRouter();
   console.log(
-    'From MainNavbar.js - this is the activePathname',
+    '🕺  🚀 ~ file: MainNavbar.js ~ line 68 ~ MainNavbar ~ router.asPath: ',
+    router.asPath
+  );
+
+  const activePathname = router.asPath;
+  console.log(
+    '😊  🚀 ~ file: MainNavbar.js ~ line 73 ~ MainNavbar ~ my activePathname',
     activePathname
   );
+  // create pathname with router
+
+  // useEffect(() => {
+  //   setActivePathname(
+  //     window && window.location ? window.location.pathname : ''
+  //   );
+  // }, []);
+  // console.log(
+  //   '😻  From MainNavbar.js - this is the activePathname',
+  //   activePathname
+  // );
 
   // const isHome = pathname === '/'
   const isHome = activePathname === '/';

@@ -12,10 +12,14 @@ import track from '../utils/analytics';
 
 const Page = forwardRef(({ children, title = '', ...other }, ref) => {
   const { pathname } = useRouter();
-  console.log('🚀 ~ file: Page.js ~ line 16 ~ Page ~ pathname', pathname);
+
+  console.log(
+    '🚀 ~ file: Page.js ~ line 16 ~ Page ~ pathname.pagePath is as follows:',
+    pathname
+  );
   const sendPageViewEvent = useCallback(() => {
     track.pageview({
-      page_path: pathname,
+      page_path: pathname.asPath,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
