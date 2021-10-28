@@ -53,7 +53,7 @@ import ThemePrimaryColor from '../../_SHELL/components/ThemePrimaryColor'
 import { CollapseDrawerProvider } from '../../_SHELL/contexts/CollapseDrawerContext'
 import { SettingsProvider } from '../../_SHELL/contexts/SettingsContext'
 import { AuthProvider } from '../_MODERN/contexts/JWTContext'
-import { ApolloWrapper } from '../../__apollo/ApolloWrapper'
+import { ApolloWrapper } from '../../__graphql/ApolloWrapper'
 import { UserWrapper, FeedbackWrapper, CartWrapper } from '../../contexts'
 
 import theme from './theme'

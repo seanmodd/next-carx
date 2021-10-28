@@ -1,4 +1,5 @@
-import { gql } from "@apollo/client"
+//! Delete this page
+// import { gql } from "@apollo/client"
 
 // export const GET_DETAILS = gql`
 //   query getDetails($id: ID!) {
