@@ -37,7 +37,7 @@ const GET_ALL_VARIANTS = gql`
   query Variants {
     variants {
       id
-      qty
+      # qty
       # color
       # size
       # style
