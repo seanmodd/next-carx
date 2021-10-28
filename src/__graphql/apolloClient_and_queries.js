@@ -1,4 +1,11 @@
-import { gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: `${process.env.GATSBY_STRAPI_URL}/graphql`,
+  cache: new InMemoryCache(),
+});
+
+export default client;
 
 const GET_CATEGORIES = gql`
   query getCategories {
