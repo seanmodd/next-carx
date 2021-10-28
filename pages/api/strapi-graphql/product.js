@@ -13,19 +13,11 @@ export default async (req, res) => {
   try {
     const { data } = await client.query({
       query: gql`
-        query Variants {
-          # characters(filter: { name: "${search}" }) {
-          # variants(filter: { name: "${search}" }) {
-            # variants(where: {product: {name_contains: "${search}"}}) {
-            variants(where: {product: {name_contains: "Jeep"}}) {
-              # variants{
+        query Variant($id: id!) {
+          variant(id: $id) {
             id
-            qty
-            # color
-            size
-            style
             price
-car_name
+            car_name
             product {
               id
               name
@@ -45,13 +37,12 @@ car_name
               width
               name
             }
-            
           }
         }
       `,
     });
     console.log(
-      '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ file: product.js ~ line 49 ~ data.variants',
+      '👰~ file: product.js ~ line 49 ~ data.variants',
       data.variants
     );
 

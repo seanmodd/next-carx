@@ -230,6 +230,10 @@ export function getProducts() {
     dispatch(slice.actions.startLoading());
     try {
       const response = await axios.get('/api/strapi-graphql/products/');
+      console.log(
+        '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ file: product.js ~ line 233 ~ return ~ response',
+        response
+      );
       dispatch(slice.actions.getProductsSuccess(response.data.products));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
@@ -244,9 +248,10 @@ export function getProduct(id) {
     dispatch(slice.actions.startLoading());
     try {
       // const response = await axios.get('/api/products/product', {
-      const response = await axios.get('/api/strapi-graphql/products', {
+      const response = await axios.get('/api/strapi-graphql/product', {
         params: { id },
       });
+      console.log("🚀 ~ file: product.js ~ line 254 ~ return ~ response", response)
       dispatch(slice.actions.getProductSuccess(response.data.product));
     } catch (error) {
       console.error(error);
