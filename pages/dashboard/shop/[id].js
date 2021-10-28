@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache, gql, useQuery } from '@apollo/client';
-import client from 'src/graphql/apolloClient';
-import { GET_ALL_VARIANTS } from 'src/graphql/queries';
+import client from 'src/__graphql/apolloClient';
+import { GET_ALL_VARIANTS } from 'src/__graphql/queries';
 import { useRouter } from 'next/router';
 import DashboardLayout from 'src/layouts/dashboard';
 import { useState, useEffect } from 'react';

@@ -17,7 +17,7 @@ import explore from '../../images/explore.svg';
 
 import Rating from './Rating';
 
-import { GET_DETAILS } from '../../apollo/queries';
+import { GET_DETAILS } from '../../__apollo/queries';
 
 const useStyles = makeStyles((theme) => ({
   featured: {
