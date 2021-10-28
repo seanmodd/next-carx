@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Box, Divider, Typography } from '@mui/material';
 // redux
-import { useDispatch, useSelector } from '../../../redux/store';
-import { getMail } from '../../../redux/slices/mail';
+import { useDispatch, useSelector } from '../../../___redux/store';
+import { getMail } from '../../../___redux/slices/mail';
 //
 import Markdown from '../../Markdown';
 import Scrollbar from '../../Scrollbar';

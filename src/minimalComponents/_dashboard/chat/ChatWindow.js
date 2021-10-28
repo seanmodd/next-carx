@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import { Box, Divider, Stack } from '@mui/material';
 import { useRouter } from 'next/router';
 // redux
-import { useDispatch, useSelector } from '../../../redux/store';
+import { useDispatch, useSelector } from '../../../___redux/store';
 import {
   addRecipients,
   onSendMessage,
@@ -14,7 +14,7 @@ import {
   getParticipants,
   markConversationAsRead,
   resetActiveConversation,
-} from '../../../redux/slices/chat';
+} from '../../../___redux/slices/chat';
 // routes
 import { PATH_DASHBOARD } from '../../../routes/paths';
 //

@@ -6,14 +6,14 @@ import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
 // material
 import { Grid, Card, Button, CardHeader, Typography } from '@mui/material';
 // redux
-import { useDispatch, useSelector } from '../../../../redux/store';
+import { useDispatch, useSelector } from '../../../../___redux/store';
 import {
   deleteCart,
   onNextStep,
   applyDiscount,
   increaseQuantity,
   decreaseQuantity,
-} from '../../../../redux/slices/product';
+} from '../../../../___redux/slices/product';
 // routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 //

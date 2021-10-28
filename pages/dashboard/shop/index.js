@@ -10,9 +10,9 @@ import {
   Stack,
 } from '@mui/material';
 // redux
-import { useDispatch, useSelector } from 'src/redux/store';
+import { useDispatch, useSelector } from 'src/___redux/store';
 import { PATH_DASHBOARD } from 'src/routes/paths';
-import { getProducts, filterProducts } from 'src/redux/slices/product';
+import { getProducts, filterProducts } from 'src/___redux/slices/product';
 // routes
 // utils
 import fakeRequest from 'src/utils/fakeRequest';
@@ -33,6 +33,8 @@ import DashboardLayout from 'src/layouts/dashboard';
 import AuthLayout from 'src/layouts/AuthLayout';
 import GuestGuard from 'src/guards/GuestGuard';
 
+//* All data here comes from src/___redux/slices/product.js lines 220+ where the getProducts function is being exported!
+//*This then calls an api with Axios which is referencing to localhost:3222/api/products which itself gets data from the graphql server on https://admin.shopcarx.com/graphql which comes back and retrieves data via a graphql setup
 // ----------------------------------------------------------------------
 
 function applyFilter(products, sortBy, filters) {
@@ -151,11 +153,14 @@ export default function EcommerceShop() {
   return (
     <GuestGuard>
       <DashboardLayout>
-      <Stack       direction="row"
-                flexWrap="wrap-reverse"
-                alignItems="center"
-                justifyContent="flex-end"
-                sx={{ mb: 0, mt: 0, px: 15 }}><CartWidget />
+        <Stack
+          direction="row"
+          flexWrap="wrap-reverse"
+          alignItems="center"
+          justifyContent="flex-end"
+          sx={{ mb: 0, mt: 0, px: 15 }}
+        >
+          <CartWidget />
         </Stack>
         <GuestGuard>
           {/* <AuthLayout> */}
@@ -225,8 +230,6 @@ export default function EcommerceShop() {
                 isLoad={!filteredProducts && !initialValues}
               />
             </Container>
-              
-
           </Page>
           {/* </AuthLayout> */}
         </GuestGuard>

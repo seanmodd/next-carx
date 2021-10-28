@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import { Divider, Box } from '@mui/material';
 // redux
-import { useDispatch, useSelector } from '../../../redux/store';
-import { getMails } from '../../../redux/slices/mail';
+import { useDispatch, useSelector } from '../../../___redux/store';
+import { getMails } from '../../../___redux/slices/mail';
 //
 import Scrollbar from '../../Scrollbar';
 import EmptyContent from '../../EmptyContent';

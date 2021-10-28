@@ -8,8 +8,8 @@ import { Droppable, Draggable } from 'react-beautiful-dnd';
 // material
 import { Paper, Stack, Button } from '@mui/material';
 // redux
-import { useDispatch } from '../../../redux/store';
-import { deleteColumn, updateColumn, addTask, deleteTask } from '../../../redux/slices/kanban';
+import { useDispatch } from '../../../___redux/store';
+import { deleteColumn, updateColumn, addTask, deleteTask } from '../../../___redux/slices/kanban';
 //
 import KanbanTaskCard from './KanbanTaskCard';
 import KanbanColumnToolBar from './KanbanColumnToolBar';

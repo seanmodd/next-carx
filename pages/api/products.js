@@ -2,7 +2,8 @@ import { colors } from '@material-ui/core';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: `${process.env.GATSBY_STRAPI_URL}/graphql`,
+  // uri: `http://localhost:1337/graphql`,
+  uri: `https://admin.shopcarx.com/graphql`,
   cache: new InMemoryCache(),
 });
 

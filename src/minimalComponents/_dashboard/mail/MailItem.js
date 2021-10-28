@@ -17,7 +17,7 @@ import {
   Checkbox,
 } from '@mui/material';
 // redux
-import { useSelector } from '../../../redux/store';
+import { useSelector } from '../../../___redux/store';
 // utils
 import { fDate } from '../../../utils/formatTime';
 import createAvatar from '../../../utils/createAvatar';
