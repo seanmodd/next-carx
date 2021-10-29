@@ -18,8 +18,8 @@ const THUMB_SIZE = 64;
 const RootStyle = styled('div')(({ theme }) => ({
   '& .slick-slide': {
     float: theme.direction === 'rtl' ? 'right' : 'left',
-    '&:focus': { outline: 'none' }
-  }
+    '&:focus': { outline: 'none' },
+  },
 }));
 
 const ThumbWrapperStyle = styled('div')(({ theme }) => ({
@@ -32,7 +32,7 @@ const ThumbWrapperStyle = styled('div')(({ theme }) => ({
   borderRadius: theme.shape.borderRadiusSm,
   '&:hover': {
     opacity: 0.72,
-    transition: theme.transitions.create('opacity')
+    transition: theme.transitions.create('opacity'),
   },
   '& .isActive': {
     top: 0,
@@ -43,8 +43,8 @@ const ThumbWrapperStyle = styled('div')(({ theme }) => ({
     position: 'absolute',
     borderRadius: theme.shape.borderRadiusSm,
     border: `solid 3px ${theme.palette.primary.main}`,
-    backgroundColor: alpha(theme.palette.grey[900], 0.48)
-  }
+    backgroundColor: alpha(theme.palette.grey[900], 0.48),
+  },
 }));
 
 const LargeImgStyle = styled('img')({
@@ -52,32 +52,36 @@ const LargeImgStyle = styled('img')({
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  position: 'absolute'
+  position: 'absolute',
 });
 
 const ThumbImgStyle = styled('img')({
   width: '100%',
   height: '100%',
-  objectFit: 'cover'
+  objectFit: 'cover',
 });
 
 // ----------------------------------------------------------------------
 
 LargeItem.propTypes = {
   item: PropTypes.string,
-  onOpenLightbox: PropTypes.func
+  onOpenLightbox: PropTypes.func,
 };
 
 function LargeItem({ item, onOpenLightbox }) {
   return (
     <Box sx={{ cursor: 'zoom-in', paddingTop: '100%', position: 'relative' }}>
-      <LargeImgStyle alt="large image" src={item} onClick={() => onOpenLightbox(item)} />
+      <LargeImgStyle
+        alt="large image"
+        src={item}
+        onClick={() => onOpenLightbox(item)}
+      />
     </Box>
   );
 }
 
 ThumbnailItem.propTypes = {
-  item: PropTypes.string
+  item: PropTypes.string,
 };
 
 function ThumbnailItem({ item }) {
@@ -99,6 +103,10 @@ export default function ProductDetailsCarousel() {
   const slider2 = useRef(null);
 
   const { product } = useSelector((state) => state.product);
+  console.log(
+    '🚀 🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴   ~ file: ProductDetailsCarousel.js ~ line 102 ~ ProductDetailsCarousel ~ product',
+    product
+  );
   const imagesLightbox = product.images.map((_image) => _image);
 
   const handleOpenLightbox = (url) => {
@@ -114,7 +122,7 @@ export default function ProductDetailsCarousel() {
     draggable: false,
     slidesToScroll: 1,
     adaptiveHeight: true,
-    beforeChange: (current, next) => setCurrentIndex(next)
+    beforeChange: (current, next) => setCurrentIndex(next),
   };
 
   const settings2 = {
@@ -125,7 +133,7 @@ export default function ProductDetailsCarousel() {
     focusOnSelect: true,
     variableWidth: true,
     centerPadding: '0px',
-    slidesToShow: product.images.length > 3 ? 3 : product.images.length
+    slidesToShow: product.images.length > 3 ? 3 : product.images.length,
   };
 
   useEffect(() => {
@@ -149,12 +157,16 @@ export default function ProductDetailsCarousel() {
             zIndex: 0,
             borderRadius: 2,
             overflow: 'hidden',
-            position: 'relative'
+            position: 'relative',
           }}
         >
           <Slider {...settings1} asNavFor={nav2} ref={slider1}>
             {product.images.map((item) => (
-              <LargeItem key={item} item={item} onOpenLightbox={handleOpenLightbox} />
+              <LargeItem
+                key={item}
+                item={item}
+                onOpenLightbox={handleOpenLightbox}
+              />
             ))}
           </Slider>
           <CarouselControlsArrowsIndex
@@ -186,12 +198,13 @@ export default function ProductDetailsCarousel() {
               position: 'absolute',
               width: (THUMB_SIZE * 2) / 3,
               backgroundImage: (theme) =>
-                `linear-gradient(to left, ${alpha(theme.palette.background.paper, 0)} 0%, ${
-                  theme.palette.background.paper
-                } 100%)`
+                `linear-gradient(to left, ${alpha(
+                  theme.palette.background.paper,
+                  0
+                )} 0%, ${theme.palette.background.paper} 100%)`,
             },
-            '&:after': { right: 0, transform: 'scaleX(-1)' }
-          })
+            '&:after': { right: 0, transform: 'scaleX(-1)' },
+          }),
         }}
       >
         <Slider {...settings2} asNavFor={nav1} ref={slider2}>

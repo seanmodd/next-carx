@@ -5,9 +5,9 @@
 //* This gets fed directly into ProductDetailsSumary.js via onGotoStep and addToCart !!!
 import { sum, map, filter, uniqBy, reject } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
-import { useQuery, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, useQuery, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
-import client from 'src/__graphql/apolloClient_and_queries';
+
 // utils
 // import axios from '../../utils/axios';
 import axios from 'axios';
@@ -304,6 +304,12 @@ const CARQUERY = gql`
     }
   }
 `;
+const client = new ApolloClient({
+  // uri: `${process.env.GATSBY_STRAPI_URL}/graphql`,
+  uri: `https://admin.shopcarx.com/graphql`,
+  cache: new InMemoryCache(),
+});
+
 export function getProductGraphQl(id) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
