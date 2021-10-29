@@ -282,6 +282,7 @@ const CARQUERY = gql`
       id
       price
       car_name
+
       product {
         id
         name

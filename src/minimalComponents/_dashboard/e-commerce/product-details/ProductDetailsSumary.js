@@ -224,7 +224,7 @@ export default function ProductDetailsSumary() {
           </Typography>
 
           <Typography variant="h5" paragraph>
-            {name}
+            {product.variant.car_name}
           </Typography>
 
           <Stack
@@ -233,11 +233,11 @@ export default function ProductDetailsSumary() {
             alignItems="center"
             sx={{ mb: 2 }}
           >
-            <Rating value={totalRating} precision={0.1} readOnly />
+            {/* <Rating value={totalRating} precision={0.1} readOnly />
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
               ({fShortenNumber(totalReview)}
               reviews)
-            </Typography>
+            </Typography> */}
           </Stack>
 
           <Typography variant="h4" sx={{ mb: 3 }}>
@@ -247,7 +247,7 @@ export default function ProductDetailsSumary() {
             >
               {priceSale && fCurrency(priceSale)}
             </Box>
-            &nbsp;{fCurrency(price)}
+            &nbsp;{fCurrency(product.variant.price)}
           </Typography>
 
           <Divider sx={{ borderStyle: 'dashed' }} />
