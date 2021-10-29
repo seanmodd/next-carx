@@ -52,7 +52,7 @@ export const PATH_DASHBOARD = {
   user: {
     root: path(ROOTS_DASHBOARD, '/user'),
     pageLogin: path(ROOTS_DASHBOARD, '/user/login'),
-    pageLogin: path(ROOTS_DASHBOARD, '/user/register'),
+    pageRegister: path(ROOTS_DASHBOARD, '/user/register'),
     pageVerify: path(ROOTS_DASHBOARD, '/user/verify'),
     profile: path(ROOTS_DASHBOARD, '/user/profile'),
     cards: path(ROOTS_DASHBOARD, '/user/cards'),
