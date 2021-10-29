@@ -1,62 +1,125 @@
 // routes
-import { PATH_DASHBOARD } from "../../routes/paths";
+import { PATH_DASHBOARD } from '../../routes/paths';
 // components
-import SvgIconStyle from "../../components/SvgIconStyle";
+import SvgIconStyle from '../../components/SvgIconStyle';
+import danger14 from '../../../public/static/icons/_danger-14.svg';
 
 // ----------------------------------------------------------------------
 
 const getIcon = (name) => (
   <SvgIconStyle
     src={`/static/icons/navbar/${name}.svg`}
-    sx={{ width: "100%", height: "100%" }}
+    sx={{ width: '100%', height: '100%' }}
+  />
+);
+const myIcon = (name) => (
+  <SvgIconStyle
+    src={`/static/icons/${name}.svg`}
+    sx={{ width: '100%', height: '100%' }}
   />
 );
 
 const ICONS = {
-  user: getIcon("ic_user"),
-  ecommerce: getIcon("ic_ecommerce"),
-  analytics: getIcon("ic_analytics"),
-  dashboard: getIcon("ic_dashboard"),
+  user: getIcon('ic_user'),
+  ecommerce: getIcon('ic_ecommerce'),
+  analytics: getIcon('ic_analytics'),
+  dashboard: getIcon('ic_dashboard'),
+  mail: getIcon('ic_mail'),
+  blog: getIcon('ic_blog'),
+  booking: getIcon('ic_booking'),
+  chat: getIcon('ic_chat'),
+  danger: myIcon('_danger-14'),
+  user8: myIcon('_user-8'),
+  user28: myIcon('_user-28'),
+  smiley8: myIcon('_smiley-8'),
+  car4: myIcon('_car-4'),
+  noun_newcar: myIcon('noun_new-car'),
+  noun_cleancar: myIcon('noun_cleancar'),
+  noun_sell: myIcon('noun_sell'),
+  noun_checkout: myIcon('noun_checkout'),
+  noun_checkout2: myIcon('noun_checkout2'),
 };
 
 const sidebarConfig = [
   // GENERAL
   // ----------------------------------------------------------------------
+  // MANAGEMENT
+  // ----------------------------------------------------------------------
   {
-    subheader: "general",
+    subheader: 'management',
     items: [
       {
-        title: "One",
-        path: PATH_DASHBOARD.general.pageOne,
-        icon: ICONS.dashboard,
-      },
-      {
-        title: "Cars",
-        path: PATH_DASHBOARD.general.pageShop,
-        icon: ICONS.ecommerce,
-      },
-      {
-        title: "Three",
-        path: PATH_DASHBOARD.general.pageThree,
-        icon: ICONS.analytics,
+        title: 'user',
+        path: PATH_DASHBOARD.app.root,
+        icon: ICONS.user,
+        children: [
+          { title: 'Account', path: PATH_DASHBOARD.app.pageFour },
+          { title: 'Cart', path: PATH_DASHBOARD.app.pageFive },
+          { title: 'Contact', path: PATH_DASHBOARD.app.pageSix },
+        ],
       },
     ],
   },
 
-  // MANAGEMENT
-  // ----------------------------------------------------------------------
   {
-    subheader: "management",
+    subheader: 'general',
     items: [
       {
-        title: "user",
-        path: PATH_DASHBOARD.app.root,
-        icon: ICONS.user,
-        children: [
-          { title: "Four", path: PATH_DASHBOARD.app.pageFour },
-          { title: "Five", path: PATH_DASHBOARD.app.pageFive },
-          { title: "Six", path: PATH_DASHBOARD.app.pageSix },
-        ],
+        title: 'Dashboard',
+        path: PATH_DASHBOARD.general.pageOne,
+        icon: ICONS.dashboard,
+      },
+      
+      {
+        title: 'Message Us',
+        path: PATH_DASHBOARD.general.pageThree,
+        icon: ICONS.chat,
+      },
+    ],
+  },
+
+  {
+    subheader: 'More',
+    items: [
+      {
+        title: 'Cars',
+        path: PATH_DASHBOARD.general.pageShop,
+        icon: ICONS.car4,
+      },
+      {
+        title: 'Login',
+        path: PATH_DASHBOARD.general.pageShop,
+        icon: ICONS.smiley8,
+      },
+      {
+        title: 'Register',
+        path: PATH_DASHBOARD.general.pageThree,
+        icon: ICONS.user8,
+      },
+      {
+        title: 'Verify',
+        path: PATH_DASHBOARD.general.pageThree,
+        icon: ICONS.noun_newcar,
+      },
+      {
+        title: 'Sell',
+        path: PATH_DASHBOARD.general.pageThree,
+        icon: ICONS.noun_checkout,
+      },
+      {
+        title: 'Details',
+        path: PATH_DASHBOARD.general.pageThree,
+        icon: ICONS.noun_cleancar,
+      },
+      {
+        title: 'Checkout',
+        path: PATH_DASHBOARD.general.pageThree,
+        icon: ICONS.noun_checkout2,
+      },
+      {
+        title: 'Inbox',
+        path: PATH_DASHBOARD.general.pageThree,
+        icon: ICONS.mail,
       },
     ],
   },
