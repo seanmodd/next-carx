@@ -1,7 +1,8 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: `${process.env.GATSBY_STRAPI_URL}/graphql`,
+  // uri: `${process.env.GATSBY_STRAPI_URL}/graphql`,
+  uri: `https://admin.shopcarx.com/graphql`,
   cache: new InMemoryCache(),
 });
 

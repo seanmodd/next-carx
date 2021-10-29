@@ -7,6 +7,7 @@ import { sum, map, filter, uniqBy, reject } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
 import { useQuery, gql } from '@apollo/client';
 import { useRouter } from 'next/router';
+import client from 'src/__graphql/apolloClient_and_queries';
 // utils
 // import axios from '../../utils/axios';
 import axios from 'axios';
@@ -274,10 +275,8 @@ export function getProduct(id) {
 }
 
 const CARQUERY = gql`
-  # query Variant($id: id!) {
-  query Variant {
-    # variant(id: $id) {
-    variant {
+  query Variant($id: ID!) {
+    variant(id: $id) {
       id
       price
       car_name
@@ -307,8 +306,9 @@ export function getProductGraphQl(id) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const router = useRouter();
-      console.log('THIS IS FOR USEROUTER FROM getProductGraphQl(id): ', router);
+      // const router = useRouter();
+      // console.log('THIS IS FOR USEROUTER FROM getProductGraphQl(id): ', router);
+      // const { loading, error, data } = useQuery(REVIEW, { variables: {id: id}} })
       const response = await client.query({
         query: CARQUERY,
         variables: { id },
@@ -322,6 +322,10 @@ export function getProductGraphQl(id) {
         response
       );
       dispatch(slice.actions.getProductSuccess(response.data.product));
+      console.log(
+        '👖👖👖👖👖👖👖👖👖👖👖👖👖 ~ file: product.js ~ line 325 ~ return ~ response.data.product',
+        response.data.product
+      );
     } catch (error) {
       console.error(error);
       dispatch(slice.actions.hasError(error));

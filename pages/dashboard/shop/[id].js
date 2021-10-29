@@ -6,6 +6,7 @@ import { sentenceCase } from 'change-case';
 // import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import clockFill from '@iconify/icons-eva/clock-fill';
+import client from 'src/__graphql/apolloClient_and_queries';
 import roundVerified from '@iconify/icons-ic/round-verified';
 import roundVerifiedUser from '@iconify/icons-ic/round-verified-user';
 import { useRouter } from 'next/router';
