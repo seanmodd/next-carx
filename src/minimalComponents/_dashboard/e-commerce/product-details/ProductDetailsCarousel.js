@@ -93,7 +93,11 @@ function ThumbnailItem({ item }) {
   );
 }
 
-export default function ProductDetailsCarousel() {
+export default function ProductDetailsCarousel(props) {
+  console.log(
+    '🚀🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴 ~ file: ProductDetailsCarousel.js ~ line 97 ~ ProductDetailsCarousel ~ props',
+    props
+  );
   const [openLightbox, setOpenLightbox] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);

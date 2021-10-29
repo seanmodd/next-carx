@@ -127,6 +127,10 @@ export default function EcommerceProductDetails(props) {
     '🚀 ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product',
     product
   );
+  // console.log(
+  //   '🚀🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟 ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product.images',
+  //   product.images
+  // );
   console.log('From CarDetail.js page, this is checkout: ', checkout);
   return (
     <DashboardLayout>
@@ -149,7 +153,7 @@ export default function EcommerceProductDetails(props) {
             <Card>
               <Grid container>
                 <Grid item xs={12} md={6} lg={7}>
-                  <ProductDetailsCarousel product={product} />
+                  {/* <ProductDetailsCarousel product={product} /> */}
                 </Grid>
                 <Grid item xs={12} md={6} lg={5}>
                   {/* <ProductDetailsSumary product={product} checkout={checkout} /> */}
