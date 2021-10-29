@@ -13,8 +13,10 @@ export default async (req, res) => {
   try {
     const { data } = await client.query({
       query: gql`
-        query Variant($id: id!) {
-          variant(id: $id) {
+        # query Variant($id: id!) {
+        query Variant {
+          # variant(id: $id) {
+          variant {
             id
             price
             car_name

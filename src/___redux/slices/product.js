@@ -5,6 +5,8 @@
 //* This gets fed directly into ProductDetailsSumary.js via onGotoStep and addToCart !!!
 import { sum, map, filter, uniqBy, reject } from 'lodash';
 import { createSlice } from '@reduxjs/toolkit';
+import { useQuery, gql } from '@apollo/client';
+import { useRouter } from 'next/router';
 // utils
 // import axios from '../../utils/axios';
 import axios from 'axios';
@@ -254,12 +256,69 @@ export function getProduct(id) {
           params: { id },
         }
       );
+      //! Below are two console logs!
       console.log(
         '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ ~ file: ___redux/slices/product.js ~ from getProduct(id) function! On line 254 ~ return ~ id',
         id
       );
       console.log(
         '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ ~ file: ___redux/slices/product.js ~ from getProduct(id) function! On line 254 ~ return ~ response',
+        response
+      );
+      dispatch(slice.actions.getProductSuccess(response.data.product));
+    } catch (error) {
+      console.error(error);
+      dispatch(slice.actions.hasError(error));
+    }
+  };
+}
+
+const CARQUERY = gql`
+  # query Variant($id: id!) {
+  query Variant {
+    # variant(id: $id) {
+    variant {
+      id
+      price
+      car_name
+      product {
+        id
+        name
+        category {
+          id
+          name
+          description
+        }
+        promo
+        featured
+        description
+      }
+      images {
+        id
+        url
+        height
+        width
+        name
+      }
+    }
+  }
+`;
+export function getProductGraphQl(id) {
+  return async (dispatch) => {
+    dispatch(slice.actions.startLoading());
+    try {
+      const router = useRouter();
+      console.log('THIS IS FOR USEROUTER FROM getProductGraphQl(id): ', router);
+      const response = await client.query({
+        query: CARQUERY,
+        variables: { id },
+      });
+      console.log(
+        '👖👖👖👖👖👖👖👖👖👖👖👖👖 ~ ~ file: ___redux/slices/product.js ~ from getProductGraphQl(id) function! On line 254 ~ return ~ id',
+        id
+      );
+      console.log(
+        '👖👖👖👖👖👖👖👖👖👖👖👖👖~ ~ file: ___redux/slices/product.js ~ from getProductGraphQl(id) function! On line 254 ~ return ~ response',
         response
       );
       dispatch(slice.actions.getProductSuccess(response.data.product));

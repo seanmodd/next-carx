@@ -25,7 +25,7 @@ import { TabContext, TabList, TabPanel } from '@mui/lab';
 
 import { useDispatch, useSelector } from 'src/___redux/store';
 import DashboardLayout from 'src/layouts/dashboard';
-import { getProduct } from 'src/___redux/slices/product';
+import { getProduct, getProductGraphQl } from 'src/___redux/slices/product';
 // routes
 import { PATH_DASHBOARD } from 'src/routes/paths';
 // hooks
@@ -111,7 +111,7 @@ export default function EcommerceProductDetails(props) {
     id
   );
   useEffect(() => {
-    dispatch(getProduct(id));
+    dispatch(getProductGraphQl(id));
   }, [dispatch, id]);
   console.log(
     '🚀 🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟  ~ file: [id].js ~ line 115 ~ EcommerceProductDetails ~ id',
