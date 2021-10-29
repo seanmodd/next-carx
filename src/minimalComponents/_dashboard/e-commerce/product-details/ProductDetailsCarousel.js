@@ -111,7 +111,11 @@ export default function ProductDetailsCarousel(props) {
     '🚀 🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴   ~ file: ProductDetailsCarousel.js ~ line 102 ~ ProductDetailsCarousel ~ product',
     product
   );
-  const imagesLightbox = product.variant.images.map((_image) => _image);
+  console.log(
+    '🚀 🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴🇲🇴   ~ file: ProductDetailsCarousel.js ~ line 102 ~ ProductDetailsCarousel ~ product.variant',
+    product.variant
+  );
+  const imagesLightbox = product.variant.images.map((_image) => _image.url);
 
   const handleOpenLightbox = (url) => {
     const selectedImage = findIndex(imagesLightbox, (index) => index === url);
@@ -168,8 +172,8 @@ export default function ProductDetailsCarousel(props) {
           <Slider {...settings1} asNavFor={nav2} ref={slider1}>
             {product.variant.images.map((item) => (
               <LargeItem
-                key={item}
-                item={item}
+                key={item.id}
+                item={item.url}
                 onOpenLightbox={handleOpenLightbox}
               />
             ))}
@@ -224,7 +228,7 @@ export default function ProductDetailsCarousel(props) {
       >
         <Slider {...settings2} asNavFor={nav1} ref={slider2}>
           {product.variant.images.map((item) => (
-            <ThumbnailItem key={item} item={item} />
+            <ThumbnailItem key={item.id} item={item.url} />
           ))}
         </Slider>
       </Box>

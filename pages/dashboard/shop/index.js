@@ -8,6 +8,9 @@ import {
   Typography,
   CircularProgress,
   Stack,
+  Skeleton,
+  Divider,
+  Grid,
 } from '@mui/material';
 // redux
 import { useDispatch, useSelector } from 'src/___redux/store';
@@ -93,6 +96,25 @@ function applyFilter(products, sortBy, filters) {
   return products;
 }
 
+const SkeletonLoad = (
+  <Grid container spacing={3}>
+    <Grid item xs={12} md={6} lg={7}>
+      <Skeleton
+        variant="rectangular"
+        width="100%"
+        sx={{ paddingTop: '100%', borderRadius: 2 }}
+      />
+    </Grid>
+    <Grid item xs={12} md={6} lg={5}>
+      <Skeleton variant="circular" width={80} height={80} />
+      <Skeleton variant="text" height={240} />
+      <Skeleton variant="text" height={40} />
+      <Skeleton variant="text" height={40} />
+      <Skeleton variant="text" height={40} />
+    </Grid>
+  </Grid>
+);
+
 export default function EcommerceShop() {
   const { themeStretch } = useSettings();
   const dispatch = useDispatch();
@@ -166,6 +188,7 @@ export default function EcommerceShop() {
         >
           <CartWidget />
         </Stack>
+        {/* {!filteredProducts && SkeletonLoad} */}
         <GuestGuard>
           {/* <AuthLayout> */}
           <Page title="Ecommerce: Shop | Minimal-UI">

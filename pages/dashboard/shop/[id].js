@@ -145,7 +145,7 @@ export default function EcommerceProductDetails() {
               { name: 'Dashboard', href: '/dashboard' },
               {
                 name: 'All Vehicles',
-                href: '/dashboard/e-commerce/shop',
+                href: '/dashboard/shop',
               },
               {
                 name: `${
@@ -159,6 +159,7 @@ export default function EcommerceProductDetails() {
             <Card>
               <Grid container>
                 <Grid item xs={12} md={6} lg={7}>
+                  {!product && SkeletonLoad}
                   {product && product.variant && (
                     <ProductDetailsCarousel product={product.variant} />
                   )}
@@ -228,8 +229,6 @@ export default function EcommerceProductDetails() {
             </Card>
           </>
           {/* )} */}
-
-          {!product && SkeletonLoad}
 
           {/* {error && <Typography variant="h6">404 Product not found</Typography>} */}
         </Container>
