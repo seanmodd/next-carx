@@ -69,7 +69,7 @@ const sidebarConfig = [
         path: PATH_DASHBOARD.general.pageOne,
         icon: ICONS.dashboard,
       },
-      
+
       {
         title: 'Message Us',
         path: PATH_DASHBOARD.general.pageThree,
@@ -88,22 +88,22 @@ const sidebarConfig = [
       },
       {
         title: 'Login',
-        path: PATH_DASHBOARD.general.pageShop,
+        path: PATH_DASHBOARD.user.pageLogin,
         icon: ICONS.smiley8,
       },
       {
         title: 'Register',
-        path: PATH_DASHBOARD.general.pageThree,
+        path: PATH_DASHBOARD.user.pageRegister,
         icon: ICONS.user8,
       },
       {
         title: 'Verify',
-        path: PATH_DASHBOARD.general.pageThree,
+        path: PATH_DASHBOARD.user.pageVerify,
         icon: ICONS.noun_newcar,
       },
       {
         title: 'Sell',
-        path: PATH_DASHBOARD.general.pageThree,
+        path: PATH_DASHBOARD.general.pageSell,
         icon: ICONS.noun_checkout,
       },
       {

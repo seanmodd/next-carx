@@ -23,6 +23,8 @@ export const PATH_DASHBOARD = {
   general: {
     pageOne: path(ROOTS_DASHBOARD, '/one'),
     pageShop: path(ROOTS_DASHBOARD, '/shop'),
+
+    pageSell: path(ROOTS_DASHBOARD, '/sell'),
     pageThree: path(ROOTS_DASHBOARD, '/three'),
     app: path(ROOTS_DASHBOARD, '/app'),
     ecommerce: path(ROOTS_DASHBOARD, '/ecommerce'),
@@ -49,6 +51,9 @@ export const PATH_DASHBOARD = {
   kanban: path(ROOTS_DASHBOARD, '/kanban'),
   user: {
     root: path(ROOTS_DASHBOARD, '/user'),
+    pageLogin: path(ROOTS_DASHBOARD, '/user/login'),
+    pageLogin: path(ROOTS_DASHBOARD, '/user/register'),
+    pageVerify: path(ROOTS_DASHBOARD, '/user/verify'),
     profile: path(ROOTS_DASHBOARD, '/user/profile'),
     cards: path(ROOTS_DASHBOARD, '/user/cards'),
     list: path(ROOTS_DASHBOARD, '/user/list'),
