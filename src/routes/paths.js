@@ -23,8 +23,9 @@ export const PATH_DASHBOARD = {
   general: {
     pageOne: path(ROOTS_DASHBOARD, '/one'),
     pageShop: path(ROOTS_DASHBOARD, '/shop'),
+    pageCheckout: path(ROOTS_DASHBOARD, '/checkout'),
 
-    pageSell: path(ROOTS_DASHBOARD, '/sell'),
+    pageSell: path(ROOTS_DASHBOARD, '/three'),
     pageThree: path(ROOTS_DASHBOARD, '/three'),
     app: path(ROOTS_DASHBOARD, '/app'),
     ecommerce: path(ROOTS_DASHBOARD, '/ecommerce'),

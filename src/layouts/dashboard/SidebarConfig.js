@@ -43,6 +43,17 @@ const ICONS = {
 const sidebarConfig = [
   // GENERAL
   // ----------------------------------------------------------------------
+  {
+    subheader: 'general',
+    items: [
+      {
+        title: 'Dashboard',
+        path: PATH_DASHBOARD.general.pageOne,
+        icon: ICONS.dashboard,
+      },
+    ],
+  },
+
   // MANAGEMENT
   // ----------------------------------------------------------------------
   {
@@ -57,23 +68,6 @@ const sidebarConfig = [
           { title: 'Cart', path: PATH_DASHBOARD.app.pageFive },
           { title: 'Contact', path: PATH_DASHBOARD.app.pageSix },
         ],
-      },
-    ],
-  },
-
-  {
-    subheader: 'general',
-    items: [
-      {
-        title: 'Dashboard',
-        path: PATH_DASHBOARD.general.pageOne,
-        icon: ICONS.dashboard,
-      },
-
-      {
-        title: 'Message Us',
-        path: PATH_DASHBOARD.general.pageThree,
-        icon: ICONS.chat,
       },
     ],
   },
@@ -106,21 +100,26 @@ const sidebarConfig = [
         path: PATH_DASHBOARD.general.pageSell,
         icon: ICONS.noun_checkout,
       },
-      {
-        title: 'Details',
-        path: PATH_DASHBOARD.general.pageThree,
-        icon: ICONS.noun_cleancar,
-      },
+      // {
+      //   title: 'Details',
+      //   path: PATH_DASHBOARD.general.pageThree,
+      //   icon: ICONS.noun_cleancar,
+      // },
       {
         title: 'Checkout',
-        path: PATH_DASHBOARD.general.pageThree,
+        path: PATH_DASHBOARD.general.pageCheckout,
         icon: ICONS.noun_checkout2,
       },
       {
         title: 'Inbox',
-        path: PATH_DASHBOARD.general.pageThree,
-        icon: ICONS.mail,
+        path: PATH_DASHBOARD.mail.all,
+        icon: ICONS.chat,
       },
+      // {
+      //   title: 'Message Us',
+      //   path: PATH_DASHBOARD.general.pageThree,
+      //   icon: ICONS.chat,
+      // },
     ],
   },
 ];
