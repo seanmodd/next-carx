@@ -169,8 +169,8 @@ export default function ProductDetailsSumary() {
       cover,
       available,
       price,
-      color: colors[0],
-      size: sizes[4],
+      // color: colors[0],
+      // size: sizes[4],
       quantity: available < 1 ? 0 : 1,
     },
     onSubmit: async (values, { setSubmitting }) => {
@@ -206,10 +206,10 @@ export default function ProductDetailsSumary() {
         <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
           <Label
             variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-            color={inventoryType === 'in_stock' ? 'success' : 'error'}
+            // color={inventoryType === 'in_stock' ? 'success' : 'error'}
             sx={{ textTransform: 'uppercase' }}
           >
-            {sentenceCase(inventoryType)}
+            {/* {sentenceCase(inventoryType)} */}
           </Label>
           <Typography
             variant="overline"
@@ -261,7 +261,7 @@ export default function ProductDetailsSumary() {
               <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
                 Color
               </Typography>
-              <ColorSinglePicker
+              {/* <ColorSinglePicker
                 {...getFieldProps('color')}
                 colors={colors}
                 sx={{
@@ -270,7 +270,7 @@ export default function ProductDetailsSumary() {
                     justifyContent: 'flex-end',
                   }),
                 }}
-              />
+              /> */}
             </Stack>
 
             <Stack direction="row" justifyContent="space-between">
@@ -295,11 +295,11 @@ export default function ProductDetailsSumary() {
                   </Link>
                 }
               >
-                {sizes.map((size) => (
+                {/* {sizes.map((size) => (
                   <option key={size} value={size}>
                     {size}
                   </option>
-                ))}
+                ))} */}
               </TextField>
             </Stack>
 
