@@ -159,7 +159,11 @@ export default function EcommerceProductDetails() {
                   <ProductDetailsCarousel product={product.variant} />
                 </Grid>
                 <Grid item xs={12} md={6} lg={5}>
-                  <ProductDetailsSumary product={product.variant} checkout={checkout} />
+                  {product.variant.name}
+                  <ProductDetailsSumary
+                    product={product.variant}
+                    checkout={checkout}
+                  />
                   {name}
                 </Grid>
               </Grid>
