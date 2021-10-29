@@ -130,10 +130,7 @@ export default function EcommerceProductDetails() {
     ' 🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼  ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product.variant.id',
     product.variant.id
   );
-  // console.log(
-  //   '🚀🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟 ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product.variant.images',
-  //   product.variant.images
-  // );
+
   console.log('From CarDetail.js page, this is checkout: ', checkout);
   return (
     <DashboardLayout>
@@ -151,7 +148,6 @@ export default function EcommerceProductDetails() {
             ]}
           />
 
-          {/* {product && ( */}
           <>
             <Card>
               <Grid container>
@@ -192,7 +188,6 @@ export default function EcommerceProductDetails() {
                   </Box>
                 </TabPanel>
                 <TabPanel value="2">
-                  {/* <ProductDetailsReview product={product} /> */}
                   <Grid container sx={{ my: 8 }}>
                     {PRODUCT_DESCRIPTION.map((item) => (
                       <Grid item xs={12} md={4} key={item.title}>
