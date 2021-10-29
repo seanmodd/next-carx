@@ -282,6 +282,29 @@ const CARQUERY = gql`
       id
       price
       car_name
+createdAt
+updatedAt
+qty
+car_style: style
+car_url
+car_colorLabel: colorLabel
+
+car_vin
+car_drivetrain
+car_exteriorColor: car_exterior_color
+car_fuelEconomy: car_fuel_economy
+car_info
+car_info2
+car_interiorColor: car_interior_color
+car_price
+car_special
+car_stock
+car_transmission
+car_dealership: dealership
+car_description: description
+car_model: model
+car_vehicleStatus: vehicle_status
+car_year: year
 
       product {
         id
