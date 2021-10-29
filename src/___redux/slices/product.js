@@ -326,6 +326,10 @@ export function getProductGraphQl(id) {
         '👖👖👖👖👖👖👖👖👖👖👖👖👖 ~ file: product.js ~ line 325 ~ return ~ response.data.product',
         response.data.product
       );
+      console.log(
+        '👖👖👖👖👖👖👖👖👖👖👖👖👖 ~ file: product.js ~ line 325 ~ return ~ response.data',
+        response.data
+      );
     } catch (error) {
       console.error(error);
       dispatch(slice.actions.hasError(error));
