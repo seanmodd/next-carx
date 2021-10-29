@@ -107,7 +107,9 @@ export default function EcommerceProductDetails() {
     id
   );
   useEffect(() => {
-    dispatch(getProductGraphQl(id));
+    if (id) {
+      dispatch(getProductGraphQl(id));
+    }
   }, [dispatch, id]);
   console.log(
     '🚀 🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟  ~ file: [id].js ~ line 115 ~ EcommerceProductDetails ~ id',
@@ -130,6 +132,7 @@ export default function EcommerceProductDetails() {
   //   ' 🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼  ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product.variant.id',
   //   product.variant.id
   // );
+  // const thecarname = product.variant.car_name;
 
   console.log('From CarDetail.js page, this is checkout: ', checkout);
   return (
@@ -144,7 +147,11 @@ export default function EcommerceProductDetails() {
                 name: 'All Vehicles',
                 href: '/dashboard/e-commerce/shop',
               },
-              { name },
+              {
+                name: `${
+                  product && product.variant && product.variant.car_name
+                }`,
+              },
             ]}
           />
 
@@ -152,10 +159,19 @@ export default function EcommerceProductDetails() {
             <Card>
               <Grid container>
                 <Grid item xs={12} md={6} lg={7}>
-                  {/* <ProductDetailsCarousel product={product.variant} /> */}
+                  {product && product.variant && (
+                    <ProductDetailsCarousel product={product.variant} />
+                  )}
                 </Grid>
                 <Grid item xs={12} md={6} lg={5}>
-                  {/* {product.variant.name} */}
+                  {/* {product.variant.car_name} */}
+                  {product && product.variant && product.variant.car_name}
+                  {product && product.variant && (
+                    <ProductDetailsSumary
+                      product={product.variant}
+                      checkout={checkout}
+                    />
+                  )}
                   {/* <ProductDetailsSumary
                     product={product.variant}
                     checkout={checkout}
@@ -217,7 +233,7 @@ export default function EcommerceProductDetails() {
           </>
           {/* )} */}
 
-          {/* {!product && SkeletonLoad} */}
+          {!product && SkeletonLoad}
 
           {/* {error && <Typography variant="h6">404 Product not found</Typography>} */}
         </Container>
