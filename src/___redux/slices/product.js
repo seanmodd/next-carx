@@ -321,11 +321,12 @@ export function getProductGraphQl(id) {
         '👖👖👖👖👖👖👖👖👖👖👖👖👖~ ~ file: ___redux/slices/product.js ~ from getProductGraphQl(id) function! On line 254 ~ return ~ response',
         response
       );
-      dispatch(slice.actions.getProductSuccess(response.data.product));
-      console.log(
-        '👖👖👖👖👖👖👖👖👖👖👖👖👖 ~ file: product.js ~ line 325 ~ return ~ response.data.product',
-        response.data.product
-      );
+      // dispatch(slice.actions.getProductSuccess(response.data.product));
+      // console.log(
+      //   '👖👖👖👖👖👖👖👖👖👖👖👖👖 ~ file: product.js ~ line 325 ~ return ~ response.data.product',
+      //   response.data.product
+      // );
+      dispatch(slice.actions.getProductSuccess(response.data));
       console.log(
         '👖👖👖👖👖👖👖👖👖👖👖👖👖 ~ file: product.js ~ line 325 ~ return ~ response.data',
         response.data
