@@ -122,14 +122,14 @@ export default function EcommerceProductDetails() {
     ' 🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼  ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product',
     product
   );
-  console.log(
-    ' 🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼  ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product.variant',
-    product.variant
-  );
-  console.log(
-    ' 🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼  ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product.variant.id',
-    product.variant.id
-  );
+  // console.log(
+  //   ' 🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼  ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product.variant',
+  //   product.variant
+  // );
+  // console.log(
+  //   ' 🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼🍼  ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product.variant.id',
+  //   product.variant.id
+  // );
 
   console.log('From CarDetail.js page, this is checkout: ', checkout);
   return (
@@ -152,15 +152,14 @@ export default function EcommerceProductDetails() {
             <Card>
               <Grid container>
                 <Grid item xs={12} md={6} lg={7}>
-                  <ProductDetailsCarousel product={product.variant} />
+                  {/* <ProductDetailsCarousel product={product.variant} /> */}
                 </Grid>
                 <Grid item xs={12} md={6} lg={5}>
-                  {product.variant.name}
-                  <ProductDetailsSumary
+                  {/* {product.variant.name} */}
+                  {/* <ProductDetailsSumary
                     product={product.variant}
                     checkout={checkout}
-                  />
-                  {name}
+                  /> */}
                 </Grid>
               </Grid>
             </Card>

@@ -305,18 +305,15 @@ const CARQUERY = gql`
   }
 `;
 const client = new ApolloClient({
-  // uri: `${process.env.GATSBY_STRAPI_URL}/graphql`,
   uri: `https://admin.shopcarx.com/graphql`,
   cache: new InMemoryCache(),
+  // cache: 'no-cache',
 });
 
 export function getProductGraphQl(id) {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      // const router = useRouter();
-      // console.log('THIS IS FOR USEROUTER FROM getProductGraphQl(id): ', router);
-      // const { loading, error, data } = useQuery(REVIEW, { variables: {id: id}} })
       const response = await client.query({
         query: CARQUERY,
         variables: { id },
@@ -329,16 +326,27 @@ export function getProductGraphQl(id) {
         '👖👖👖👖👖👖👖👖👖👖👖👖👖~ ~ file: ___redux/slices/product.js ~ from getProductGraphQl(id) function! On line 254 ~ return ~ response',
         response
       );
-      // dispatch(slice.actions.getProductSuccess(response.data.product));
-      // console.log(
-      //   '👖👖👖👖👖👖👖👖👖👖👖👖👖 ~ file: product.js ~ line 325 ~ return ~ response.data.product',
-      //   response.data.product
-      // );
+
       dispatch(slice.actions.getProductSuccess(response.data));
       console.log(
         '👖👖👖👖👖👖👖👖👖👖👖👖👖 ~ file: product.js ~ line 325 ~ return ~ response.data',
         response.data
       );
+    } catch (error) {
+      console.error(error);
+      dispatch(slice.actions.hasError(error));
+    }
+  };
+}
+
+//! Next Attempt to fix...
+
+export function getProductGraphQlTRIAL(id) {
+  return async (dispatch) => {
+    try {
+      const { data } = useQuery({ query: CARQUERY, variables: { id } });
+
+      dispatch(slice.actions.getProductSuccess(data));
     } catch (error) {
       console.error(error);
       dispatch(slice.actions.hasError(error));
