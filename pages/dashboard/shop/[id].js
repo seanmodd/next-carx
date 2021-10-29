@@ -172,10 +172,6 @@ export default function EcommerceProductDetails() {
                       checkout={checkout}
                     />
                   )}
-                  {/* <ProductDetailsSumary
-                    product={product.variant}
-                    checkout={checkout}
-                  /> */}
                 </Grid>
               </Grid>
             </Card>
