@@ -231,7 +231,7 @@ export function getProducts() {
     try {
       const response = await axios.get('/api/strapi-graphql/products/');
       console.log(
-        '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ file: ___redux/slices/product.js ~ from getProducts() function! On line 233 ~ return ~ response',
+        '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ file: ___redux/slices/query-Product.js ~ from getProducts() function! On line 233 ~ return ~ response',
         response
       );
       dispatch(slice.actions.getProductsSuccess(response.data.products));
@@ -248,9 +248,12 @@ export function getProduct(id) {
     dispatch(slice.actions.startLoading());
     try {
       // const response = await axios.get('/api/products/product', {
-      const response = await axios.get('/api/strapi-graphql/product', {
-        params: { id },
-      });
+      const response = await axios.get(
+        '/api/strapi-graphql/query-singleProduct',
+        {
+          params: { id },
+        }
+      );
       console.log(
         '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ ~ file: ___redux/slices/product.js ~ from getProduct(id) function! On line 254 ~ return ~ id',
         id

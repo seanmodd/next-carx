@@ -103,22 +103,30 @@ export default function EcommerceProductDetails(props) {
   const dispatch = useDispatch();
 
   const [value, setValue] = useState('1');
-  const { product, checkout, error } = useSelector((state) => state.product);
-  console.log("🚀 ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product", product)
 
-  console.log('From CarDetail.js page, this is checkout: ', checkout);
   const router = useRouter();
   const { id } = router.query;
-  console.log("🚀 🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮  ~ file: [id].js ~ line 112 ~ EcommerceProductDetails ~ id", id)
+  console.log(
+    '🚀 🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮🧮  ~ file: [id].js ~ line 112 ~ EcommerceProductDetails ~ id',
+    id
+  );
   useEffect(() => {
     dispatch(getProduct(id));
   }, [dispatch, id]);
-  console.log("🚀 🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟  ~ file: [id].js ~ line 115 ~ EcommerceProductDetails ~ id", id)
+  console.log(
+    '🚀 🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟🎟  ~ file: [id].js ~ line 115 ~ EcommerceProductDetails ~ id',
+    id
+  );
 
   const handleChangeTab = (event, newValue) => {
     setValue(newValue);
   };
-
+  const { product, checkout, error } = useSelector((state) => state.product);
+  console.log(
+    '🚀 ~ file: [id].js ~ line 108 ~ EcommerceProductDetails ~ product',
+    product
+  );
+  console.log('From CarDetail.js page, this is checkout: ', checkout);
   return (
     <DashboardLayout>
       <Page title="Ecommerce: Vehicle Details | Car X">
