@@ -232,9 +232,11 @@ export function getProducts() {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get('/api/strapi-graphql/products/');
+      const response = await axios.get(
+        '/api/strapi-graphql/query-allProducts/'
+      );
       console.log(
-        '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ file: ___redux/slices/query-Product.js ~ from getProducts() function! On line 233 ~ return ~ response',
+        '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ file: ___redux/slices/query-allProducts.js ~ from getProducts() function! On line 233 ~ return ~ response',
         response
       );
       dispatch(slice.actions.getProductsSuccess(response.data.products));
