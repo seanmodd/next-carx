@@ -20,7 +20,7 @@ import AuthLayout from 'src/layouts/AuthLayout';
 import { MHidden } from 'src/minimalComponents/@material-extend';
 import { LoginForm } from 'src/minimalComponents/authentication/login';
 import AuthFirebaseSocials from 'src/minimalComponents/authentication/AuthFirebaseSocial';
-import jwtIcon from '../../../public/static/auth/ic_jwt.png';
+// import jwtIcon from '../../../public/static/auth/ic_jwt.png';
 import loginIcon from '../../../public/static/illustrations/illustration_login.png';
 
 const RootStyle = styled(Page)(({ theme }) => ({
@@ -52,14 +52,14 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 export default function Login() {
   const { method, login } = useAuth();
-  console.log(
-    '🚀  🀄🀄🀄🀄🀄🀄🀄🀄🀄🀄 ~ file: login.js ~ line 56 ~ jwtIcon: ',
-    jwtIcon
-  );
-  console.log(
-    '🚀  🀄🀄🀄🀄🀄🀄🀄🀄🀄🀄 ~ file: login.js ~ line 56 ~ jwtIcon.src : ',
-    jwtIcon.src
-  );
+  // console.log(
+  //   '🚀  🀄🀄🀄🀄🀄🀄🀄🀄🀄🀄 ~ file: login.js ~ line 56 ~ jwtIcon: ',
+  //   jwtIcon
+  // );
+  // console.log(
+  //   '🚀  🀄🀄🀄🀄🀄🀄🀄🀄🀄🀄 ~ file: login.js ~ line 56 ~ jwtIcon.src : ',
+  //   jwtIcon.src
+  // );
 
   const handleLoginAuth0 = async () => {
     try {
@@ -112,9 +112,9 @@ export default function Login() {
                 </Typography>
               </Box>
 
-              <Tooltip title={capitalCase(method)}>
+              {/* <Tooltip title={capitalCase(method)}>
                 <Image src={jwtIcon.src} width={32} height={32} />
-              </Tooltip>
+              </Tooltip> */}
             </Stack>
 
             {method === 'firebase' && <AuthFirebaseSocials />}
