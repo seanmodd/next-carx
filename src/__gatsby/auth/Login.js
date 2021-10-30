@@ -1,29 +1,30 @@
-import { Icon, InlineIcon } from '@iconify/react'
-import facebookIcon from '@iconify/icons-simple-icons/facebook'
-import React, { useState, useEffect } from 'react'
-import Grid from '@material-ui/core/Grid'
-import clsx from 'clsx'
-import axios from 'axios'
-import Typography from '@material-ui/core/Typography'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import { makeStyles } from '@material-ui/core/styles'
+import { Icon, InlineIcon } from '@iconify/react';
+import facebookIcon from '@iconify/icons-simple-icons/facebook';
+import React, { useState, useEffect } from 'react';
+import Grid from '@material-ui/core/Grid';
+import clsx from 'clsx';
+import axios from 'axios';
+import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
 
-import { useTheme } from '@mui/material/styles'
-import Fields from './Fields'
-import { setUser, setSnackbar } from '../contexts/actions'
+import { useTheme } from '@mui/material/styles';
+import forgotPasswordIcon from 'src/images/forgot.svg';
 
-import accountIcon from '../../images/account.svg'
-import EmailAdornment from '../../images/EmailAdornment'
-import PasswordAdornment from '../../images/PasswordAdornment'
-import HidePasswordIcon from '../../images/HidePassword'
-import ShowPasswordIcon from '../../images/ShowPassword'
-import addUserIcon from '../../images/add-user.svg'
-import forgotPasswordIcon from '../../images/forgot.svg'
-import close from '../../images/close.svg'
+import accountIcon from 'src/images/account.svg';
+import EmailAdornment from 'src/images/EmailAdornment';
+import PasswordAdornment from 'src/images/PasswordAdornment';
+import HidePasswordIcon from 'src/images/HidePassword';
+import ShowPasswordIcon from 'src/images/ShowPassword';
+import addUserIcon from 'src/images/add-user.svg';
+import close from 'src/images/close.svg';
+import { setUser, setSnackbar } from '../contexts/actions';
+import Fields from './Fields';
+import backward from '../../images/backwards-outline.svg';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   accountIcon: {
     marginTop: '2rem',
   },
@@ -82,7 +83,7 @@ const useStyles = makeStyles(theme => ({
       fontSize: '1.5rem',
     },
   },
-}))
+}));
 
 export const EmailPassword = (
   hideEmail,
@@ -119,7 +120,7 @@ export const EmailPassword = (
       </IconButton>
     ),
   },
-})
+});
 
 export default function Login({
   steps,
@@ -128,96 +129,100 @@ export default function Login({
   dispatchUser,
   dispatchFeedback,
 }) {
-  const classes = useStyles()
+  const classes = useStyles();
+  console.log(
+    '🚀 6️⃣6️⃣6️⃣6️⃣6️⃣6️⃣6️⃣6️⃣   ~ file: Login.js ~ line 132 ~ forgotPasswordIcon',
+    forgotPasswordIcon
+  );
 
   const [values, setValues] = useState({
     email: '',
     password: '',
-  })
-  const [errors, setErrors] = useState({})
-  const [visible, setVisible] = useState(false)
-  const [forgot, setForgot] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
+  });
+  const [errors, setErrors] = useState({});
+  const [visible, setVisible] = useState(false);
+  const [forgot, setForgot] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-  const fields = EmailPassword(false, forgot, visible, setVisible)
+  const fields = EmailPassword(false, forgot, visible, setVisible);
 
   const navigateSignUp = () => {
-    const signUp = steps.find(step => step.label === 'Sign Up')
+    const signUp = steps.find((step) => step.label === 'Sign Up');
 
-    setSelectedStep(steps.indexOf(signUp))
-  }
+    setSelectedStep(steps.indexOf(signUp));
+  };
 
   const handleLogin = () => {
-    setLoading(true)
+    setLoading(true);
 
     axios
       .post(`${process.env.GATSBY_STRAPI_URL}/auth/local`, {
         identifier: values.email,
         password: values.password,
       })
-      .then(response => {
-        setLoading(false)
+      .then((response) => {
+        setLoading(false);
         dispatchUser(
           setUser({
             ...response.data.user,
             jwt: response.data.jwt,
             onboarding: true,
           })
-        )
+        );
       })
-      .catch(error => {
-        const { message } = error.response.data.message[0].messages[0]
-        setLoading(false)
-        console.error(error)
-        dispatchFeedback(setSnackbar({ status: 'error', message }))
-      })
-  }
+      .catch((error) => {
+        const { message } = error.response.data.message[0].messages[0];
+        setLoading(false);
+        console.error(error);
+        dispatchFeedback(setSnackbar({ status: 'error', message }));
+      });
+  };
 
   const handleForgot = () => {
-    setLoading(true)
+    setLoading(true);
 
     axios
       .post(`${process.env.GATSBY_STRAPI_URL}/auth/forgot-password`, {
         email: values.email,
       })
-      .then(response => {
-        setLoading(false)
-        setSuccess(true)
+      .then((response) => {
+        setLoading(false);
+        setSuccess(true);
 
         dispatchFeedback(
           setSnackbar({ status: 'success', message: 'Reset Code Sent' })
-        )
+        );
       })
-      .catch(error => {
-        const { message } = error.response.data.message[0].messages[0]
-        setLoading(false)
-        console.error(error)
-        dispatchFeedback(setSnackbar({ status: 'error', message }))
-      })
-  }
+      .catch((error) => {
+        const { message } = error.response.data.message[0].messages[0];
+        setLoading(false);
+        console.error(error);
+        dispatchFeedback(setSnackbar({ status: 'error', message }));
+      });
+  };
 
   const disabled =
-    Object.keys(errors).some(error => errors[error] === true) ||
-    Object.keys(errors).length !== Object.keys(values).length
+    Object.keys(errors).some((error) => errors[error] === true) ||
+    Object.keys(errors).length !== Object.keys(values).length;
 
   useEffect(() => {
-    if (!success) return
+    if (!success) return;
 
     const timer = setTimeout(() => {
-      setForgot(false)
-    }, 6000)
+      setForgot(false);
+    }, 6000);
 
-    return () => clearTimeout(timer)
-  }, [success])
+    return () => clearTimeout(timer);
+  }, [success]);
 
   return (
     <>
       <Grid item classes={{ root: classes.accountIcon }}>
-        <img src={accountIcon} alt="login page" />
+        <img src={accountIcon.src} alt="login page" />
       </Grid>
       <Fields
-        style={{ borderColor: 'none', backgroundColor: 'none' }}
+        // style={{ borderColor: 'none', backgroundColor: 'none' }}
         fields={fields}
         errors={errors}
         setErrors={setErrors}
@@ -272,7 +277,7 @@ export default function Login({
       <Grid item container justifyContent="space-between">
         <Grid item>
           <IconButton onClick={navigateSignUp}>
-            <img src={addUserIcon} alt="sign up" />
+            <img src={addUserIcon.src} alt="sign up" />
           </IconButton>
         </Grid>
         <Grid
@@ -285,12 +290,12 @@ export default function Login({
         >
           <IconButton onClick={() => setForgot(!forgot)}>
             <img
-              src={forgot ? close : forgotPasswordIcon}
-              alt={forgot ? 'back to login' : 'Forgot Password'}
+              src={forgot ? close.src : forgotPasswordIcon.src}
+              alt={forgot ? 'Back to Login' : 'Forgot Password'}
             />
           </IconButton>
         </Grid>
       </Grid>
     </>
-  )
+  );
 }
