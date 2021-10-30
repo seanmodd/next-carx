@@ -70,7 +70,7 @@ export default function ResetPassword() {
                   fullWidth
                   size="large"
                   component={RouterLink}
-                  href="/dashboard/user/login"
+                  to="/dashboard/account/login"
                   sx={{ mt: 1 }}
                 >
                   Back
@@ -94,10 +94,10 @@ export default function ResetPassword() {
                   size="large"
                   variant="contained"
                   component={RouterLink}
-                  href="/dashboard/user/login"
+                  to="/dashboard/account/login"
                   sx={{ mt: 5 }}
                 >
-                  <RouterLink href="/dashboard/user/login">Back</RouterLink>
+                  Back
                 </Button>
               </Box>
             )}

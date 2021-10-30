@@ -117,8 +117,8 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
         enqueueSnackbar(!isEdit ? 'Create success' : 'Update success', {
           variant: 'success',
         });
-        // navigate(PATH_DASHBOARD.eCommerce.list);
-        router.push(PATH_DASHBOARD.eCommerce.list);
+        // navigate(PATH_DASHBOARD.shop.list);
+        router.push(PATH_DASHBOARD.shop.list);
       } catch (error) {
         console.error(error);
         setSubmitting(false);

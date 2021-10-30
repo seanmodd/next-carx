@@ -77,7 +77,7 @@ const sidebarConfig = [
     items: [
       {
         title: 'Cars',
-        path: PATH_DASHBOARD.general.pageShop,
+        path: '/dashboard/shop/index',
         icon: ICONS.car4,
       },
       {
@@ -107,7 +107,7 @@ const sidebarConfig = [
       // },
       {
         title: 'Checkout',
-        path: PATH_DASHBOARD.general.pageCheckout,
+        path: '/dashboard/shop/checkout',
         icon: ICONS.noun_checkout2,
       },
       {

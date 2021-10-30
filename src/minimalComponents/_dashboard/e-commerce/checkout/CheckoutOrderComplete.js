@@ -36,8 +36,8 @@ export default function CheckoutOrderComplete({ ...other }) {
 
   const handleResetStep = () => {
     dispatch(resetCart());
-    // navigate(PATH_DASHBOARD.eCommerce.shop);
-    router.push(PATH_DASHBOARD.eCommerce.shop);
+    // navigate(PATH_DASHBOARD.shop.shop);
+    router.push(PATH_DASHBOARD.shop.shop);
   };
 
   return (

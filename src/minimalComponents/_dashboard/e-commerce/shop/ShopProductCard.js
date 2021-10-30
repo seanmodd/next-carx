@@ -39,7 +39,7 @@ export default function ShopProductCard({ product }) {
     '🚀 🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠   ~ file: ShopProductCard.js ~ line 34 ~ ShopProductCard ~ product',
     product
   );
-  // const linkTo = `${PATH_DASHBOARD.eCommerce.root}/product/${paramCase(name)}`;
+  // const linkTo = `${PATH_DASHBOARD.shop.root}/product/${paramCase(name)}`;
   const linkTo = `/dashboard/shop/${id}`;
   console.log(
     '🚀 🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠   ~ file: ShopProductCard.js ~ line 34 ~ ShopProductCard ~ product.product.name',

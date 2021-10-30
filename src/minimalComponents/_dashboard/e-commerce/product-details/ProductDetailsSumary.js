@@ -187,8 +187,8 @@ const inventoryType = product.variant.car_qty
         }
         setSubmitting(false);
         handleBuyNow();
-        // navigate(PATH_DASHBOARD.eCommerce.checkout);
-        router.push(PATH_DASHBOARD.eCommerce.checkout);
+        // navigate(PATH_DASHBOARD.shop.checkout);
+        router.push(PATH_DASHBOARD.shop.checkout);
       } catch (error) {
         setSubmitting(false);
       }
