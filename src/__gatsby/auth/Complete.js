@@ -6,8 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { setUser } from '../contexts/actions';
 
-import checkmark from '../../images/checkmark-outline.svg';
-import forward from '../../images/forward-outline.svg';
+// import checkmark from '../../images/checkmark-outline.svg';
+// import forward from '../../images/forward-outline.svg';
 
 const useStyles = makeStyles((theme) => ({
   iconText: {
@@ -49,7 +49,7 @@ export default function Complete({ user, dispatchUser }) {
         classes={{ root: classes.iconText }}
       >
         <Grid item>
-          <img src={checkmark.src} alt="sign up finished" />
+          {/* <img src={checkmark.src} alt="sign up finished" /> */}
         </Grid>
         <Grid item>
           <Typography variant="h3" classes={{ root: classes.text }}>
@@ -63,11 +63,11 @@ export default function Complete({ user, dispatchUser }) {
             <Typography variant="h3" classes={{ root: classes.text }}>
               Shop
             </Typography>
-            <img
+            {/* <img
               src={forward.src}
               alt="browse products"
               className={classes.shop}
-            />
+            /> */}
           </Button>
         </Grid>
       </Grid>

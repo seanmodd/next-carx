@@ -11,18 +11,18 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { useTheme } from '@mui/material/styles';
-import forgotPasswordIcon from 'src/images/forgot.svg';
+// import forgotPasswordIcon from 'src/images/forgot.svg';
 
-import accountIcon from 'src/images/account.svg';
+// import accountIcon from 'src/images/account.svg';
 import EmailAdornment from 'src/images/EmailAdornment';
 import PasswordAdornment from 'src/images/PasswordAdornment';
 import HidePasswordIcon from 'src/images/HidePassword';
 import ShowPasswordIcon from 'src/images/ShowPassword';
-import addUserIcon from 'src/images/add-user.svg';
-import close from 'src/images/close.svg';
+// import addUserIcon from 'src/images/add-user.svg';
+// import close from 'src/images/close.svg';
 import { setUser, setSnackbar } from '../contexts/actions';
 import Fields from './Fields';
-import backward from '../../images/backwards-outline.svg';
+// import backward from '../../images/backwards-outline.svg';
 
 const useStyles = makeStyles((theme) => ({
   accountIcon: {
@@ -130,10 +130,10 @@ export default function Login({
   dispatchFeedback,
 }) {
   const classes = useStyles();
-  console.log(
-    '🚀 6️⃣6️⃣6️⃣6️⃣6️⃣6️⃣6️⃣6️⃣   ~ file: Login.js ~ line 132 ~ forgotPasswordIcon',
-    forgotPasswordIcon
-  );
+  // console.log(
+  //   '🚀 6️⃣6️⃣6️⃣6️⃣6️⃣6️⃣6️⃣6️⃣   ~ file: Login.js ~ line 132 ~ forgotPasswordIcon',
+  //   forgotPasswordIcon
+  // );
 
   const [values, setValues] = useState({
     email: '',
@@ -219,7 +219,7 @@ export default function Login({
   return (
     <>
       <Grid item classes={{ root: classes.accountIcon }}>
-        <img src={accountIcon.src} alt="login page" />
+        {/* <img src={accountIcon.src} alt="login page" /> */}
       </Grid>
       <Fields
         // style={{ borderColor: 'none', backgroundColor: 'none' }}
@@ -289,10 +289,10 @@ export default function Login({
           }}
         >
           <IconButton onClick={() => setForgot(!forgot)}>
-            <img
+            {/* <img
               src={forgot ? close.src : forgotPasswordIcon.src}
               alt={forgot ? 'Back to Login' : 'Forgot Password'}
-            />
+            /> */}
           </IconButton>
         </Grid>
       </Grid>

@@ -13,7 +13,7 @@ import { EmailPassword } from './Login';
 
 import { setSnackbar } from '../contexts/actions';
 
-import accountIcon from '../../images/account.svg';
+// import accountIcon from '../../images/account.svg';
 
 const useStyles = makeStyles((theme) => ({
   reset: {
@@ -103,7 +103,7 @@ export default function Reset({ steps, setSelectedStep, dispatchFeedback }) {
   return (
     <>
       <Grid item classes={{ root: classes.icon }}>
-        <img src={accountIcon.src} alt="reset password page" />
+        {/* <img src={accountIcon.src} alt="reset password page" /> */}
       </Grid>
       <Fields
         fields={fields}

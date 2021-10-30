@@ -12,8 +12,8 @@ import { FeedbackContext } from '../contexts';
 import { setSnackbar, setUser } from '../contexts/actions';
 
 import BackwardsIcon from '../../images/BackwardsOutline';
-import editIcon from '../../images/edit.svg';
-import saveIcon from '../../images/save.svg';
+// import editIcon from '../../images/edit.svg';
+// import saveIcon from '../../images/save.svg';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -127,11 +127,11 @@ export default function Edit({
           <CircularProgress color="secondary" size="8rem" />
         ) : (
           <IconButton disabled={loading} onClick={handleEdit}>
-            <img
+            {/* <img
               src={edit ? saveIcon : editIcon}
               alt={`${edit ? 'save' : 'edit'} settings`}
               className={classes.icon}
-            />
+            /> */}
           </IconButton>
         )}
       </Grid>
