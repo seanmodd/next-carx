@@ -19,7 +19,7 @@ import Confirmation from './Confirmation'
 import ThankYou from './ThankYou'
 // import validate from '../ui/validate'
 
-import { CartContext } from '../../contexts'
+import { CartContext } from '../contexts'
 
 const useStyles = makeStyles(theme => ({
   stepContainer: {

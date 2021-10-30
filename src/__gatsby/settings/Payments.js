@@ -1,25 +1,25 @@
 //! Utilized
-import React, { useState, useEffect, useContext } from 'react'
-import axios from 'axios'
-import clsx from 'clsx'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { makeStyles } from '@material-ui/core/styles'
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
+import clsx from 'clsx';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles } from '@material-ui/core/styles';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
-import Slots from './Slots'
+import Slots from './Slots';
 
-import { FeedbackContext, UserContext } from '../../contexts'
-import { setSnackbar, setUser } from '../../contexts/actions'
+import { FeedbackContext, UserContext } from '../contexts';
+import { setSnackbar, setUser } from '../contexts/actions';
 
-import cardIcon from '../../images/card.svg'
+import cardIcon from '../../images/card.svg';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   number: {
     color: '#fff',
     marginBottom: '5rem',
@@ -96,7 +96,7 @@ const useStyles = makeStyles(theme => ({
   numberWrapper: {
     marginBottom: '6rem',
   },
-}))
+}));
 
 export default function Payments({
   user,
@@ -112,27 +112,29 @@ export default function Payments({
   hasSubscriptionActive,
   hasSubscriptionCart,
 }) {
-  const classes = useStyles({ checkout, selectedStep, stepNumber })
-  const stripe = useStripe()
-  const elements = useElements()
+  const classes = useStyles({ checkout, selectedStep, stepNumber });
+  const stripe = useStripe();
+  const elements = useElements();
 
-  const matchesXS = useMediaQuery(theme => theme.breakpoints.down('xs'))
+  const matchesXS = useMediaQuery((theme) => theme.breakpoints.down('xs'));
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  const { dispatchFeedback } = useContext(FeedbackContext)
-  const { dispatchUser } = useContext(UserContext)
+  const { dispatchFeedback } = useContext(FeedbackContext);
+  const { dispatchUser } = useContext(UserContext);
 
   const card =
     user.username === 'Guest'
       ? { last4: '', brand: '' }
-      : user.paymentMethods[slot]
+      : user.paymentMethods[slot];
 
   const removeCard = () => {
-    const remaining = user.paymentMethods.filter(method => method.last4 !== '')
+    const remaining = user.paymentMethods.filter(
+      (method) => method.last4 !== ''
+    );
     const subscriptionPayment = user.subscriptions.find(
-      subscription => subscription.paymentMethod.last4 === card.last4
-    )
+      (subscription) => subscription.paymentMethod.last4 === card.last4
+    );
 
     if (
       (hasSubscriptionActive && remaining.length === 1) ||
@@ -144,11 +146,11 @@ export default function Payments({
           message:
             'You cannot remove your last card with an active subscription. Please add another card first.',
         })
-      )
-      return
+      );
+      return;
     }
 
-    setLoading(true)
+    setLoading(true);
 
     axios
       .post(
@@ -160,18 +162,18 @@ export default function Payments({
           headers: { Authorization: `Bearer ${user.jwt}` },
         }
       )
-      .then(response => {
-        setLoading(false)
+      .then((response) => {
+        setLoading(false);
 
         dispatchUser(
           setUser({ ...response.data.user, jwt: user.jwt, onboarding: true })
-        )
-        setCardError(true)
-        setCard({ brand: '', last4: '' })
+        );
+        setCardError(true);
+        setCard({ brand: '', last4: '' });
       })
-      .catch(error => {
-        setLoading(false)
-        console.error(error)
+      .catch((error) => {
+        setLoading(false);
+        console.error(error);
 
         dispatchFeedback(
           setSnackbar({
@@ -179,33 +181,33 @@ export default function Payments({
             message:
               'There was a problem removing your card. Please try again.',
           })
-        )
-      })
-  }
+        );
+      });
+  };
 
-  const handleSubmit = async event => {
-    event.preventDefault()
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    if (!stripe || !elements) return
-  }
+    if (!stripe || !elements) return;
+  };
 
-  const handleCardChange = async event => {
+  const handleCardChange = async (event) => {
     if (event.complete) {
-      const cardElement = elements.getElement(CardElement)
+      const cardElement = elements.getElement(CardElement);
       const { error, paymentMethod } = await stripe.createPaymentMethod({
         type: 'card',
         card: cardElement,
-      })
+      });
 
       setCard({
         brand: paymentMethod.card.brand,
         last4: paymentMethod.card.last4,
-      })
-      setCardError(false)
+      });
+      setCardError(false);
     } else {
-      setCardError(true)
+      setCardError(true);
     }
-  }
+  };
 
   const cardWrapper = (
     <form onSubmit={handleSubmit} className={classes.form}>
@@ -226,19 +228,19 @@ export default function Payments({
         onChange={handleCardChange}
       />
     </form>
-  )
+  );
 
   useEffect(() => {
-    if (!checkout || !user.jwt) return
+    if (!checkout || !user.jwt) return;
 
     if (user.paymentMethods[slot].last4 !== '') {
-      setCard(user.paymentMethods[slot])
-      setCardError(false)
+      setCard(user.paymentMethods[slot]);
+      setCardError(false);
     } else {
-      setCard({ brand: '', last4: '' })
-      setCardError(true)
+      setCard({ brand: '', last4: '' });
+      setCardError(true);
     }
-  }, [slot])
+  }, [slot]);
 
   return (
     <Grid
@@ -350,6 +352,6 @@ export default function Payments({
         )}
       </Grid>
     </Grid>
-  )
+  );
 }
 // Updating frontend to github

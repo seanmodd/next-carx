@@ -7,8 +7,8 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 
-import { FeedbackContext, UserContext } from '../../contexts'
-import { setSnackbar, setUser } from '../../contexts/actions'
+import { FeedbackContext, UserContext } from '../contexts'
+import { setSnackbar, setUser } from '../contexts/actions'
 
 import save from '../../images/save.svg'
 import Delete from '../../images/Delete'

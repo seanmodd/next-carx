@@ -22,7 +22,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Link from 'next/link';
 
-import { CartContext } from '../../contexts';
+import { CartContext } from '../contexts';
 import { useIsClient } from '../../hooks';
 
 import search from '../../images/search.svg';

@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 import { makeStyles } from "@material-ui/core/styles"
 
-import { setUser } from "../../contexts/actions"
+import { setUser } from "../contexts/actions"
 
 import checkmark from "../../images/checkmark-outline.svg"
 import forward from "../../images/forward-outline.svg"

@@ -54,7 +54,7 @@ import { CollapseDrawerProvider } from '../../_SHELL/contexts/CollapseDrawerCont
 import { SettingsProvider } from '../../_SHELL/contexts/SettingsContext'
 import { AuthProvider } from '../_MODERN/contexts/JWTContext'
 import { ApolloWrapper } from '../../__graphql/ApolloWrapper'
-import { UserWrapper, FeedbackWrapper, CartWrapper } from '../../contexts'
+import { UserWrapper, FeedbackWrapper, CartWrapper } from '../contexts'
 
 import theme from './theme'
 import Layout from './layout'

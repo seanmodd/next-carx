@@ -11,8 +11,8 @@ import Login from './Login'
 import SignUp from './SignUp'
 import Complete from './Complete'
 import Reset from './Reset'
-import { UserContext, FeedbackContext } from '../../contexts'
-import { setUser, setSnackbar } from '../../contexts/actions'
+import { UserContext, FeedbackContext } from '../contexts'
+import { setUser, setSnackbar } from '../contexts/actions'
 
 const useStyles = makeStyles(theme => ({
   paper: {

@@ -11,7 +11,7 @@ import Payments from "./Payments"
 import Location from "./Location"
 import Edit from "./Edit"
 
-import { UserContext } from "../../contexts"
+import { UserContext } from "../contexts"
 
 const useStyles = makeStyles(theme => ({
   bottomRow: {

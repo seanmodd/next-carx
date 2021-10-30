@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles'
 
 import { useTheme } from '@mui/material/styles'
 import Fields from './Fields'
-import { setUser, setSnackbar } from '../../contexts/actions'
+import { setUser, setSnackbar } from '../contexts/actions'
 
 import accountIcon from '../../images/account.svg'
 import EmailAdornment from '../../images/EmailAdornment'

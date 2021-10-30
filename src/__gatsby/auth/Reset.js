@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Fields from './Fields'
 import { EmailPassword } from './Login'
 
-import { setSnackbar } from '../../contexts/actions'
+import { setSnackbar } from '../contexts/actions'
 
 import accountIcon from '../../images/account.svg'
 

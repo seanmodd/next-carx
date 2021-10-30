@@ -1,24 +1,24 @@
-import React, { useState, useEffect, useContext, useRef } from 'react'
-import axios from 'axios'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import Chip from '@material-ui/core/Chip'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch'
-import { makeStyles } from '@material-ui/core/styles'
+import React, { useState, useEffect, useContext, useRef } from 'react';
+import axios from 'axios';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Chip from '@material-ui/core/Chip';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import { makeStyles } from '@material-ui/core/styles';
 
-import Fields from '../auth/Fields'
-import Slots from './Slots'
+import Fields from '../auth/Fields';
+import Slots from './Slots';
 
-import { FeedbackContext } from '../../contexts'
-import { setSnackbar } from '../../contexts/actions'
+import { FeedbackContext } from '../contexts';
+import { setSnackbar } from '../contexts/actions';
 
-import locationIcon from '../../images/location.svg'
-import streetAdornment from '../../images/street-adornment.svg'
-import zipAdornment from '../../images/zip-adornment.svg'
+import locationIcon from '../../images/location.svg';
+import streetAdornment from '../../images/street-adornment.svg';
+import zipAdornment from '../../images/zip-adornment.svg';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   icon: {
     marginBottom: ({ checkout }) => (checkout ? '1rem' : '3rem'),
     [theme.breakpoints.down('xs')]: {
@@ -58,7 +58,7 @@ const useStyles = makeStyles(theme => ({
       height: ({ checkout }) => (!checkout ? '30rem' : '100%'),
     },
   },
-}))
+}));
 
 export default function Location({
   user,
@@ -79,79 +79,79 @@ export default function Location({
   stepNumber,
   selectedStep,
 }) {
-  const classes = useStyles({ checkout, selectedStep, stepNumber })
-  const isMounted = useRef(false)
+  const classes = useStyles({ checkout, selectedStep, stepNumber });
+  const isMounted = useRef(false);
 
-  const [loading, setLoading] = useState(false)
-  const { dispatchFeedback } = useContext(FeedbackContext)
+  const [loading, setLoading] = useState(false);
+  const { dispatchFeedback } = useContext(FeedbackContext);
 
   const getLocation = () => {
-    setLoading(true)
+    setLoading(true);
 
     axios
       .get(
         `https://data.opendatasoft.com/api/records/1.0/search/?dataset=geonames-postal-code%40public&rows=1&facet=country_code&facet=admin_name1&facet=place_name&facet=postal_code&refine.country_code=US&refine.postal_code=${values.zip}`
       )
-      .then(response => {
-        setLoading(false)
+      .then((response) => {
+        setLoading(false);
 
-        const { place_name, admin_name1 } = response.data.records[0].fields
+        const { place_name, admin_name1 } = response.data.records[0].fields;
 
-        handleValues({ ...values, city: place_name, state: admin_name1 })
+        handleValues({ ...values, city: place_name, state: admin_name1 });
       })
-      .catch(error => {
-        setLoading(false)
-        console.error(error)
+      .catch((error) => {
+        setLoading(false);
+        console.error(error);
         dispatchFeedback(
           setSnackbar({
             status: 'error',
             message: 'There was a problem with your zipcode, please try again.',
           })
-        )
-      })
-  }
+        );
+      });
+  };
 
   useEffect(() => {
-    if (noSlots || user.username === 'Guest') return
+    if (noSlots || user.username === 'Guest') return;
 
-    setValues(user.locations[slot])
-  }, [slot])
+    setValues(user.locations[slot]);
+  }, [slot]);
 
   useEffect(() => {
     if (!checkout) {
       const changed = Object.keys(user.locations[slot]).some(
-        field => values[field] !== user.locations[slot][field]
-      )
+        (field) => values[field] !== user.locations[slot][field]
+      );
 
-      setChangesMade(changed)
+      setChangesMade(changed);
     }
 
     if (values.zip.length === 5) {
-      if (values.city) return
+      if (values.city) return;
 
-      getLocation()
+      getLocation();
     } else if (values.zip.length < 5 && values.city) {
-      handleValues({ ...values, city: '', state: '' })
+      handleValues({ ...values, city: '', state: '' });
     }
-  }, [values])
+  }, [values]);
 
   useEffect(() => {
     if (noSlots) {
-      isMounted.current = false
-      return
+      isMounted.current = false;
+      return;
     }
 
     if (isMounted.current === false) {
-      isMounted.current = true
-      return
+      isMounted.current = true;
+      return;
     }
 
     if (billing === false && isMounted.current) {
-      setValues(billingValues)
+      setValues(billingValues);
     } else {
-      setBillingValues(values)
+      setBillingValues(values);
     }
-  }, [billing])
+  }, [billing]);
 
   const fields = {
     street: {
@@ -164,15 +164,15 @@ export default function Location({
       helperText: 'invalid zip code',
       startAdornment: <img src={zipAdornment} alt="zip code" />,
     },
-  }
+  };
 
-  const handleValues = values => {
+  const handleValues = (values) => {
     if (billing === slot && !noSlots) {
-      setBillingValues(values)
+      setBillingValues(values);
     }
 
-    setValues(values)
-  }
+    setValues(values);
+  };
 
   return (
     <Grid
@@ -250,5 +250,5 @@ export default function Location({
         </Grid>
       )}
     </Grid>
-  )
+  );
 }

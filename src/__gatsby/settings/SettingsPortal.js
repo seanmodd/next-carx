@@ -4,31 +4,31 @@
 //! Commented out all things 'animated' 'AnimatedButton' 'AnimatedGrid'
 //! Commented out all things 'springs' and 'styles' because 'styles' is connected 'springs'
 
-import React, { useContext, useState, useEffect } from 'react'
-import Grid from '@material-ui/core/Grid'
-import clsx from 'clsx'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/core/styles'
-import { useSpring, useSprings, animated } from 'react-spring'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import useResizeAware from 'react-resize-aware'
+import React, { useContext, useState, useEffect } from 'react';
+import Grid from '@material-ui/core/Grid';
+import clsx from 'clsx';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import { useSpring, useSprings, animated } from 'react-spring';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useResizeAware from 'react-resize-aware';
 
-import Settings from './Settings'
-import OrderHistory from './OrderHistory'
-import Favorites from './Favorites'
-import Subscriptions from './Subscriptions'
-import { UserContext } from '../../contexts'
-import { setUser } from '../../contexts/actions'
+import Settings from './Settings';
+import OrderHistory from './OrderHistory';
+import Favorites from './Favorites';
+import Subscriptions from './Subscriptions';
+import { UserContext } from '../contexts';
+import { setUser } from '../contexts/actions';
 
-import accountIcon from '../../images/account.svg'
-import settingsIcon from '../../images/settings.svg'
-import orderHistoryIcon from '../../images/order-history.svg'
-import favoritesIcon from '../../images/favorite-new.svg'
-import subscriptionIcon from '../../images/subscription.svg'
-import background from '../../images/repeating-smallest.svg'
+import accountIcon from '../../images/account.svg';
+import settingsIcon from '../../images/settings.svg';
+import orderHistoryIcon from '../../images/order-history.svg';
+import favoritesIcon from '../../images/favorite-new.svg';
+import subscriptionIcon from '../../images/subscription.svg';
+import background from '../../images/repeating-smallest.svg';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   name: {
     color: theme.palette.secondary.main,
   },
@@ -79,20 +79,20 @@ const useStyles = makeStyles(theme => ({
   logout: {
     color: theme.palette.error.main,
   },
-}))
+}));
 
-const AnimatedButton = animated(Button)
-const AnimatedGrid = animated(Grid)
+const AnimatedButton = animated(Button);
+const AnimatedGrid = animated(Grid);
 
 export default function SettingsPortal() {
-  const { user, dispatchUser, defaultUser } = useContext(UserContext)
-  const [selectedSetting, setSelectedSetting] = useState(null)
-  const [resizeListener, sizes] = useResizeAware()
-  const [showComponent, setShowComponent] = useState(false)
-  const classes = useStyles({ showComponent })
-  const matchesLG = useMediaQuery(theme => theme.breakpoints.down('lg'))
-  const matchesMD = useMediaQuery(theme => theme.breakpoints.down('md'))
-  const matchesXS = useMediaQuery(theme => theme.breakpoints.down('xs'))
+  const { user, dispatchUser, defaultUser } = useContext(UserContext);
+  const [selectedSetting, setSelectedSetting] = useState(null);
+  const [resizeListener, sizes] = useResizeAware();
+  const [showComponent, setShowComponent] = useState(false);
+  const classes = useStyles({ showComponent });
+  const matchesLG = useMediaQuery((theme) => theme.breakpoints.down('lg'));
+  const matchesMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
+  const matchesXS = useMediaQuery((theme) => theme.breakpoints.down('xs'));
 
   const buttonWidth = matchesXS
     ? `${sizes.width - 64}`
@@ -100,8 +100,8 @@ export default function SettingsPortal() {
     ? `${sizes.width - 160}px`
     : matchesLG
     ? '288px'
-    : '352px'
-  const buttonHeight = matchesMD ? '22rem' : matchesLG ? '18rem' : '22rem'
+    : '352px';
+  const buttonHeight = matchesMD ? '22rem' : matchesLG ? '18rem' : '22rem';
 
   const buttons = [
     { label: 'Settings', icon: settingsIcon, component: Settings, large: true },
@@ -112,19 +112,19 @@ export default function SettingsPortal() {
       icon: subscriptionIcon,
       component: Subscriptions,
     },
-  ]
+  ];
 
-  const handleClick = setting => {
+  const handleClick = (setting) => {
     if (selectedSetting === setting) {
-      setSelectedSetting(null)
+      setSelectedSetting(null);
     } else {
-      setSelectedSetting(setting)
+      setSelectedSetting(setting);
     }
-  }
+  };
 
   const springs = useSprings(
     buttons.length,
-    buttons.map(button => ({
+    buttons.map((button) => ({
       to: async (next, cancel) => {
         const scale = {
           transform:
@@ -132,7 +132,7 @@ export default function SettingsPortal() {
               ? 'scale(1)'
               : 'scale(0)',
           delay: selectedSetting !== null ? 0 : 600,
-        }
+        };
 
         const size = {
           height:
@@ -145,7 +145,7 @@ export default function SettingsPortal() {
             selectedSetting === button.label ? `${sizes.width}px` : buttonWidth,
           borderRadius: selectedSetting === button.label ? 0 : 25,
           delay: selectedSetting !== null ? 600 : 0,
-        }
+        };
 
         const hide = {
           display:
@@ -153,34 +153,34 @@ export default function SettingsPortal() {
               ? 'flex'
               : 'none',
           delay: 150,
-        }
+        };
 
-        await next(selectedSetting !== null ? scale : size)
-        await next(hide)
-        await next(selectedSetting !== null ? size : scale)
+        await next(selectedSetting !== null ? scale : size);
+        await next(hide);
+        await next(selectedSetting !== null ? size : scale);
       },
     }))
-  )
+  );
 
   const styles = useSpring({
     opacity: selectedSetting === null || showComponent ? 1 : 0,
     delay: selectedSetting === null || showComponent ? 0 : 1350,
-  })
+  });
 
   const handleLogout = () => {
-    dispatchUser(setUser(defaultUser))
-  }
+    dispatchUser(setUser(defaultUser));
+  };
 
   useEffect(() => {
     if (selectedSetting === null) {
-      setShowComponent(false)
-      return
+      setShowComponent(false);
+      return;
     }
 
-    const timer = setTimeout(() => setShowComponent(true), 2000)
+    const timer = setTimeout(() => setShowComponent(true), 2000);
 
-    return () => clearTimeout(timer)
-  }, [selectedSetting])
+    return () => clearTimeout(timer);
+  }, [selectedSetting]);
 
   return (
     <Grid container direction="column" alignItems="center">
@@ -213,7 +213,7 @@ export default function SettingsPortal() {
         direction={matchesMD ? 'column' : 'row'}
       >
         {springs.map((prop, i) => {
-          const button = buttons[i]
+          const button = buttons[i];
 
           return (
             <AnimatedGrid
@@ -252,9 +252,9 @@ export default function SettingsPortal() {
                 )}
               </AnimatedGrid>
             </AnimatedGrid>
-          )
+          );
         })}
       </Grid>
     </Grid>
-  )
+  );
 }

@@ -7,8 +7,8 @@ import Typography from "@material-ui/core/Typography"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import { makeStyles } from "@material-ui/core/styles"
 
-import { UserContext, FeedbackContext } from "../../contexts"
-import { setSnackbar, setUser } from "../../contexts/actions"
+import { UserContext, FeedbackContext } from "../contexts"
+import { setSnackbar, setUser } from "../contexts/actions"
 
 import FavoriteIcon from "../../images/Favorite"
 

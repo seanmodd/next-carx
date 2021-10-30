@@ -12,12 +12,12 @@ import { makeStyles } from '@material-ui/core/styles'
 import QtyButton from '../product-list/QtyButton'
 import SelectFrequency from './select-frequency'
 
-import { CartContext, FeedbackContext, UserContext } from '../../contexts'
+import { CartContext, FeedbackContext, UserContext } from '../contexts'
 import {
   setSnackbar,
   addToCart,
   toggleSubscription,
-} from '../../contexts/actions'
+} from '../contexts/actions'
 
 import SubscriptionIcon from '../../images/Subscription'
 

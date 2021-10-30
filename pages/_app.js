@@ -81,7 +81,7 @@ import GoogleAnalytics from 'src/minimalComponents/GoogleAnalytics';
 import NotistackProvider from 'src/minimalComponents/NotistackProvider';
 import ThemeLocalization from 'src/minimalComponents/ThemeLocalization';
 import { BaseOptionChartStyle } from 'src/minimalComponents/charts/BaseOptionChart';
-import { UserWrapper, FeedbackWrapper, CartWrapper } from 'src/contexts';
+import { UserWrapper, FeedbackWrapper, CartWrapper } from 'src/__gatsby/contexts';
 import { ApolloWrapper } from 'src/__graphql/ApolloWrapper';
 //! All imports from full javascript version end here ...
 //! below is from root-wrapper.js within gatsby version...

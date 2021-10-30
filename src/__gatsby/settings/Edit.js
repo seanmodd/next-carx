@@ -1,21 +1,21 @@
-import React, { useContext, useState } from 'react'
-import axios from 'axios'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import CircularProgress from '@material-ui/core/CircularProgress'
-import { makeStyles } from '@material-ui/core/styles'
+import React, { useContext, useState } from 'react';
+import axios from 'axios';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core/styles';
 
-import Confirmation from './Confirmation'
+import Confirmation from './Confirmation';
 
-import { FeedbackContext } from '../../contexts'
-import { setSnackbar, setUser } from '../../contexts/actions'
+import { FeedbackContext } from '../contexts';
+import { setSnackbar, setUser } from '../contexts/actions';
 
-import BackwardsIcon from '../../images/BackwardsOutline'
-import editIcon from '../../images/edit.svg'
-import saveIcon from '../../images/save.svg'
+import BackwardsIcon from '../../images/BackwardsOutline';
+import editIcon from '../../images/edit.svg';
+import saveIcon from '../../images/save.svg';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   icon: {
     height: '8rem',
     width: '8rem',
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
       borderLeft: 0,
     },
   },
-}))
+}));
 
 export default function Edit({
   setSelectedSetting,
@@ -42,10 +42,10 @@ export default function Edit({
   dispatchUser,
   isError,
 }) {
-  const classes = useStyles()
-  const { dispatchFeedback } = useContext(FeedbackContext)
-  const [loading, setLoading] = useState(false)
-  const [dialogOpen, setDialogOpen] = useState(false)
+  const classes = useStyles();
+  const { dispatchFeedback } = useContext(FeedbackContext);
+  const [loading, setLoading] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleEdit = () => {
     if (edit && isError) {
@@ -54,19 +54,19 @@ export default function Edit({
           status: 'error',
           message: 'All fields must be valid before saving.',
         })
-      )
-      return
+      );
+      return;
     }
 
-    setEdit(!edit)
-    const { password, ...newDetails } = details
+    setEdit(!edit);
+    const { password, ...newDetails } = details;
 
     if (password !== '********') {
-      setDialogOpen(true)
+      setDialogOpen(true);
     }
 
     if (edit && changesMade) {
-      setLoading(true)
+      setLoading(true);
 
       axios
         .post(
@@ -79,31 +79,31 @@ export default function Edit({
           },
           { headers: { Authorization: `Bearer ${user.jwt}` } }
         )
-        .then(response => {
-          setLoading(false)
+        .then((response) => {
+          setLoading(false);
           dispatchFeedback(
             setSnackbar({
               status: 'success',
               message: 'Settings Saved Successfully',
             })
-          )
+          );
           dispatchUser(
             setUser({ ...response.data, jwt: user.jwt, onboarding: true })
-          )
+          );
         })
-        .catch(error => {
-          setLoading(false)
-          console.error(error)
+        .catch((error) => {
+          setLoading(false);
+          console.error(error);
           dispatchFeedback(
             setSnackbar({
               status: 'error',
               message:
                 'There was a problem saving your settings, please try again.',
             })
-          )
-        })
+          );
+        });
     }
-  }
+  };
 
   return (
     <Grid
@@ -143,5 +143,5 @@ export default function Edit({
         setSnackbar={setSnackbar}
       />
     </Grid>
-  )
+  );
 }

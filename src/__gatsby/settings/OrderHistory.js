@@ -11,7 +11,7 @@ import SettingsGrid from "./SettingsGrid"
 
 import detailsIcon from "../../images/details.svg"
 
-import { UserContext } from "../../contexts"
+import { UserContext } from "../contexts"
 
 const useStyles = makeStyles(theme => ({
   item: {

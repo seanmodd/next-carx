@@ -13,8 +13,8 @@ import { v4 as uuidv4 } from 'uuid'
 
 import Fields from '../auth/Fields'
 
-import { CartContext, FeedbackContext, UserContext } from '../../contexts'
-import { setSnackbar, clearCart, setUser } from '../../contexts/actions'
+import { CartContext, FeedbackContext, UserContext } from '../contexts'
+import { setSnackbar, clearCart, setUser } from '../contexts/actions'
 
 import confirmationIcon from '../../images/tag.svg'
 import NameAdornment from '../../images/NameAdornment'

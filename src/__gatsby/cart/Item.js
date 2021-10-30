@@ -13,8 +13,8 @@ import QtyButton from '../product-list/QtyButton'
 import SubscriptionIcon from '../ui/subscription'
 import SelectFrequency from '../ui/select-frequency'
 
-import { CartContext } from '../../contexts'
-import { removeFromCart, changeFrequency } from '../../contexts/actions'
+import { CartContext } from '../contexts'
+import { removeFromCart, changeFrequency } from '../contexts/actions'
 
 import FavoriteIcon from '../ui/favorite'
 import DeleteIcon from '../../images/Delete'
