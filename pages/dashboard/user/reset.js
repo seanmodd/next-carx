@@ -26,8 +26,6 @@ import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
 import { ResetPasswordForm } from 'src/minimalComponents/authentication/reset-password';
 import { SentIcon } from 'src/assets';
 
-import loginIcon from '../../../public/static/illustrations/illustration_login.png';
-
 // ----------------------------------------------------------------------
 
 const RootStyle = styled(Page)(({ theme }) => ({
@@ -97,7 +95,6 @@ export default function ResetPassword() {
                   href="/dashboard/user/login"
                   sx={{ mt: 5 }}
                 >
-                
                   Back
                 </Button>
               </Box>

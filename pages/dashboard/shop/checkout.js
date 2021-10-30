@@ -38,7 +38,7 @@ import {
   CheckoutBillingAddress,
 } from 'src/minimalComponents/_dashboard/e-commerce/checkout';
 
-import loginIcon from '../../../public/static/illustrations/illustration_login.png';
+
 
 // ----------------------------------------------------------------------
 
