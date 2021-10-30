@@ -20,7 +20,7 @@ import AuthLayout from 'src/layouts/AuthLayout';
 import { MHidden } from 'src/minimalComponents/@material-extend';
 import { LoginForm } from 'src/minimalComponents/authentication/login';
 import AuthFirebaseSocials from 'src/minimalComponents/authentication/AuthFirebaseSocial';
-import jwtIcon from '/public/static/auth/ic_jwt.png';
+import jwtIcon from '../../../public/static/auth/ic_jwt.png';
 import loginIcon from '../../../public/static/illustrations/illustration_login.png';
 
 const RootStyle = styled(Page)(({ theme }) => ({
