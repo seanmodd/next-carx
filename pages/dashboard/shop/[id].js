@@ -133,7 +133,7 @@ export default function EcommerceProductDetails() {
   //   product.variant.id
   // );
   // const thecarname = product.variant.car_name;
-
+const carmake = product && product.variant && product.variant.product.name
   console.log('From CarDetail.js page, this is checkout: ', checkout);
   return (
     <DashboardLayout>
@@ -148,12 +148,20 @@ export default function EcommerceProductDetails() {
                 href: '/dashboard/shop',
               },
               {
+                name: carmake,
+                href: 
+                `/dashboard/shop/category/${
+                  carmake
+                }`,
+              },
+              {
                 name: `${
                   product && product.variant && product.variant.car_name
                 }`,
               },
             ]}
           />
+          {carmake}
 
           <>
             <Card>
