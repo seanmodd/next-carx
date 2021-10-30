@@ -40,6 +40,7 @@ export default function RegisterForm() {
     validationSchema: RegisterSchema,
     onSubmit: async (values, { setErrors, setSubmitting }) => {
       try {
+        console.log('onSubmit', register)
         await register(values.email, values.password, values.firstName, values.lastName);
         enqueueSnackbar('Register success', {
           variant: 'success',

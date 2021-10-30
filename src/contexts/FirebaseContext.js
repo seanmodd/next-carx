@@ -10,6 +10,7 @@ import { firebaseConfig } from '../config';
 const ADMIN_EMAILS = ['demo@minimals.cc'];
 
 if (!firebase.apps.length) {
+  console.log('THIS IS FIREBASE CONFIG', firebaseConfig);
   firebase.initializeApp(firebaseConfig);
   firebase.firestore();
 }
@@ -17,7 +18,7 @@ if (!firebase.apps.length) {
 const initialState = {
   isAuthenticated: false,
   isInitialized: false,
-  user: null
+  user: null,
 };
 
 const reducer = (state, action) => {
@@ -27,7 +28,7 @@ const reducer = (state, action) => {
       ...state,
       isAuthenticated,
       isInitialized: true,
-      user
+      user,
     };
   }
 
@@ -42,11 +43,11 @@ const AuthContext = createContext({
   loginWithGoogle: () => Promise.resolve(),
   loginWithFaceBook: () => Promise.resolve(),
   loginWithTwitter: () => Promise.resolve(),
-  logout: () => Promise.resolve()
+  logout: () => Promise.resolve(),
 });
 
 AuthProvider.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 function AuthProvider({ children }) {
@@ -71,19 +72,20 @@ function AuthProvider({ children }) {
 
           dispatch({
             type: 'INITIALISE',
-            payload: { isAuthenticated: true, user }
+            payload: { isAuthenticated: true, user },
           });
         } else {
           dispatch({
             type: 'INITIALISE',
-            payload: { isAuthenticated: false, user: null }
+            payload: { isAuthenticated: false, user: null },
           });
         }
       }),
     [dispatch]
   );
 
-  const login = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
+  const login = (email, password) =>
+    firebase.auth().signInWithEmailAndPassword(email, password);
 
   const loginWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -100,8 +102,9 @@ function AuthProvider({ children }) {
     return firebase.auth().signInWithPopup(provider);
   };
 
-  const register = (email, password, firstName, lastName) =>
-    firebase
+  const register = (email, password, firstName, lastName) => {
+    console.log('got here');
+    return (firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
@@ -112,9 +115,10 @@ function AuthProvider({ children }) {
           .set({
             uid: res.user.uid,
             email,
-            displayName: `${firstName} ${lastName}`
+            displayName: `${firstName} ${lastName}`,
           });
-      });
+      }))
+    }
 
   const logout = async () => {
     await firebase.auth().signOut();
@@ -144,7 +148,7 @@ function AuthProvider({ children }) {
           city: profile?.city || '',
           zipCode: profile?.zipCode || '',
           about: profile?.about || '',
-          isPublic: profile?.isPublic || false
+          isPublic: profile?.isPublic || false,
         },
         login,
         register,
@@ -152,7 +156,7 @@ function AuthProvider({ children }) {
         loginWithFaceBook,
         loginWithTwitter,
         logout,
-        resetPassword
+        resetPassword,
       }}
     >
       {children}
