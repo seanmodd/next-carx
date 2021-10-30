@@ -32,8 +32,8 @@ export default function AccountPage() {
           </Typography>
           <Layout key={key}>
             {user.jwt && user.onboarding ? null : (
-              <Link href="/dashboard/user/signup">
-                <h1>Signup Now!</h1>
+              <Link href="/dashboard/app/account">
+                <h1>Account</h1>
               </Link>
             )}
 
