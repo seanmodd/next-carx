@@ -21,7 +21,7 @@ import { MHidden } from 'src/minimalComponents/@material-extend';
 import { LoginForm } from 'src/minimalComponents/authentication/login';
 import AuthFirebaseSocials from 'src/minimalComponents/authentication/AuthFirebaseSocial';
 // import jwtIcon from '../../../public/static/auth/ic_jwt.png';
-import loginIcon from '../../../public/static/illustrations/illustration_login.png';
+// import loginIcon from '../../../public/static/illustrations/illustration_login.png';
 
 const RootStyle = styled(Page)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
@@ -88,7 +88,7 @@ export default function Login() {
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
               Hi, Welcome Back
             </Typography>
-            <img src={loginIcon.src} alt="login" />
+            {/* <img src={loginIcon.src} alt="login" /> */}
           </SectionStyle>
         </MHidden>
         <Container maxWidth="sm">
