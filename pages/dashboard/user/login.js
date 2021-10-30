@@ -60,7 +60,7 @@ export default function Login() {
     '🚀  🀄🀄🀄🀄🀄🀄🀄🀄🀄🀄 ~ file: login.js ~ line 56 ~ jwtIcon.src : ',
     jwtIcon.src
   );
-  const jwt = jwtIcon.src;
+
   const handleLoginAuth0 = async () => {
     try {
       await login();
@@ -113,7 +113,7 @@ export default function Login() {
               </Box>
 
               <Tooltip title={capitalCase(method)}>
-                <Image src={jwt} width={32} height={32} />
+                <Image src={jwtIcon.src} width={32} height={32} />
               </Tooltip>
             </Stack>
 

@@ -37,7 +37,6 @@ import {
   CheckoutOrderComplete,
   CheckoutBillingAddress,
 } from 'src/minimalComponents/_dashboard/e-commerce/checkout';
-import jwtIcon from '../../../public/static/auth/ic_jwt.png';
 
 import loginIcon from '../../../public/static/illustrations/illustration_login.png';
 
