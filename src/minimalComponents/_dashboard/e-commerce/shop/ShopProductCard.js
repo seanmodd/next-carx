@@ -67,7 +67,7 @@ export default function ShopProductCard({ product }) {
         <ProductImgStyle alt={name} src={images[0].url} />
       </Box>
 
-      <Stack spacing={2} sx={{ p: 1.5 }}>
+        <Stack spacing={2} sx={{ p: 1.5 }}>
             <Stack
           direction="row"
           alignItems="center"
