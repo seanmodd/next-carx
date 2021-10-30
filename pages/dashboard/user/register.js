@@ -21,7 +21,7 @@ import AuthLayout from 'src/layouts/AuthLayout';
 import { MHidden } from 'src/minimalComponents/@material-extend';
 import { RegisterForm } from 'src/minimalComponents/authentication/register';
 import AuthFirebaseSocials from 'src/minimalComponents/authentication/AuthFirebaseSocial';
-import jwtIcon from '/public/static/auth/ic_jwt.png';
+import jwtIcon from '../../../public/static/auth/ic_jwt.png';
 import registerIcon from '../../../public/static/illustrations/illustration_register.png';
 
 // ----------------------------------------------------------------------

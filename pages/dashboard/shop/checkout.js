@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import checkmarkFill from '@iconify/icons-eva/checkmark-fill';
 
-
 import { styled } from '@mui/material/styles';
 import {
   Box,
@@ -25,7 +24,6 @@ import { Icon } from '@iconify/react';
 import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
 import { ResetPasswordForm } from 'src/minimalComponents/authentication/reset-password';
 import { SentIcon } from 'src/assets';
-import jwtIcon from '/public/static/auth/ic_jwt.png';
 import { useDispatch, useSelector } from 'src/___redux/store';
 import { getCart, createBilling } from 'src/___redux/slices/product';
 import { PATH_DASHBOARD } from 'src/routes/paths';
@@ -39,6 +37,7 @@ import {
   CheckoutOrderComplete,
   CheckoutBillingAddress,
 } from 'src/minimalComponents/_dashboard/e-commerce/checkout';
+import jwtIcon from '../../../public/static/auth/ic_jwt.png';
 
 import loginIcon from '../../../public/static/illustrations/illustration_login.png';
 

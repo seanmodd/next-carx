@@ -25,7 +25,7 @@ import { Icon } from '@iconify/react';
 import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
 import { ResetPasswordForm } from 'src/minimalComponents/authentication/reset-password';
 import { SentIcon } from 'src/assets';
-import jwtIcon from '/public/static/auth/ic_jwt.png';
+import jwtIcon from '../../../public/static/auth/ic_jwt.png';
 import loginIcon from '../../../public/static/illustrations/illustration_login.png';
 
 // ----------------------------------------------------------------------
