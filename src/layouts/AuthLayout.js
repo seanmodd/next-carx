@@ -6,6 +6,7 @@ import { Typography } from '@mui/material';
 // components
 import Logo from 'src/minimalComponents/Logo';
 //
+import Link from 'next/link';
 import { MHidden } from 'src/minimalComponents/@material-extend';
 
 // ----------------------------------------------------------------------
@@ -35,10 +36,11 @@ AuthLayout.propTypes = {
 export default function AuthLayout({ children }) {
   return (
     <HeaderStyle>
-      <RouterLink href="/">
-        <Logo />
-      </RouterLink>
-
+      <div style={{ marginTop: '100px' }}>
+        <Link href="/">
+          <Logo />
+        </Link>
+      </div>
       <MHidden width="smDown">
         <Typography
           variant="body2"
