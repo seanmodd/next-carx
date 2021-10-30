@@ -81,9 +81,7 @@ export default function Login() {
             component={RouterLink}
             href="/dashboard/user/register"
           >
-            {/* <Link href="/dashboard/user/register" style={{ color: 'none' }}> */}
             Get started
-            {/* </Link> */}
           </MuiLink>
         </AuthLayout>
         <MHidden width="mdDown">
