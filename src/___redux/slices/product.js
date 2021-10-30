@@ -284,7 +284,7 @@ const CARQUERY = gql`
       car_name
 createdAt
 updatedAt
-qty
+car_qty: qty
 car_style: style
 car_url
 car_colorLabel: colorLabel

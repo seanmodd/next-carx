@@ -9,12 +9,13 @@ import linkedinFill from '@iconify/icons-eva/linkedin-fill';
 import facebookFill from '@iconify/icons-eva/facebook-fill';
 import instagramFilled from '@iconify/icons-ant-design/instagram-filled';
 import roundAddShoppingCart from '@iconify/icons-ic/round-add-shopping-cart';
+import Link from 'next/link'
 import { useFormik, Form, FormikProvider, useField } from 'formik';
 // material
 import { useTheme, styled } from '@mui/material/styles';
 import {
   Box,
-  Link,
+  Link as MuiLink,
   Stack,
   Button,
   Rating,
@@ -139,14 +140,16 @@ export default function ProductDetailsSumary() {
     price,
     cover,
     status,
-    colors,
+    // colors,
     available,
     priceSale,
-    totalRating,
-    totalReview,
-    inventoryType,
+    // totalRating,
+    // totalReview,
+    // inventoryType,
   } = product;
+  const colors = product.variant.car_colorLabel
 
+const inventoryType = product.variant.car_qty
   const alreadyProduct = checkout.cart.map((item) => item.id).includes(id);
   const isMaxQuantity =
     checkout.cart
@@ -170,6 +173,7 @@ export default function ProductDetailsSumary() {
       available,
       price,
       // color: colors[0],
+      color: product.variant.car_colorLabel,
       // size: sizes[4],
       quantity: available < 1 ? 0 : 1,
     },
@@ -204,42 +208,36 @@ export default function ProductDetailsSumary() {
     <RootStyle>
       <FormikProvider value={formik}>
         <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-          <Label
-            variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
-            // color={inventoryType === 'in_stock' ? 'success' : 'error'}
-            sx={{ textTransform: 'uppercase' }}
-          >
-            {/* {sentenceCase(inventoryType)} */}
-          </Label>
+          
+          <Link style={{cursor: 'pointer'}} href={`shop/category/${product.variant.product.name}`}>
           <Typography
             variant="overline"
+            style={{cursor: 'pointer', fontSize: '26px'}}
             sx={{
               mt: 2,
+              cusor: 'pointer',
               mb: 1,
               display: 'block',
               color: status === 'sale' ? 'error.main' : 'info.main',
             }}
           >
-            {status}
+            {product.variant.product.name}
           </Typography>
-
+</Link>
           <Typography variant="h5" paragraph>
-            {product.variant.car_name}
+            {product.variant.car_vehicleStatus} {product.variant.car_name}
           </Typography>
 
-          <Stack
-            spacing={0.5}
-            direction="row"
-            alignItems="center"
-            sx={{ mb: 2 }}
-          >
-            {/* <Rating value={totalRating} precision={0.1} readOnly />
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              ({fShortenNumber(totalReview)}
-              reviews)
-            </Typography> */}
-          </Stack>
+          
 
+<Label
+            variant={theme.palette.mode === 'light' ? 'ghost' : 'filled'}
+            color={inventoryType >= 1 ? 'success' : 'error'}
+            sx={{ textTransform: 'uppercase' }}
+          >
+          {console.log("THIS IS INVENTORY TYPE: ", inventoryType)}
+            {inventoryType >= 1 ? "Available Today" : "Not Available"}
+          </Label>
           <Typography variant="h4" sx={{ mb: 3 }}>
             <Box
               component="span"
@@ -259,18 +257,32 @@ export default function ProductDetailsSumary() {
               justifyContent="space-between"
             >
               <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
-                Color
+               Exterior Color
               </Typography>
               {/* <ColorSinglePicker
                 {...getFieldProps('color')}
                 colors={colors}
-                sx={{
-                  ...(colors.length > 4 && {
-                    maxWidth: 144,
-                    justifyContent: 'flex-end',
-                  }),
-                }}
+                // sx={{
+                //   ...(colors.length > 4 && {
+                //     maxWidth: 144,
+                //     justifyContent: 'flex-end',
+                  // }),
+                // }}
               /> */}
+
+              {product.variant.car_exteriorColor}
+
+
+            </Stack>
+                      <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+            >
+              <Typography variant="subtitle1" sx={{ mt: 0.5 }}>
+               Interior Color
+              </Typography>
+              {product.variant.car_interiorColor}
             </Stack>
 
             <Stack direction="row" justifyContent="space-between">
@@ -290,9 +302,9 @@ export default function ProductDetailsSumary() {
                   },
                 }}
                 helperText={
-                  <Link href="#" underline="always" color="text.primary">
+                  <MuiLink href="#" underline="always" color="text.primary">
                     Size Chart
-                  </Link>
+                  </MuiLink>
                 }
               >
                 {/* {sizes.map((size) => (
