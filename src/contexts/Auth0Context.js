@@ -11,7 +11,7 @@ let auth0Client = null;
 const initialState = {
   isAuthenticated: false,
   isInitialized: false,
-  user: null
+  user: null,
 };
 
 const handlers = {
@@ -26,21 +26,22 @@ const handlers = {
   LOGOUT: (state) => ({
     ...state,
     isAuthenticated: false,
-    user: null
-  })
+    user: null,
+  }),
 };
 
-const reducer = (state, action) => (handlers[action.type] ? handlers[action.type](state, action) : state);
+const reducer = (state, action) =>
+  handlers[action.type] ? handlers[action.type](state, action) : state;
 
 const AuthContext = createContext({
   ...initialState,
   method: 'auth0',
   login: () => Promise.resolve(),
-  logout: () => Promise.resolve()
+  logout: () => Promise.resolve(),
 });
 
 AuthProvider.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 function AuthProvider({ children }) {
@@ -52,7 +53,7 @@ function AuthProvider({ children }) {
         auth0Client = new Auth0Client({
           client_id: auth0Config.clientId,
           domain: auth0Config.domain,
-          redirect_uri: window.location.origin
+          redirect_uri: window.location.origin,
         });
 
         await auth0Client.checkSession();
@@ -64,19 +65,19 @@ function AuthProvider({ children }) {
 
           dispatch({
             type: 'INITIALIZE',
-            payload: { isAuthenticated, user }
+            payload: { isAuthenticated, user },
           });
         } else {
           dispatch({
             type: 'INITIALIZE',
-            payload: { isAuthenticated, user: null }
+            payload: { isAuthenticated, user: null },
           });
         }
       } catch (err) {
         console.error(err);
         dispatch({
           type: 'INITIALIZE',
-          payload: { isAuthenticated: false, user: null }
+          payload: { isAuthenticated: false, user: null },
         });
       }
     };
@@ -111,11 +112,11 @@ function AuthProvider({ children }) {
           photoURL: state?.user?.picture,
           email: state?.user?.email,
           displayName: 'Jaydon Frankie',
-          role: 'admin'
+          role: 'admin',
         },
         login,
         logout,
-        resetPassword
+        resetPassword,
       }}
     >
       {children}
