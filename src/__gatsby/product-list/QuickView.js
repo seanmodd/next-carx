@@ -1,24 +1,23 @@
-import React, { useState } from 'react'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import Chip from '@material-ui/core/Chip'
-import Dialog from '@material-ui/core/Dialog'
-import DialogContent from '@material-ui/core/DialogContent'
-import { makeStyles } from '@material-ui/core/styles'
-import { GatsbyImage } from 'gatsby-plugin-image'
-import { Link } from 'gatsby'
+import React, { useState } from 'react';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import { makeStyles } from '@material-ui/core/styles';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { Link } from 'gatsby';
 
-import Rating from '../home/Rating'
-import Sizes from './Sizes'
-import Swatches from './Swatches'
-import QtyButton from './QtyButton'
-import { getStockDisplay } from '../product-detail/ProductInfo'
+import Rating from '../home/Rating';
+import Sizes from './Sizes';
+import Swatches from './Swatches';
+import QtyButton from './QtyButton';
+import { getStockDisplay } from '../product-detail/ProductInfo';
 
-import frame from '../../images/selected-frame.svg'
-import explore from '../../images/explore.svg'
+// import explore from '../../images/explore.svg'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   selectedFrame: {
     // backgroundImage: `url(${frame})`,
     backgroundPosition: 'center',
@@ -95,7 +94,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     right: '1rem',
   },
-}))
+}));
 
 export default function QuickView({
   open,
@@ -116,12 +115,12 @@ export default function QuickView({
   rating,
   imageIndex,
 }) {
-  const classes = useStyles()
+  const classes = useStyles();
 
   const selectedVariant =
-    imageIndex === -1 ? product.node.variants.indexOf(variant) : imageIndex
+    imageIndex === -1 ? product.node.variants.indexOf(variant) : imageIndex;
 
-  const stockDisplay = getStockDisplay(stock, selectedVariant)
+  const stockDisplay = getStockDisplay(stock, selectedVariant);
 
   return (
     <Dialog
@@ -178,11 +177,11 @@ export default function QuickView({
                     >
                       Details
                     </Typography>
-                    <img
+                    {/* <img
                       src={explore}
                       className={classes.exploreIcon}
                       alt="go to product detail page"
-                    />
+                    /> */}
                   </Button>
                 </Grid>
               </Grid>
@@ -216,5 +215,5 @@ export default function QuickView({
         </Grid>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

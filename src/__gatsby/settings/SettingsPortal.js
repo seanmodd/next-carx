@@ -21,12 +21,12 @@ import Subscriptions from './Subscriptions';
 import { UserContext } from '../contexts';
 import { setUser } from '../contexts/actions';
 
-import accountIcon from '../../images/account.svg';
-import settingsIcon from '../../images/settings.svg';
-import orderHistoryIcon from '../../images/order-history.svg';
-import favoritesIcon from '../../images/favorite-new.svg';
-import subscriptionIcon from '../../images/subscription.svg';
-import background from '../../images/repeating-smallest.svg';
+// import accountIcon from '../../images/account.svg';
+// import settingsIcon from '../../images/settings.svg';
+// import orderHistoryIcon from '../../images/order-history.svg';
+// import favoritesIcon from '../../images/favorite-new.svg';
+// import subscriptionIcon from '../../images/subscription.svg';
+// import background from '../../images/repeating-smallest.svg';
 
 const useStyles = makeStyles((theme) => ({
   name: {
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     minHeight: '30rem',
     height: 'auto',
-    backgroundImage: `url(${background})`,
+    // backgroundImage: `url(${background})`,
     backgroundSize: 'fill',
     backgroundPosition: 'center',
     backgroundRepeat: 'repeat',
@@ -104,14 +104,14 @@ export default function SettingsPortal() {
   const buttonHeight = matchesMD ? '22rem' : matchesLG ? '18rem' : '22rem';
 
   const buttons = [
-    { label: 'Settings', icon: settingsIcon, component: Settings, large: true },
-    { label: 'Order History', icon: orderHistoryIcon, component: OrderHistory },
-    { label: 'Favorites', icon: favoritesIcon, component: Favorites },
-    {
-      label: 'Subscriptions',
-      icon: subscriptionIcon,
-      component: Subscriptions,
-    },
+    // { label: 'Settings', icon: settingsIcon, component: Settings, large: true },
+    // { label: 'Order History', icon: orderHistoryIcon, component: OrderHistory },
+    // { label: 'Favorites', icon: favoritesIcon, component: Favorites },
+    // {
+    //   label: 'Subscriptions',
+    //   icon: subscriptionIcon,
+    //   component: Subscriptions,
+    // },
   ];
 
   const handleClick = (setting) => {
@@ -185,9 +185,7 @@ export default function SettingsPortal() {
   return (
     <Grid container direction="column" alignItems="center">
       {resizeListener}
-      <Grid item>
-        <img src={accountIcon} alt="settings page" />
-      </Grid>
+      <Grid item>{/* <img src={accountIcon} alt="settings page" /> */}</Grid>
       <Grid item>
         <Typography
           align="center"

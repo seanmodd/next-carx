@@ -12,8 +12,8 @@ import Link from 'next/link';
 //* GatsbyImage
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-import frame from '../../images/product-frame-grid.svg';
-import explore from '../../images/explore.svg';
+// import frame from '../../images/product-frame-grid.svg';
+// import explore from '../../images/explore.svg';
 
 import Rating from './Rating';
 
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   frame: {
-    backgroundImage: `url(${frame})`,
+    // backgroundImage: `url(${frame})`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
@@ -175,11 +175,11 @@ export default function FeaturedProduct({
             classes={{ root: classes.exploreButton }}
           >
             <Typography variant="h5">Details</Typography>
-            <img
+            {/* <img
               src={explore}
               alt="go to product details"
               className={classes.exploreIcon}
-            />
+            /> */}
           </Button>
         </Grid>
       </Grid>

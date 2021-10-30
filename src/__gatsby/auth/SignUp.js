@@ -17,10 +17,10 @@ import Fields from './Fields';
 import { EmailPassword } from './Login';
 import { setUser, setSnackbar } from '../contexts/actions';
 
-import addUserIcon from '../../images/add-user.svg';
-import nameAdornment from '../../images/name-adornment.svg';
-import forward from '../../images/forward-outline.svg';
-import backward from '../../images/backwards-outline.svg';
+// import addUserIcon from '../../images/add-user.svg';
+// import nameAdornment from '../../images/name-adornment.svg';
+// import forward from '../../images/forward-outline.svg';
+// import backward from '../../images/backwards-outline.svg';
 
 const useStyles = makeStyles((theme) => ({
   addUserIcon: {
@@ -134,7 +134,7 @@ export default function SignUp({
     name: {
       helperText: 'you must enter a name',
       placeholder: 'Username*',
-      startAdornment: <img src={nameAdornment.src} alt="name" />,
+      // startAdornment: <img src={nameAdornment.src} alt="name" />,
     },
   };
 
@@ -149,11 +149,11 @@ export default function SignUp({
   return (
     <>
       <Grid item>
-        <img
+        {/* <img
           src={addUserIcon.src}
           alt="new user"
           className={classes.addUserIcon}
-        />
+        /> */}
       </Grid>
       <Fields
         className={classes.addUserIcons}
@@ -196,21 +196,21 @@ export default function SignUp({
       <Grid item container justifyContent="space-between">
         <Grid item>
           <IconButton onClick={() => handleNavigate('backward')}>
-            <img
+            {/* <img
               src={backward.src}
               alt="back to login"
               className={classes.navigation}
-            />
+            /> */}
           </IconButton>
         </Grid>
         {info ? null : (
           <Grid item>
             <IconButton onClick={() => handleNavigate('forward')}>
-              <img
+              {/* <img
                 src={forward.src}
                 alt="continue registration"
                 className={classes.navigation}
-              />
+              /> */}
             </IconButton>
           </Grid>
         )}

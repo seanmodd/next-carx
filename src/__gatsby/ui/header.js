@@ -25,10 +25,9 @@ import Link from 'next/link';
 import { CartContext } from '../contexts';
 import { useIsClient } from '../../hooks';
 
-import search from '../../images/search.svg';
-import cartIcon from '../../images/cart.svg';
-import account from '../../images/account-header.svg';
-import menu from '../../images/menu.svg';
+// import cartIcon from '../../images/cart.svg';
+// import account from '../../images/account-header.svg';
+// import menu from '../../images/menu.svg';
 
 const useStyles = makeStyles((theme) => ({
   coloredIndicator: {
@@ -229,13 +228,13 @@ export default function Header({ categories }) {
     //   visible: true,
     //   onClick: () => console.log('search'),
     // },
-    { icon: cartIcon, alt: 'cart', visible: true, link: '/dashboard/cart' },
-    {
-      icon: account,
-      alt: 'account',
-      visible: !matchesMD,
-      link: '/dashboard/account',
-    },
+    // { icon: cartIcon, alt: 'cart', visible: true, link: '/dashboard/cart' },
+    // {
+    //   icon: account,
+    //   alt: 'account',
+    //   visible: !matchesMD,
+    //   link: '/dashboard/account',
+    // },
   ];
 
   const newactions = [
@@ -247,12 +246,12 @@ export default function Header({ categories }) {
     // },
     // { icon: cartIcon, alt: 'cart', visible: true, link: '/cart' },
     // { icon: account, alt: 'account', visible: !matchesMD, link: '/account' },
-    {
-      icon: menu,
-      alt: 'menu',
-      visible: matchesMD,
-      onClick: () => setDrawerOpen(true),
-    },
+    // {
+    //   icon: menu,
+    //   alt: 'menu',
+    //   visible: matchesMD,
+    //   onClick: () => setDrawerOpen(true),
+    // },
   ];
 
   return (

@@ -1,21 +1,21 @@
 //* Integrate 1
 //! Problem: This is possible where the portion of the Recently Viewed items turns up as null and is blanked out in production and development...
-import React, { useState } from 'react'
-import clsx from 'clsx'
-import { Link, navigate } from 'gatsby'
-import { styled } from '@mui/material/styles'
-import { Box, Card, Typography, Stack } from '@mui/material'
-import Grid from '@material-ui/core/Grid'
+import React, { useState } from 'react';
+import clsx from 'clsx';
+import { Link, navigate } from 'gatsby';
+import { styled } from '@mui/material/styles';
+import { Box, Card, Typography, Stack } from '@mui/material';
+import Grid from '@material-ui/core/Grid';
 // import Typography from '@material-ui/core/Typography'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { makeStyles } from '@material-ui/core/styles'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles } from '@material-ui/core/styles';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-import QuickView from './QuickView'
+import QuickView from './QuickView';
 
 // import frame from '../../images/product-frame-grid.svg'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   frame: {
     // backgroundImage: `url(${frame})`,
     borderWidth: '1px',
@@ -76,17 +76,17 @@ const useStyles = makeStyles(theme => ({
       cursor: 'pointer',
     },
   },
-}))
+}));
 
 export const colorIndex = (product, variant, color) =>
   product.node.variants.indexOf(
     product.node.variants.filter(
-      item =>
+      (item) =>
         item.color === color &&
         variant.style === item.style &&
         item.size === variant.size
     )[0]
-  )
+  );
 
 const ProductImgStyle = styled('img')({
   top: 0,
@@ -94,7 +94,7 @@ const ProductImgStyle = styled('img')({
   height: '100%',
   objectFit: 'cover',
   position: 'absolute',
-})
+});
 
 export default function ProductFrameGrid({
   product,
@@ -111,16 +111,16 @@ export default function ProductFrameGrid({
   stock,
   rating,
 }) {
-  const classes = useStyles({ small })
-  const [open, setOpen] = useState(false)
+  const classes = useStyles({ small });
+  const [open, setOpen] = useState(false);
 
-  const matchesMD = useMediaQuery(theme => theme.breakpoints.down('md'))
+  const matchesMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
   if (matchesMD && open) {
-    setOpen(false)
+    setOpen(false);
   }
 
-  const imageIndex = colorIndex(product, variant, selectedColor)
+  const imageIndex = colorIndex(product, variant, selectedColor);
 
   // const imgURL =
   //   imageIndex !== -1
@@ -130,18 +130,18 @@ export default function ProductFrameGrid({
   const imgURL =
     imageIndex !== -1
       ? product.node.variants[imageIndex].images[0].localFile
-      : variant?.images[0].localFile
+      : variant?.images[0].localFile;
   if (imgURL == null) {
-    console.log('imgURL: Image is null')
+    console.log('imgURL: Image is null');
   }
-  const image = getImage(imgURL)
+  const image = getImage(imgURL);
 
-  const productName = product.node.name.split(' ')[0]
-  console.log('product: ', product)
-  console.log('productName: ', productName)
-  console.log('product.node.name: ', product.node.name)
-  console.log('variant: ', variant)
-  console.log('variant.colorLabel: ', variant.colorLabel)
+  const productName = product.node.name.split(' ')[0];
+  console.log('product: ', product);
+  console.log('productName: ', productName);
+  console.log('product.node.name: ', product.node.name);
+  console.log('variant: ', variant);
+  console.log('variant.colorLabel: ', variant.colorLabel);
   //! SHOW JAYEN BELOW IS WHERE WE CAN FIX THE BLANK WITHIN RECENTLY VIEWED ITEMS!
   return (
     <>
@@ -169,11 +169,11 @@ export default function ProductFrameGrid({
           }
         >
           <Grid item classes={{ root: classes.frame }}>
-            <GatsbyImage
+            {/* <GatsbyImage
               image={image}
               alt={product.node.name}
               className={classes.product}
-            />
+            /> */}
           </Grid>
           <Grid item classes={{ root: classes.title }}>
             <Typography variant="h6">productName:</Typography>
@@ -249,5 +249,5 @@ export default function ProductFrameGrid({
       </Card>
       //! above is an item
     </>
-  )
+  );
 }

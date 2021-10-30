@@ -5,9 +5,9 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
 
-import facebook from '../../images/facebook.svg';
-import twitter from '../../images/twitter.svg';
-import instagram from '../../images/instagram.svg';
+// import facebook from '../../images/facebook.svg';
+// import twitter from '../../images/twitter.svg';
+// import instagram from '../../images/instagram.svg';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -45,9 +45,9 @@ export default function Footer() {
   const classes = useStyles();
 
   const socialMedia = [
-    { icon: facebook, alt: 'facebook', link: 'https://facebook.com' },
-    { icon: twitter, alt: 'twitter', link: 'https://twitter.com' },
-    { icon: instagram, alt: 'instagram', link: 'https://instagram.com' },
+    // { icon: facebook, alt: 'facebook', link: 'https://facebook.com' },
+    // { icon: twitter, alt: 'twitter', link: 'https://twitter.com' },
+    // { icon: instagram, alt: 'instagram', link: 'https://instagram.com' },
   ];
 
   const routes = {

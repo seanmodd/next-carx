@@ -5,13 +5,13 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
 
-import marketingAdornment from '../../images/marketing-adornment.svg';
-import moreByUs from '../../images/more-by-us.svg';
-import store from '../../images/store.svg';
+// import marketingAdornment from '../../images/marketing-adornment.svg';
+// import moreByUs from '../../images/more-by-us.svg';
+// import store from '../../images/store.svg';
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    backgroundImage: `url(${marketingAdornment})`,
+    // backgroundImage: `url(${marketingAdornment})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
@@ -66,7 +66,7 @@ export default function MarketingButtons() {
   const classes = useStyles();
 
   const buttons = [
-    { label: 'Store', icon: store, link: '/dashboard/new' },
+    // { label: 'Store', icon: store, link: '/dashboard/new' },
     // { label: 'More By Us', icon: moreByUs, href: 'https://www.google.com' },
   ];
 

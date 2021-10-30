@@ -1,13 +1,13 @@
-import React from 'react'
-import clsx from 'clsx'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/core/styles'
+import React from 'react';
+import clsx from 'clsx';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
-import shippingIcon from '../../images/shipping.svg'
+// import shippingIcon from '../../images/shipping.svg'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   button: {
     backgroundColor: theme.palette.secondary.main,
     borderRadius: 15,
@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   selectedText: {
     color: theme.palette.secondary.main,
   },
-}))
+}));
 
 export default function Shipping({
   shippingOptions,
@@ -60,7 +60,7 @@ export default function Shipping({
   selectedStep,
   stepNumber,
 }) {
-  const classes = useStyles({ stepNumber, selectedStep })
+  const classes = useStyles({ stepNumber, selectedStep });
 
   return (
     <Grid
@@ -72,10 +72,10 @@ export default function Shipping({
       classes={{ root: classes.container }}
     >
       <Grid item>
-        <img src={shippingIcon} alt="shipping" className={classes.icon} />
+        {/* <img src={shippingIcon} alt="shipping" className={classes.icon} /> */}
       </Grid>
       <Grid item container justifyContent="space-around">
-        {shippingOptions.map(option => (
+        {shippingOptions.map((option) => (
           <Grid item key={option.label}>
             <Button
               classes={{
@@ -118,5 +118,5 @@ export default function Shipping({
         ))}
       </Grid>
     </Grid>
-  )
+  );
 }

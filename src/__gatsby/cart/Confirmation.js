@@ -16,14 +16,14 @@ import Fields from '../auth/Fields'
 import { CartContext, FeedbackContext, UserContext } from '../contexts'
 import { setSnackbar, clearCart, setUser } from '../contexts/actions'
 
-import confirmationIcon from '../../images/tag.svg'
+// import confirmationIcon from '../../images/tag.svg'
 import NameAdornment from '../../images/NameAdornment'
 import EmailAdornment from '../../images/EmailAdornment'
 import PhoneAdornment from '../../images/PhoneAdornment'
-import streetAdornment from '../../images/street-adornment.svg'
-import zipAdornment from '../../images/zip-adornment.svg'
-import cardAdornment from '../../images/card.svg'
-import promoAdornment from '../../images/promo-code.svg'
+// import streetAdornment from '../../images/street-adornment.svg'
+// import zipAdornment from '../../images/zip-adornment.svg'
+// import cardAdornment from '../../images/card.svg'
+// import promoAdornment from '../../images/promo-code.svg'
 
 const useStyles = makeStyles(theme => ({
   nameWrapper: {
@@ -203,14 +203,15 @@ export default function Confirmation({
     {
       value: `${card.brand.toUpperCase()} ${card.last4}`,
       adornment: (
-        <img src={cardAdornment} alt="credit card" className={classes.card} />
+        // <img src={cardAdornment} alt="credit card" className={classes.card} />
       ),
     },
     {
       promo: {
         helperText: '',
         placeholder: 'Promo code',
-        startAdornment: <img src={promoAdornment} alt="promo code" />,
+        startAdornment: ''
+        // startAdornment: <img src={promoAdornment} alt="promo code" />,
       },
     },
   ]
@@ -440,7 +441,7 @@ export default function Confirmation({
           ))}
         </Grid>
         <Grid item xs={5} classes={{ root: classes.iconWrapper }}>
-          <img src={confirmationIcon} alt="confirmation" />
+          {/* <img src={confirmationIcon} alt="confirmation" /> */}
         </Grid>
       </Grid>
       {secondFields.map((field, i) => (

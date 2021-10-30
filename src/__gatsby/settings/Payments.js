@@ -17,7 +17,7 @@ import Slots from './Slots';
 import { FeedbackContext, UserContext } from '../contexts';
 import { setSnackbar, setUser } from '../contexts/actions';
 
-import cardIcon from '../../images/card.svg';
+// import cardIcon from '../../images/card.svg';
 
 const useStyles = makeStyles((theme) => ({
   number: {
@@ -254,7 +254,7 @@ export default function Payments({
       classes={{ root: classes.paymentContainer }}
     >
       <Grid item>
-        <img src={cardIcon} alt="payment settings" className={classes.icon} />
+        {/* <img src={cardIcon} alt="payment settings" className={classes.icon} /> */}
       </Grid>
       <Grid
         item

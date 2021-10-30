@@ -9,7 +9,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
 
-import cta from '../../images/cta.svg';
+// import cta from '../../images/cta.svg';
 
 const useStyles = makeStyles((theme) => ({
   account: {

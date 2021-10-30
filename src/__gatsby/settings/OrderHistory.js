@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles"
 import OrderDetails from "./OrderDetails"
 import SettingsGrid from "./SettingsGrid"
 
-import detailsIcon from "../../images/details.svg"
+// import detailsIcon from "../../images/details.svg"
 
 import { UserContext } from "../contexts"
 
@@ -83,7 +83,7 @@ export default function OrderHistory({ setSelectedSetting }) {
       disableColumnMenu: true,
       renderCell: () => (
         <IconButton>
-          <img src={detailsIcon} alt="order details" />
+          {/* <img src={detailsIcon} alt="order details" /> */}
         </IconButton>
       ),
     },

@@ -1,22 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react'
-import clsx from 'clsx'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { makeStyles } from '@material-ui/core/styles'
+import React, { useState, useEffect, useRef } from 'react';
+import clsx from 'clsx';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles } from '@material-ui/core/styles';
 
-import Fields from '../auth/Fields'
-import Slots from './Slots'
-import { EmailPassword } from '../auth/Login'
+import Fields from '../auth/Fields';
+import Slots from './Slots';
+import { EmailPassword } from '../auth/Login';
 
-import fingerprint from '../../images/fingerprint.svg'
-import NameAdornment from '../../images/NameAdornment'
-import PhoneAdornment from '../../images/PhoneAdornment'
+// import fingerprint from '../../images/fingerprint.svg';
+import NameAdornment from '../../images/NameAdornment';
+import PhoneAdornment from '../../images/PhoneAdornment';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   phoneAdornment: {
     height: 25.122,
     width: 25.173,
@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
       borderBottom: `2px solid ${theme.palette.secondary.main}`,
     },
   },
-}))
+}));
 
 export default function Details({
   user,
@@ -108,51 +108,51 @@ export default function Details({
   selectedStep,
   stepNumber,
 }) {
-  const classes = useStyles({ checkout, selectedStep, stepNumber })
-  const isMounted = useRef(false)
+  const classes = useStyles({ checkout, selectedStep, stepNumber });
+  const isMounted = useRef(false);
 
-  const [visible, setVisible] = useState(false)
-  const matchesXS = useMediaQuery(theme => theme.breakpoints.down('xs'))
+  const [visible, setVisible] = useState(false);
+  const matchesXS = useMediaQuery((theme) => theme.breakpoints.down('xs'));
 
   useEffect(() => {
-    if (noSlots || user.username === 'Guest') return
+    if (noSlots || user.username === 'Guest') return;
 
     if (checkout) {
-      setValues(user.contactInfo[slot])
+      setValues(user.contactInfo[slot]);
     } else {
-      setValues({ ...user.contactInfo[slot], password: '********' })
+      setValues({ ...user.contactInfo[slot], password: '********' });
     }
-  }, [slot])
+  }, [slot]);
 
   useEffect(() => {
-    if (checkout) return
+    if (checkout) return;
 
     const changed = Object.keys(user.contactInfo[slot]).some(
-      field => values[field] !== user.contactInfo[slot][field]
-    )
+      (field) => values[field] !== user.contactInfo[slot][field]
+    );
 
-    setChangesMade(changed)
-  }, [values])
+    setChangesMade(changed);
+  }, [values]);
 
   useEffect(() => {
     if (noSlots) {
-      isMounted.current = false
-      return
+      isMounted.current = false;
+      return;
     }
 
     if (isMounted.current === false) {
-      isMounted.current = true
-      return
+      isMounted.current = true;
+      return;
     }
 
     if (billing === false && isMounted.current) {
-      setValues(billingValues)
+      setValues(billingValues);
     } else {
-      setBillingValues(values)
+      setBillingValues(values);
     }
-  }, [billing])
+  }, [billing]);
 
-  const email_password = EmailPassword(false, false, visible, setVisible, true)
+  const email_password = EmailPassword(false, false, visible, setVisible, true);
   const name_phone = {
     name: {
       helperText: 'you must enter a name',
@@ -168,9 +168,9 @@ export default function Details({
         </div>
       ),
     },
-  }
+  };
 
-  let fields = [name_phone, email_password]
+  let fields = [name_phone, email_password];
 
   if (checkout) {
     fields = [
@@ -179,16 +179,16 @@ export default function Details({
         email: email_password.email,
         phone: name_phone.phone,
       },
-    ]
+    ];
   }
 
-  const handleValues = values => {
+  const handleValues = (values) => {
     if (billing === slot && !noSlots) {
-      setBillingValues(values)
+      setBillingValues(values);
     }
 
-    setValues(values)
-  }
+    setValues(values);
+  };
 
   return (
     <Grid
@@ -202,11 +202,11 @@ export default function Details({
       classes={{ root: classes.detailsContainer }}
     >
       <Grid item>
-        <img
+        {/* <img
           src={fingerprint}
           alt="details settings"
           className={classes.icon}
-        />
+        /> */}
       </Grid>
       {fields.map((pair, i) => (
         <Grid
@@ -264,5 +264,5 @@ export default function Details({
         </Grid>
       )}
     </Grid>
-  )
+  );
 }

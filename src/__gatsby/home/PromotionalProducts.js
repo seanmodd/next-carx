@@ -5,29 +5,28 @@
 //! Commented out all things 'config' related and all things 'Carousel' related
 //* Potential Problem: Utilizing typeof window !== 'undefined' below...
 
-import React, { useState } from 'react'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
+import React, { useState } from 'react';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 // import Carousel from "react-spring-3d-carousel"
 // import { config } from 'react-spring'
-import loadable from '@loadable/component'
-import clsx from 'clsx'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
+import loadable from '@loadable/component';
+import clsx from 'clsx';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 // import { Link, useStaticQuery, graphql } from 'gatsby'
-import Link from 'next/link'
-import { makeStyles } from '@material-ui/core/styles'
+import Link from 'next/link';
+import { makeStyles } from '@material-ui/core/styles';
 // import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
-import promoAdornment from '../../images/promo-adornment.svg'
-import explore from '../../images/explore.svg'
+// import promoAdornment from '../../images/promo-adornment.svg'
 
 // const Carousel = loadable(() => import('react-spring-3d-carousel'))
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   mainContainer: {
-    backgroundImage: `url(${promoAdornment})`,
+    // backgroundImage: `url(${promoAdornment})`,
     backgroundPosition: 'top',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
@@ -90,13 +89,13 @@ const useStyles = makeStyles(theme => ({
       textAlign: 'center',
     },
   },
-}))
+}));
 
 export default function PromotionalProducts() {
-  const classes = useStyles()
-  const [selectedSlide, setSelectedSlide] = useState(0)
+  const classes = useStyles();
+  const [selectedSlide, setSelectedSlide] = useState(0);
 
-  const matchesMD = useMediaQuery(theme => theme.breakpoints.down('md'))
+  const matchesMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
 
   // const data = useStaticQuery(graphql`
   //   query GetPromo {
@@ -124,7 +123,7 @@ export default function PromotionalProducts() {
   //   }
   // `)
 
-  const slides = []
+  const slides = [];
 
   // data.allStrapiProduct.edges.map(({ node }, i) => {
   //   const image = getImage(node.variants[0].images[0].localFile)
@@ -189,12 +188,12 @@ export default function PromotionalProducts() {
 
         {/* <Button component={Link} to={slides[selectedSlide].url}> */}
         {/* <Button component={Link} to={`/dashboard/${slides[selectedSlide].url}`}> */}
-          {/* <Typography variant="h4" classes={{ root: classes.explore }}> */}
-            {/* Explore */}
-          {/* </Typography> */}
-          {/* <img src={explore} alt="go to product page" /> */}
+        {/* <Typography variant="h4" classes={{ root: classes.explore }}> */}
+        {/* Explore */}
+        {/* </Typography> */}
+        {/* <img src={explore} alt="go to product page" /> */}
         {/* </Button> */}
       </Grid>
     </Grid>
-  )
+  );
 }

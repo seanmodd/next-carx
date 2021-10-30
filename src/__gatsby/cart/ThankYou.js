@@ -6,7 +6,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Link from 'next/link';
 import { makeStyles } from '@material-ui/core/styles';
 
-import complete from '../../images/order-placed.svg';
+// import complete from '../../images/order-placed.svg';
 
 const useStyles = makeStyles((theme) => ({
   detailsButton: {
@@ -90,7 +90,7 @@ export default function ThankYou({
       classes={{ root: classes.container }}
     >
       <Grid item>
-        <img src={complete} alt="order placed" className={classes.icon} />
+        {/* <img src={complete} alt="order placed" className={classes.icon} /> */}
       </Grid>
       <Grid item>
         <Typography variant="h4" align="center">

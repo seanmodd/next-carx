@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import featuredAdornment from '../../images/featured-adornment.svg';
+// import featuredAdornment from '../../images/featured-adornment.svg';
 
 import FeaturedProduct from './FeaturedProduct';
 

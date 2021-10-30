@@ -11,7 +11,7 @@ import SettingsGrid from './SettingsGrid';
 import QtyButton from '../product-list/QtyButton';
 
 import DeleteIcon from '../../images/Delete';
-import pauseIcon from '../../images/pause.svg';
+// import pauseIcon from '../../images/pause.svg';
 
 import { UserContext, FeedbackContext } from '../contexts';
 import { setSnackbar } from '../contexts/actions';
@@ -213,11 +213,11 @@ export default function Subscriptions({ setSelectedSetting }) {
           </Grid>
           <Grid item>
             <IconButton classes={{ root: classes.iconButton }}>
-              <img
+              {/* <img
                 src={pauseIcon}
                 alt="pause subscription"
                 className={classes.pause}
-              />
+              /> */}
             </IconButton>
           </Grid>
         </Grid>

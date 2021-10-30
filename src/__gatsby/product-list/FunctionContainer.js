@@ -11,8 +11,8 @@ import GridIcon from '../../images/Grid'
 import Sort from './Sort'
 import Filter from './Filter'
 
-import filter from '../../images/filter.svg'
-import sort from '../../images/sort.svg'
+// import filter from '../../images/filter.svg'
+// import sort from '../../images/sort.svg'
 
 const useStyles = makeStyles(theme => ({
   functionContainer: {
@@ -91,8 +91,8 @@ export default function FunctionContainer({
         )
       default:
         const items = [
-          { icon: filter, alt: 'filter' },
-          { icon: sort, alt: 'sort' },
+          // { icon: filter, alt: 'filter' },
+          // { icon: sort, alt: 'sort' },
         ]
 
         return (

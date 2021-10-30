@@ -14,9 +14,9 @@ import Slots from './Slots';
 import { FeedbackContext } from '../contexts';
 import { setSnackbar } from '../contexts/actions';
 
-import locationIcon from '../../images/location.svg';
-import streetAdornment from '../../images/street-adornment.svg';
-import zipAdornment from '../../images/zip-adornment.svg';
+// import locationIcon from '../../images/location.svg';
+// import streetAdornment from '../../images/street-adornment.svg';
+// import zipAdornment from '../../images/zip-adornment.svg';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -157,12 +157,14 @@ export default function Location({
     street: {
       placeholder: 'Street',
       helperText: 'invalid address',
-      startAdornment: <img src={streetAdornment} alt="street" />,
+      startAdornment: '',
+      // startAdornment: <img src={streetAdornment} alt="street" />,
     },
     zip: {
       placeholder: 'Zip Code',
       helperText: 'invalid zip code',
-      startAdornment: <img src={zipAdornment} alt="zip code" />,
+      startAdornment: '',
+      // startAdornment: <img src={zipAdornment} alt="zip code" />,
     },
   };
 
@@ -186,11 +188,11 @@ export default function Location({
       classes={{ root: classes.locationContainer }}
     >
       <Grid item>
-        <img
+        {/* <img
           src={locationIcon}
           alt="location settings"
           className={classes.icon}
-        />
+        /> */}
       </Grid>
       <Grid
         item
