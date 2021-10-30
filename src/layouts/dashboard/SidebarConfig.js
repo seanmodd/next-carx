@@ -64,7 +64,7 @@ const sidebarConfig = [
         path: PATH_DASHBOARD.app.root,
         icon: ICONS.user,
         children: [
-          { title: 'Account', path: PATH_DASHBOARD.app.pageFour },
+          { title: 'Account', path: PATH_DASHBOARD.app.pageAccount },
           { title: 'Cart', path: PATH_DASHBOARD.app.pageFive },
           { title: 'Contact', path: PATH_DASHBOARD.app.pageSix },
         ],

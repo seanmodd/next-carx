@@ -97,7 +97,8 @@ export default function ResetPassword() {
                   href="/dashboard/user/login"
                   sx={{ mt: 5 }}
                 >
-                  <RouterLink href="/dashboard/user/login">Back</RouterLink>
+                
+                  Back
                 </Button>
               </Box>
             )}

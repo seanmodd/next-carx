@@ -5,6 +5,7 @@ import DashboardLayout from 'src/layouts/dashboard';
 import useSettings from 'src/hooks/useSettings';
 // components
 import Page from 'src/components/Page';
+import SettingsPortal from 'src/__gatsby/settings/SettingsPortal'
 
 // ----------------------------------------------------------------------
 
@@ -14,7 +15,7 @@ export default function PageFour() {
   return (
     <DashboardLayout>
       <Page title='Page Four | Minimal-UI'>
-        <Container maxWidth={themeStretch ? false : 'xl'}>
+         <Container maxWidth={themeStretch ? false : 'xl'}>
           <Typography variant='h3' component='h1' paragraph>
             Page Four
           </Typography>

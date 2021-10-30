@@ -35,9 +35,9 @@ export const PATH_DASHBOARD = {
   },
   app: {
     root: path(ROOTS_DASHBOARD, '/app'),
-    pageFour: path(ROOTS_DASHBOARD, '/app/four'),
+    pageAccount: path(ROOTS_DASHBOARD, '/app/account'),
     pageFive: path(ROOTS_DASHBOARD, '/app/five'),
-    pageSix: path(ROOTS_DASHBOARD, '/app/six'),
+    pageSix: path(ROOTS_DASHBOARD, '/app/contact'),
   },
   mail: {
     root: path(ROOTS_DASHBOARD, '/mail'),

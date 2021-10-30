@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { capitalCase } from 'change-case';
-// import Link from 'next/link';
-import { Link as RouterLink } from 'next';
+import { useEffect } from 'react';
+import PropTypes from 'prop-types';
+
+import checkmarkFill from '@iconify/icons-eva/checkmark-fill';
+
+
 import { styled } from '@mui/material/styles';
 import {
   Box,
-  Card,
-  Stack,
-  Link,
-  Alert,
-  Tooltip,
+  Grid,
+  Step,
+  Stepper,
   Container,
-  Typography,
-  Button,
+  StepLabel,
+  StepConnector,
 } from '@mui/material';
 import useAuth from 'src/hooks/useAuth';
 import Page from 'src/minimalComponents/Page';
@@ -26,6 +26,20 @@ import arrowIosBackFill from '@iconify/icons-eva/arrow-ios-back-fill';
 import { ResetPasswordForm } from 'src/minimalComponents/authentication/reset-password';
 import { SentIcon } from 'src/assets';
 import jwtIcon from '/public/static/auth/ic_jwt.png';
+import { useDispatch, useSelector } from 'src/___redux/store';
+import { getCart, createBilling } from 'src/___redux/slices/product';
+import { PATH_DASHBOARD } from 'src/routes/paths';
+import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import useSettings from 'src/hooks/useSettings';
+import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
+
+import {
+  CheckoutCart,
+  CheckoutPayment,
+  CheckoutOrderComplete,
+  CheckoutBillingAddress,
+} from 'src/minimalComponents/_dashboard/e-commerce/checkout';
+
 import loginIcon from '../../../public/static/illustrations/illustration_login.png';
 
 // ----------------------------------------------------------------------
@@ -40,70 +54,134 @@ const RootStyle = styled(Page)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function ResetPassword() {
-  const [email, setEmail] = useState('');
-  const [sent, setSent] = useState(false);
+const STEPS = ['Cart', 'Billing & address', 'Payment'];
+
+const QontoConnector = styled(StepConnector)(({ theme }) => ({
+  top: 10,
+  left: 'calc(-50% + 20px)',
+  right: 'calc(50% + 20px)',
+  '& .MuiStepConnector-line': {
+    borderTopWidth: 2,
+    borderColor: theme.palette.divider,
+  },
+  '&.Mui-active, &.Mui-completed': {
+    '& .MuiStepConnector-line': {
+      borderColor: theme.palette.primary.main,
+    },
+  },
+}));
+
+QontoStepIcon.propTypes = {
+  active: PropTypes.bool,
+  completed: PropTypes.bool,
+};
+
+function QontoStepIcon({ active, completed }) {
+  return (
+    <Box
+      sx={{
+        zIndex: 9,
+        width: 24,
+        height: 24,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: active ? 'primary.main' : 'text.disabled',
+      }}
+    >
+      {completed ? (
+        <Box
+          component={Icon}
+          icon={checkmarkFill}
+          sx={{ zIndex: 1, width: 20, height: 20, color: 'primary.main' }}
+        />
+      ) : (
+        <Box
+          sx={{
+            width: 8,
+            height: 8,
+            borderRadius: '50%',
+            backgroundColor: 'currentColor',
+          }}
+        />
+      )}
+    </Box>
+  );
+}
+
+export default function EcommerceCheckout() {
+  const { themeStretch } = useSettings();
+  const dispatch = useDispatch();
+  const isMountedRef = useIsMountedRef();
+  const { checkout } = useSelector((state) => state.product);
+  const { cart, billing, activeStep } = checkout;
+  const isComplete = activeStep === STEPS.length;
+
+  useEffect(() => {
+    if (isMountedRef.current) {
+      dispatch(getCart(cart));
+    }
+  }, [dispatch, isMountedRef, cart]);
+
+  useEffect(() => {
+    if (activeStep === 1) {
+      dispatch(createBilling(null));
+    }
+  }, [dispatch, activeStep]);
 
   return (
     <DashboardLayout>
-      <RootStyle title="Reset Password | CarX">
-        <LogoOnlyLayout />
+      <Page title="Ecommerce: Checkout | Car X">
+        <Container maxWidth={themeStretch ? false : 'lg'}>
+          <HeaderBreadcrumbs
+            heading="Checkout"
+            links={[
+              { name: 'Dashboard', href: PATH_DASHBOARD.root },
+              {
+                name: 'All Vehicles',
+                href: '/dashboard/e-commerce/shop',
+              },
+              { name: 'Checkout' },
+            ]}
+          />
 
-        <Container>
-          <Box sx={{ maxWidth: 480, mx: 'auto' }}>
-            {!sent ? (
-              <>
-                <Typography variant="h3" paragraph>
-                  Forgot your password?
-                </Typography>
-                <Typography sx={{ color: 'text.secondary', mb: 5 }}>
-                  Please enter the email address associated with your account
-                  and We will email you a link to reset your password.
-                </Typography>
+          <Grid container justifyContent={isComplete ? 'center' : 'flex-start'}>
+            <Grid item xs={12} md={8} sx={{ mb: 5 }}>
+              <Stepper
+                alternativeLabel
+                activeStep={activeStep}
+                connector={<QontoConnector />}
+              >
+                {STEPS.map((label) => (
+                  <Step key={label}>
+                    <StepLabel
+                      StepIconComponent={QontoStepIcon}
+                      sx={{
+                        '& .MuiStepLabel-label': {
+                          typography: 'subtitle2',
+                          color: 'text.disabled',
+                        },
+                      }}
+                    >
+                      {label}
+                    </StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+            </Grid>
+          </Grid>
 
-                <ResetPasswordForm
-                  onSent={() => setSent(true)}
-                  onGetEmail={(value) => setEmail(value)}
-                />
-
-                <Button
-                  fullWidth
-                  size="large"
-                  component={RouterLink}
-                  to="/dashboard/account/login"
-                  sx={{ mt: 1 }}
-                >
-                  Back
-                </Button>
-              </>
-            ) : (
-              <Box sx={{ textAlign: 'center' }}>
-                <SentIcon sx={{ mb: 5, mx: 'auto', height: 160 }} />
-
-                <Typography variant="h3" gutterBottom>
-                  Request sent successfully
-                </Typography>
-                <Typography>
-                  We have sent a confirmation email to &nbsp;
-                  <strong>{email}</strong>
-                  <br />
-                  Please check your email.
-                </Typography>
-
-                <Button
-                  size="large"
-                  variant="contained"
-                  component={RouterLink}
-                  to="/dashboard/account/login"
-                  sx={{ mt: 5 }}
-                >
-                  Back
-                </Button>
-              </Box>
-            )}
-          </Box>
+          {!isComplete ? (
+            <>
+              {activeStep === 0 && <CheckoutCart />}
+              {activeStep === 1 && <CheckoutBillingAddress />}
+              {activeStep === 2 && billing && <CheckoutPayment />}
+            </>
+          ) : (
+            <CheckoutOrderComplete open={isComplete} />
+          )}
         </Container>
-      </RootStyle>
+      </Page>
     </DashboardLayout>
   );
 }
