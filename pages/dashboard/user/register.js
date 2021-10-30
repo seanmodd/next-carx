@@ -21,8 +21,8 @@ import AuthLayout from 'src/layouts/AuthLayout';
 import { MHidden } from 'src/minimalComponents/@material-extend';
 import { RegisterForm } from 'src/minimalComponents/authentication/register';
 import AuthFirebaseSocials from 'src/minimalComponents/authentication/AuthFirebaseSocial';
-import jwtIcon from '../../../public/static/auth/ic_jwt.png';
-import registerIcon from '../../../public/static/illustrations/illustration_register.png';
+// import jwtIcon from '../../../public/static/auth/ic_jwt.png';
+// import registerIcon from '../../../public/static/illustrations/illustration_register.png';
 
 // ----------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ export default function Register() {
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
               Make your car shopping experience easier than ever with Car X.
             </Typography>
-            <img alt="register" src={registerIcon.src} />
+            {/* <img alt="register" src={registerIcon.src} /> */}
           </SectionStyle>
         </MHidden>
 
@@ -92,14 +92,14 @@ export default function Register() {
                   Free forever. No credit card needed.
                 </Typography>
               </Box>
-              <Tooltip title={capitalCase(method)}>
-                <Box
+              {/* <Tooltip title={capitalCase(method)}> */}
+              {/* <Box
                   component="img"
                   // src={`../../../../static/auth/ic_${method}.png`}
                   src={jwtIcon.src}
                   sx={{ width: 32, height: 32 }}
-                />
-              </Tooltip>
+                /> */}
+              {/* </Tooltip> */}
             </Box>
 
             {method === 'firebase' && <AuthFirebaseSocials />}

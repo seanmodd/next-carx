@@ -2,7 +2,6 @@
 import { PATH_DASHBOARD } from '../../routes/paths';
 // components
 import SvgIconStyle from '../../components/SvgIconStyle';
-import danger14 from '../../../public/static/icons/_danger-14.svg';
 
 // ----------------------------------------------------------------------
 
