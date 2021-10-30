@@ -40,12 +40,12 @@ const LabelStyle = styled((props) => <Typography component="span" variant="subti
 
 function labelPriceRange(range) {
   if (range === 'below') {
-    return 'Below $25';
+    return 'Below $25,000';
   }
   if (range === 'between') {
-    return 'Between $25 - $75';
+    return 'Between $25,000 - $35,000';
   }
-  return 'Above $75';
+  return 'Above $75,000';
 }
 
 ShopTagFiltered.propTypes = {

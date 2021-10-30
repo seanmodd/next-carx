@@ -74,12 +74,12 @@ function applyFilter(products, sortBy, filters) {
   if (filters.priceRange) {
     products = filter(products, (_product) => {
       if (filters.priceRange === 'below') {
-        return _product.price < 25;
+        return _product.price < 25000;
       }
       if (filters.priceRange === 'between') {
-        return _product.price >= 25 && _product.price <= 75;
+        return _product.price >= 25000 && _product.price <= 75000;
       }
-      return _product.price > 75;
+      return _product.price > 75000;
     });
   }
   if (filters.rating) {

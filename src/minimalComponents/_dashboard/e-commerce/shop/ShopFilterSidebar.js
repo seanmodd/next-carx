@@ -36,9 +36,9 @@ export const FILTER_GENDER_OPTIONS = ['Men', 'Women', 'Kids'];
 export const FILTER_CATEGORY_OPTIONS = ['All', 'Shose', 'Apparel', 'Accessories'];
 export const FILTER_RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
 export const FILTER_PRICE_OPTIONS = [
-  { value: 'below', label: 'Below $25' },
-  { value: 'between', label: 'Between $25 - $75' },
-  { value: 'above', label: 'Above $75' }
+  { value: 'below', label: 'Below $25,000' },
+  { value: 'between', label: 'Between $25,0000 - $35,000' },
+  { value: 'above', label: 'Above $75,000' }
 ];
 export const FILTER_COLOR_OPTIONS = [
   '#00AB55',

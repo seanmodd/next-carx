@@ -165,8 +165,6 @@ export default function EcommerceProductDetails() {
                   )}
                 </Grid>
                 <Grid item xs={12} md={6} lg={5}>
-                  {/* {product.variant.car_name} */}
-                  {product && product.variant && product.variant.car_name}
                   {product && product.variant && (
                     <ProductDetailsSumary
                       product={product.variant}

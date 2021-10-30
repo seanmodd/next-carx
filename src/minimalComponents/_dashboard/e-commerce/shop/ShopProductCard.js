@@ -36,16 +36,19 @@ export default function ShopProductCard({ product }) {
     images[0]
   );
   console.log(
-    '🚀 ~ file: ShopProductCard.js ~ line 34 ~ ShopProductCard ~ product',
+    '🚀 🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠   ~ file: ShopProductCard.js ~ line 34 ~ ShopProductCard ~ product',
     product
   );
   // const linkTo = `${PATH_DASHBOARD.eCommerce.root}/product/${paramCase(name)}`;
   const linkTo = `/dashboard/shop/${id}`;
-
+  console.log(
+    '🚀 🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠🎠   ~ file: ShopProductCard.js ~ line 34 ~ ShopProductCard ~ product.product.name',
+    product.product.name
+  );
   return (
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
-        {status && (
+        {product.product.category.name && (
           <Label
             variant="filled"
             color={(status === 'sale' && 'error') || 'info'}
@@ -57,19 +60,42 @@ export default function ShopProductCard({ product }) {
               textTransform: 'uppercase',
             }}
           >
-            {status}
+            {product.product.category.name}
           </Label>
         )}
+
         <ProductImgStyle alt={name} src={images[0].url} />
       </Box>
 
-      <Stack spacing={2} sx={{ p: 3 }}>
+      <Stack spacing={2} sx={{ p: 1.5 }}>
+            <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+
+          <Typography variant="subtitle1">
+            <Typography
+              component="span"
+              variant="body1"
+              sx={{
+                color: 'text.disabled',
+                textDecoration: 'line-through',
+              }}
+            >
+
+            </Typography>
+
+{product.product.name}
+          </Typography>
+        </Stack>
         <Link href={linkTo} color="inherit" component={RouterLink}>
           <Typography variant="subtitle2" noWrap>
             {product.car_name}
           </Typography>
         </Link>
 
+  
         <Stack
           direction="row"
           alignItems="center"

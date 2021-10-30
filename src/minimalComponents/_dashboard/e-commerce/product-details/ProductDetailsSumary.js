@@ -209,10 +209,10 @@ const inventoryType = product.variant.car_qty
       <FormikProvider value={formik}>
         <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
           
-          <Link style={{cursor: 'pointer'}} href={`shop/category/${product.variant.product.name}`}>
+          <Link style={{cursor: 'pointer'}} href={`category/${product.variant.product.name}`}>
           <Typography
             variant="overline"
-            style={{cursor: 'pointer', fontSize: '26px'}}
+            style={{cursor: 'pointer', fontSize: '36px'}}
             sx={{
               mt: 2,
               cusor: 'pointer',
