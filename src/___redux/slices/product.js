@@ -232,14 +232,17 @@ export function getProducts() {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      const response = await axios.get(
-        '/api/strapi-graphql/query-allProducts/'
-      );
+      // const response = await axios.get(
+      //   '/api/strapi-graphql/query-allProducts/'
+      // );
+      const response = await client.query({
+        query: ALLCARSQUERY,
+      });
       console.log(
-        '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ file: ___redux/slices/query-allProducts.js ~ from getProducts() function! On line 233 ~ return ~ response',
+        '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ file:query-allProducts.js and ___redux/slices/product.js~ from getProducts() function! On line 233 ~ return ~ response',
         response
       );
-      dispatch(slice.actions.getProductsSuccess(response.data.products));
+      dispatch(slice.actions.getProductsSuccess(response.data.variants));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
     }
@@ -276,35 +279,70 @@ export function getProduct(id) {
   };
 }
 
+//! MOVING GRAPHQL HERE
+const ALLCARSQUERY = gql`
+  query Variants {
+    # variants(where: {product: {name_contains: "Jeep"}}) {
+    variants {
+      id
+      qty
+      # color
+      size
+      style
+      price
+      car_name
+      product {
+        id
+        name
+        category {
+          id
+          name
+          description
+        }
+        promo
+        featured
+        description
+      }
+      images {
+        id
+        url
+        height
+        width
+        name
+      }
+    }
+  }
+`;
+
 const CARQUERY = gql`
   query Variant($id: ID!) {
     variant(id: $id) {
       id
       price
       car_name
-createdAt
-updatedAt
-car_qty: qty
-car_style: style
-car_url
-car_colorLabel: colorLabel
+      createdAt
+      updatedAt
+      car_qty: qty
+      car_style: style
+      car_url
+      car_colorLabel: colorLabel
 
-car_vin
-car_drivetrain
-car_exteriorColor: car_exterior_color
-car_fuelEconomy: car_fuel_economy
-car_info
-car_info2
-car_interiorColor: car_interior_color
-car_price
-car_special
-car_stock
-car_transmission
-car_dealership: dealership
-car_description: description
-car_model: model
-car_vehicleStatus: vehicle_status
-car_year: year
+      car_vin
+      car_drivetrain
+      car_exteriorColor: car_exterior_color
+      car_fuelEconomy: car_fuel_economy
+      car_info
+      car_info2
+      car_interiorColor: car_interior_color
+      car_price
+      car_special
+      car_stock
+      car_transmission
+      car_dealership: dealership
+      car_description: description
+      car_model: model
+      car_vehicleStatus: vehicle_status
+      car_year: year
 
       product {
         id
@@ -333,6 +371,27 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   // cache: 'no-cache',
 });
+
+export function getAllProductGraphQl() {
+  return async (dispatch) => {
+    dispatch(slice.actions.startLoading());
+    try {
+      const response = await client.query({
+        query: ALLCARSQUERY,
+      });
+      console.log(
+        '👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 🚀 👰  ⛹️‍♂️ 👰  ⛹️‍♂️ 👰  ⛹️‍♂️  🚀 ~ ~ file: ___redux/slices/product.js ~ from getAllProductGraphQl() function! On line 254 ~ return ~ response',
+        response
+      );
+      dispatch(
+        slice.actions.getAllProductGraphQlSuccess(response.data.products)
+      );
+    } catch (error) {
+      console.error(error);
+      dispatch(slice.actions.hasError(error));
+    }
+  };
+}
 
 export function getProductGraphQl(id) {
   return async (dispatch) => {

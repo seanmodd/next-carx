@@ -15,7 +15,11 @@ import {
 // redux
 import { useDispatch, useSelector } from 'src/___redux/store';
 import { PATH_DASHBOARD } from 'src/routes/paths';
-import { getProducts, filterProducts } from 'src/___redux/slices/product';
+import {
+  getProducts,
+  // getAllProductGraphQl,
+  filterProducts,
+} from 'src/___redux/slices/product';
 // routes
 // utils
 import fakeRequest from 'src/utils/fakeRequest';
@@ -119,10 +123,11 @@ export default function EcommerceShop() {
   const { themeStretch } = useSettings();
   const dispatch = useDispatch();
   const [openFilter, setOpenFilter] = useState(false);
+  const myselector = useSelector((state) => state.product);
   const { products, sortBy, filters } = useSelector((state) => state.product);
   console.log(
-    '🚀 ~ file: index.js ~ line 101 ~ EcommerceShop ~ products',
-    products
+    '🚀 ~ file: index.js ~ line 101 ~ EcommerceShop ~ selector',
+    myselector
   );
   const filteredProducts = applyFilter(products, sortBy, filters);
 
@@ -156,6 +161,7 @@ export default function EcommerceShop() {
     values.category === 'All';
 
   useEffect(() => {
+    // dispatch(getProducts());
     dispatch(getProducts());
   }, [dispatch]);
 
