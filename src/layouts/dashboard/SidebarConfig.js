@@ -76,7 +76,7 @@ const sidebarConfig = [
     items: [
       {
         title: 'Cars',
-        path: '/dashboard/shop/index',
+        path: '/dashboard/shop',
         icon: ICONS.car4,
       },
       {
