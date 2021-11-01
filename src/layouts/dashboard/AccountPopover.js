@@ -4,7 +4,7 @@ import homeFill from '@iconify/icons-eva/home-fill';
 import personFill from '@iconify/icons-eva/person-fill';
 import settings2Fill from '@iconify/icons-eva/settings-2-fill';
 // next
-import NextLink from 'next/link';
+import Link from 'next/link';
 // material
 import { alpha } from '@mui/material/styles';
 import {
@@ -64,8 +64,8 @@ export default function AccountPopover() {
         }}
       >
         <Avatar
-          alt='My Avatar'
-          src='/static/mock-images/avatars/avatar_default.jpg'
+          alt="My Avatar"
+          src="/static/mock-images/avatars/avatar_default.jpg"
         />
       </MIconButton>
 
@@ -76,10 +76,10 @@ export default function AccountPopover() {
         sx={{ width: 220 }}
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
-          <Typography variant='subtitle1' noWrap>
+          <Typography variant="subtitle1" noWrap>
             displayName
           </Typography>
-          <Typography variant='body2' sx={{ color: 'text.secondary' }} noWrap>
+          <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
             email
           </Typography>
         </Box>
@@ -87,7 +87,7 @@ export default function AccountPopover() {
         <Divider sx={{ my: 1 }} />
 
         {MENU_OPTIONS.map((option) => (
-          <NextLink key={option.label} href={option.linkTo}>
+          <Link key={option.label} href={option.linkTo}>
             <MenuItem
               onClick={handleClose}
               sx={{ typography: 'body2', py: 1, px: 2.5 }}
@@ -104,11 +104,11 @@ export default function AccountPopover() {
 
               {option.label}
             </MenuItem>
-          </NextLink>
+          </Link>
         ))}
 
         <Box sx={{ p: 2, pt: 1.5 }}>
-          <Button fullWidth color='inherit' variant='outlined'>
+          <Button fullWidth color="inherit" variant="outlined">
             Logout
           </Button>
         </Box>

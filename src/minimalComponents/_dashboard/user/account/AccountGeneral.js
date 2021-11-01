@@ -3,16 +3,26 @@ import { useSnackbar } from 'notistack';
 import { useCallback } from 'react';
 import { Form, FormikProvider, useFormik } from 'formik';
 // material
-import { Box, Grid, Card, Stack, Switch, TextField, FormControlLabel, Typography, FormHelperText } from '@mui/material';
+import {
+  Box,
+  Grid,
+  Card,
+  Stack,
+  Switch,
+  TextField,
+  FormControlLabel,
+  Typography,
+  FormHelperText,
+} from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // hooks
-import useAuth from '../../../../hooks/useAuth';
-import useIsMountedRef from '../../../../hooks/useIsMountedRef';
-import { UploadAvatar } from '../../../upload';
+import useAuth from 'src/hooks/useAuth';
+import useIsMountedRef from 'src/hooks/useIsMountedRef';
+import { UploadAvatar } from 'src/upload';
 // utils
-import { fData } from '../../../../utils/formatNumber';
+import { fData } from 'src/utils/formatNumber';
 //
-import countries from '../countries';
+import countries from 'src/countries';
 
 // ----------------------------------------------------------------------
 
@@ -22,7 +32,7 @@ export default function AccountGeneral() {
   const { user, updateProfile } = useAuth();
 
   const UpdateUserSchema = Yup.object().shape({
-    displayName: Yup.string().required('Name is required')
+    displayName: Yup.string().required('Name is required'),
   });
 
   const formik = useFormik({
@@ -38,7 +48,7 @@ export default function AccountGeneral() {
       city: user.city,
       zipCode: user.zipCode,
       about: user.about,
-      isPublic: user.isPublic
+      isPublic: user.isPublic,
     },
 
     validationSchema: UpdateUserSchema,
@@ -55,10 +65,18 @@ export default function AccountGeneral() {
           setSubmitting(false);
         }
       }
-    }
+    },
   });
 
-  const { values, errors, touched, isSubmitting, handleSubmit, getFieldProps, setFieldValue } = formik;
+  const {
+    values,
+    errors,
+    touched,
+    isSubmitting,
+    handleSubmit,
+    getFieldProps,
+    setFieldValue,
+  } = formik;
 
   const handleDrop = useCallback(
     (acceptedFiles) => {
@@ -66,7 +84,7 @@ export default function AccountGeneral() {
       if (file) {
         setFieldValue('photoURL', {
           ...file,
-          preview: URL.createObjectURL(file)
+          preview: URL.createObjectURL(file),
         });
       }
     },
@@ -93,7 +111,7 @@ export default function AccountGeneral() {
                       mx: 'auto',
                       display: 'block',
                       textAlign: 'center',
-                      color: 'text.secondary'
+                      color: 'text.secondary',
                     }}
                   >
                     Allowed *.jpeg, *.jpg, *.png, *.gif
@@ -107,7 +125,9 @@ export default function AccountGeneral() {
               </FormHelperText>
 
               <FormControlLabel
-                control={<Switch {...getFieldProps('isPublic')} color="primary" />}
+                control={
+                  <Switch {...getFieldProps('isPublic')} color="primary" />
+                }
                 labelPlacement="start"
                 label="Public Profile"
                 sx={{ mt: 5 }}
@@ -119,13 +139,30 @@ export default function AccountGeneral() {
             <Card sx={{ p: 3 }}>
               <Stack spacing={{ xs: 2, md: 3 }}>
                 <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
-                  <TextField fullWidth label="Name" {...getFieldProps('displayName')} />
-                  <TextField fullWidth disabled label="Email Address" {...getFieldProps('email')} />
+                  <TextField
+                    fullWidth
+                    label="Name"
+                    {...getFieldProps('displayName')}
+                  />
+                  <TextField
+                    fullWidth
+                    disabled
+                    label="Email Address"
+                    {...getFieldProps('email')}
+                  />
                 </Stack>
 
                 <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
-                  <TextField fullWidth label="Phone Number" {...getFieldProps('phoneNumber')} />
-                  <TextField fullWidth label="Address" {...getFieldProps('address')} />
+                  <TextField
+                    fullWidth
+                    label="Phone Number"
+                    {...getFieldProps('phoneNumber')}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Address"
+                    {...getFieldProps('address')}
+                  />
                 </Stack>
 
                 <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
@@ -146,19 +183,42 @@ export default function AccountGeneral() {
                       </option>
                     ))}
                   </TextField>
-                  <TextField fullWidth label="State/Region" {...getFieldProps('state')} />
+                  <TextField
+                    fullWidth
+                    label="State/Region"
+                    {...getFieldProps('state')}
+                  />
                 </Stack>
 
                 <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
-                  <TextField fullWidth label="City" {...getFieldProps('city')} />
-                  <TextField fullWidth label="Zip/Code" {...getFieldProps('zipCode')} />
+                  <TextField
+                    fullWidth
+                    label="City"
+                    {...getFieldProps('city')}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Zip/Code"
+                    {...getFieldProps('zipCode')}
+                  />
                 </Stack>
 
-                <TextField {...getFieldProps('about')} fullWidth multiline minRows={4} maxRows={4} label="About" />
+                <TextField
+                  {...getFieldProps('about')}
+                  fullWidth
+                  multiline
+                  minRows={4}
+                  maxRows={4}
+                  label="About"
+                />
               </Stack>
 
               <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end' }}>
-                <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+                <LoadingButton
+                  type="submit"
+                  variant="contained"
+                  loading={isSubmitting}
+                >
                   Save Changes
                 </LoadingButton>
               </Box>

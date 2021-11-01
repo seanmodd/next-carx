@@ -184,7 +184,7 @@ export default function EcommerceShop() {
   };
 
   return (
-    <AuthGuard>
+    // <AuthGuard>
       <DashboardLayout>
         <Stack
           direction="row"
@@ -266,6 +266,6 @@ export default function EcommerceShop() {
           </Page>
         </GuestGuard>
       </DashboardLayout>
-    </AuthGuard>
+    // </AuthGuard>
   );
 }
