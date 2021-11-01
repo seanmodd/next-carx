@@ -33,7 +33,7 @@ import { PATH_DASHBOARD } from 'src/routes/paths';
 import useSettings from 'src/hooks/useSettings';
 // components
 import Page from 'src/minimalComponents/Page';
-import Markdown from 'src/minimalComponents/Markdown';
+// import Markdown from 'src/minimalComponents/Markdown';
 import HeaderBreadcrumbs from 'src/minimalComponents/HeaderBreadcrumbs';
 import {
   ProductDetailsSumary,
@@ -133,7 +133,7 @@ export default function EcommerceProductDetails() {
   //   product.variant.id
   // );
   // const thecarname = product.variant.car_name;
-const carmake = product && product.variant && product.variant.product.name
+  const carmake = product && product.variant && product.variant.product.name;
   console.log('From CarDetail.js page, this is checkout: ', checkout);
   return (
     <DashboardLayout>
@@ -149,10 +149,7 @@ const carmake = product && product.variant && product.variant.product.name
               },
               {
                 name: carmake,
-                href: 
-                `/dashboard/shop/category/${
-                  carmake
-                }`,
+                href: `/dashboard/shop/category/${carmake}`,
               },
               {
                 name: `${
@@ -201,9 +198,7 @@ const carmake = product && product.variant && product.variant.product.name
                 <Divider />
 
                 <TabPanel value="1">
-                  <Box sx={{ p: 3 }}>
-                    <Markdown children={name} />
-                  </Box>
+                  <Box sx={{ p: 3 }}>{/* <Markdown children={name} /> */}</Box>
                 </TabPanel>
                 <TabPanel value="2">
                   <Grid container sx={{ my: 8 }}>
