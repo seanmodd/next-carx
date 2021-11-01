@@ -5,9 +5,11 @@ import { useRef, useState } from 'react';
 import homeFill from '@iconify/icons-eva/home-fill';
 import personFill from '@iconify/icons-eva/person-fill';
 import settings2Fill from '@iconify/icons-eva/settings-2-fill';
+import userLock from '@iconify/icons-fa-solid/user-lock';
 // next
 
-import { Link as RouterLink } from 'next';
+// import { Link as RouterLink } from 'next';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 // material
 import { alpha } from '@mui/material/styles';
@@ -16,6 +18,7 @@ import {
   Avatar,
   Button,
   Divider,
+  Link as MuiLink,
   MenuItem,
   Typography,
 } from '@mui/material';
@@ -32,17 +35,34 @@ const MENU_OPTIONS = [
   {
     label: 'Home',
     icon: homeFill,
-    linkTo: '/',
+    theHref: '/',
   },
   {
     label: 'Profile',
     icon: personFill,
-    linkTo: PATH_DASHBOARD.user.profile,
+    theHref: PATH_DASHBOARD.user.profile,
   },
   {
     label: 'Settings',
     icon: settings2Fill,
-    linkTo: PATH_DASHBOARD.user.account,
+    theHref: PATH_DASHBOARD.user.account,
+  },
+];
+const LOCK_MENU_OPTIONS = [
+  {
+    label: 'Home',
+    icon: homeFill,
+    theHref: '/',
+  },
+  {
+    label: 'Profile',
+    icon: personFill,
+    theHref: PATH_DASHBOARD.user.profile,
+  },
+  {
+    label: 'Settings',
+    icon: settings2Fill,
+    theHref: PATH_DASHBOARD.user.account,
   },
 ];
 
@@ -53,7 +73,8 @@ export default function AccountPopover() {
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const isMountedRef = useIsMountedRef();
-  const { user, logout } = useAuth();
+  const { user, logout, isAuthenticated } = useAuth();
+  console.log('🥳🥳 isAuthenticated from AccountPopover.js: ', isAuthenticated);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -125,8 +146,29 @@ export default function AccountPopover() {
         {MENU_OPTIONS.map((option) => (
           <MenuItem
             key={option.label}
-            to={option.linkTo}
-            component={RouterLink}
+            href={option.theHref}
+            component={MuiLink}
+            onClick={handleClose}
+            sx={{ typography: 'body2', py: 1, px: 2.5 }}
+          >
+            <Box
+              component={Icon}
+              icon={option.icon}
+              sx={{
+                mr: 2,
+                width: 24,
+                height: 24,
+              }}
+            />
+
+            {option.label}
+          </MenuItem>
+        ))}
+        {LOCK_MENU_OPTIONS.map((option) => (
+          <MenuItem
+            key={option.label}
+            href={option.theHref}
+            component={MuiLink}
             onClick={handleClose}
             sx={{ typography: 'body2', py: 1, px: 2.5 }}
           >
@@ -163,12 +205,31 @@ export default function AccountPopover() {
             </MenuItem>
           </RouterLink>
         ))} */}
+        {!isAuthenticated && (
+          <Box sx={{ p: 2, pt: 1.5 }}>
+            <Button
+              fullWidth
+              color="inherit"
+              variant="outlined"
+              onClick={handleLogout}
+            >
+              Login
+            </Button>
+          </Box>
+        )}
 
-        <Box sx={{ p: 2, pt: 1.5 }}>
-          <Button fullWidth color="inherit" variant="outlined">
-            Logout
-          </Button>
-        </Box>
+        {isAuthenticated && (
+          <Box sx={{ p: 2, pt: 1.5 }}>
+            <Button
+              fullWidth
+              color="inherit"
+              variant="outlined"
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
+          </Box>
+        )}
       </MenuPopover>
     </>
   );
