@@ -35,7 +35,7 @@ const MENU_OPTIONS = [
   {
     label: 'Home',
     icon: homeFill,
-    theHref: '/',
+    theHref: '/dashboard/shop',
   },
   {
     label: 'Profile',
@@ -52,17 +52,17 @@ const LOCK_MENU_OPTIONS = [
   {
     label: 'Home',
     icon: homeFill,
-    theHref: '/',
+    theHref: '/dashboard/shop',
   },
   {
     label: 'Profile',
-    icon: personFill,
-    theHref: PATH_DASHBOARD.user.profile,
+    icon: userLock,
+    theHref: '/dashboard/user/register',
   },
   {
     label: 'Settings',
-    icon: settings2Fill,
-    theHref: PATH_DASHBOARD.user.account,
+    icon: userLock,
+    theHref: '/dashboard/user/register',
   },
 ];
 
@@ -94,6 +94,34 @@ export default function AccountPopover() {
     } catch (error) {
       console.error(error);
       enqueueSnackbar('Unable to logout', { variant: 'error' });
+    }
+  };
+  const handleRegister = async () => {
+    try {
+      await null;
+      router.push('/dashboard/user/register');
+      if (isMountedRef.current) {
+        handleClose();
+      }
+    } catch (error) {
+      console.error(error);
+      enqueueSnackbar('Unable to navigate to register page!', {
+        variant: 'error',
+      });
+    }
+  };
+  const handleLogin = async () => {
+    try {
+      await null;
+      router.push('/dashboard/user/login');
+      if (isMountedRef.current) {
+        handleClose();
+      }
+    } catch (error) {
+      console.error(error);
+      enqueueSnackbar('Unable to navigate to login page!', {
+        variant: 'error',
+      });
     }
   };
 
@@ -140,51 +168,85 @@ export default function AccountPopover() {
             {user.email}
           </Typography>
         </Box>
+        {!isAuthenticated && (
+          <>
+            <Box sx={{ p: 2, pt: 1.5 }}>
+              <Button
+                fullWidth
+                color="inherit"
+                variant="outlined"
+                onClick={handleRegister}
+              >
+                Register
+              </Button>
+            </Box>
+            <MenuItem
+              href="/dashboard/user/register"
+              component={MuiLink}
+              onClick={handleClose}
+              sx={{ typography: 'body2', py: 1, px: 2.5 }}
+            >
+              <Box
+                // component={Icon}
+                // icon={option.icon}
+                sx={{
+                  mr: 2,
+                  width: 24,
+                  height: 24,
+                }}
+              />
+
+              {option.label}
+            </MenuItem>
+          </>
+        )}
 
         <Divider sx={{ my: 1 }} />
 
-        {MENU_OPTIONS.map((option) => (
-          <MenuItem
-            key={option.label}
-            href={option.theHref}
-            component={MuiLink}
-            onClick={handleClose}
-            sx={{ typography: 'body2', py: 1, px: 2.5 }}
-          >
-            <Box
-              component={Icon}
-              icon={option.icon}
-              sx={{
-                mr: 2,
-                width: 24,
-                height: 24,
-              }}
-            />
+        {isAuthenticated &&
+          MENU_OPTIONS.map((option) => (
+            <MenuItem
+              key={option.label}
+              href={option.theHref}
+              component={MuiLink}
+              onClick={handleClose}
+              sx={{ typography: 'body2', py: 1, px: 2.5 }}
+            >
+              <Box
+                component={Icon}
+                icon={option.icon}
+                sx={{
+                  mr: 2,
+                  width: 24,
+                  height: 24,
+                }}
+              />
 
-            {option.label}
-          </MenuItem>
-        ))}
-        {LOCK_MENU_OPTIONS.map((option) => (
-          <MenuItem
-            key={option.label}
-            href={option.theHref}
-            component={MuiLink}
-            onClick={handleClose}
-            sx={{ typography: 'body2', py: 1, px: 2.5 }}
-          >
-            <Box
-              component={Icon}
-              icon={option.icon}
-              sx={{
-                mr: 2,
-                width: 24,
-                height: 24,
-              }}
-            />
+              {option.label}
+            </MenuItem>
+          ))}
+        {!isAuthenticated &&
+          LOCK_MENU_OPTIONS.map((option) => (
+            <MenuItem
+              key={option.label}
+              href={option.theHref}
+              component={MuiLink}
+              onClick={handleClose}
+              sx={{ typography: 'body2', py: 1, px: 2.5 }}
+            >
+              <Box
+                component={Icon}
+                icon={option.icon}
+                sx={{
+                  mr: 2,
+                  width: 24,
+                  height: 24,
+                }}
+              />
 
-            {option.label}
-          </MenuItem>
-        ))}
+              {option.label}
+            </MenuItem>
+          ))}
         {/* {MENU_OPTIONS.map((option) => (
           <RouterLink key={option.label} href={option.linkTo}>
             <MenuItem
@@ -206,16 +268,18 @@ export default function AccountPopover() {
           </RouterLink>
         ))} */}
         {!isAuthenticated && (
-          <Box sx={{ p: 2, pt: 1.5 }}>
-            <Button
-              fullWidth
-              color="inherit"
-              variant="outlined"
-              onClick={handleLogout}
-            >
-              Login
-            </Button>
-          </Box>
+          <>
+            <Box sx={{ p: 2, pt: 1.5 }}>
+              <Button
+                fullWidth
+                color="inherit"
+                variant="outlined"
+                onClick={handleLogin}
+              >
+                Login
+              </Button>
+            </Box>
+          </>
         )}
 
         {isAuthenticated && (
