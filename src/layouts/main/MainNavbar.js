@@ -27,7 +27,8 @@ import navConfig from './MenuConfig';
 // ----------------------------------------------------------------------
 
 const APP_BAR_MOBILE = 64;
-const APP_BAR_DESKTOP = 88;
+const APP_BAR_DESKTOP = 64;
+// const APP_BAR_DESKTOP = 88;
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
   height: APP_BAR_MOBILE,

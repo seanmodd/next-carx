@@ -17,7 +17,9 @@ import { MIconButton } from '../../components/@material-extend';
 // ----------------------------------------------------------------------
 
 const APPBAR_MOBILE = 64;
-const APPBAR_DESKTOP = 92;
+// const APPBAR_DESKTOP = 64;
+const APPBAR_DESKTOP = 88;
+// const APPBAR_DESKTOP = 92;
 
 const SearchbarStyle = styled('div')(({ theme }) => ({
   top: 0,
@@ -61,15 +63,15 @@ export default function Searchbar() {
           </MIconButton>
         )}
 
-        <Slide direction='down' in={isOpen} mountOnEnter unmountOnExit>
+        <Slide direction="down" in={isOpen} mountOnEnter unmountOnExit>
           <SearchbarStyle>
             <Input
               autoFocus
               fullWidth
               disableUnderline
-              placeholder='Search…'
+              placeholder="Search…"
               startAdornment={
-                <InputAdornment position='start'>
+                <InputAdornment position="start">
                   <Box
                     component={Icon}
                     icon={searchFill}
@@ -79,7 +81,7 @@ export default function Searchbar() {
               }
               sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
             />
-            <Button variant='contained' onClick={handleClose}>
+            <Button variant="contained" onClick={handleClose}>
               Search
             </Button>
           </SearchbarStyle>
