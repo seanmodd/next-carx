@@ -206,14 +206,14 @@ export default function EcommerceShop() {
 
             <Container maxWidth={themeStretch ? false : 'lg'}>
               <HeaderBreadcrumbs
-                heading="Shop"
+                heading="Shop - All Vehicles"
                 links={[
                   { name: 'Dashboard', href: PATH_DASHBOARD.root },
-                  {
-                    name: 'E-Commerce',
-                    href: PATH_DASHBOARD.shop.root,
-                  },
-                  { name: 'Shop' },
+                  // {
+                  //   name: 'E-Commerce',
+                  //   href: PATH_DASHBOARD.shop.root,
+                  // },
+                  { name: 'All Vehciles' },
                 ]}
               />
 
