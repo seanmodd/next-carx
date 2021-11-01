@@ -18,11 +18,11 @@ import { LoadingButton } from '@mui/lab';
 // hooks
 import useAuth from 'src/hooks/useAuth';
 import useIsMountedRef from 'src/hooks/useIsMountedRef';
-import { UploadAvatar } from 'src/upload';
+import { UploadAvatar } from 'src/minimalComponents/upload';
 // utils
 import { fData } from 'src/utils/formatNumber';
 //
-import countries from 'src/countries';
+import { countries } from 'src/minimalComponents/map/assets/countries';
 
 // ----------------------------------------------------------------------
 
