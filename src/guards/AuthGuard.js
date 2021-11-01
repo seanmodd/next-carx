@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 // hooks
-import useAuth from '../hooks/useAuth';
+import useAuth from 'src/hooks/useAuth';
 // pages
-import Login from '../pages/authentication/Login';
+import Login from 'src/minimalComponents/authentication/login/LoginForm';
 
 // ----------------------------------------------------------------------
 

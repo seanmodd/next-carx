@@ -39,6 +39,7 @@ import CartWidget from 'src/minimalComponents/_dashboard/e-commerce/CartWidget';
 import DashboardLayout from 'src/layouts/dashboard';
 import AuthLayout from 'src/layouts/AuthLayout';
 import GuestGuard from 'src/guards/GuestGuard';
+import AuthGuard from 'src/guards/AuthGuard';
 
 //* All data here comes from src/___redux/slices/product.js lines 220+ where the getProducts function is being exported!
 //* This then calls an api with Axios which is referencing to localhost:3222/api/products which itself gets data from the graphql server on https://admin.shopcarx.com/graphql which comes back and retrieves data via a graphql setup
@@ -183,7 +184,7 @@ export default function EcommerceShop() {
   };
 
   return (
-    <GuestGuard>
+    <AuthGuard>
       <DashboardLayout>
         <Stack
           direction="row"
@@ -196,8 +197,7 @@ export default function EcommerceShop() {
         </Stack>
         {/* {!filteredProducts && SkeletonLoad} */}
         <GuestGuard>
-          {/* <AuthLayout> */}
-          <Page title="Ecommerce: Shop | Minimal-UI">
+          <Page title="Shop: All Vehicles | CarX">
             {values && (
               <Backdrop open={isSubmitting} sx={{ zIndex: 9999 }}>
                 <CircularProgress />
@@ -206,7 +206,7 @@ export default function EcommerceShop() {
 
             <Container maxWidth={themeStretch ? false : 'lg'}>
               <HeaderBreadcrumbs
-                heading="Shop - All Vehicles"
+                heading="Shop: All Vehicles"
                 links={[
                   { name: 'Dashboard', href: PATH_DASHBOARD.root },
                   // {
@@ -264,9 +264,8 @@ export default function EcommerceShop() {
               />
             </Container>
           </Page>
-          {/* </AuthLayout> */}
         </GuestGuard>
       </DashboardLayout>
-    </GuestGuard>
+    </AuthGuard>
   );
 }

@@ -14,6 +14,8 @@ GuestGuard.propTypes = {
 export default function GuestGuard({ children }) {
   const { isAuthenticated } = useAuth();
 
+  console.log('🥸🥸🥸', useAuth());
+
   if (isAuthenticated) {
     console.log(
       '🚀 ~ file: GuestGuard.js ~ line 18 ~ GuestGuard ~ isAuthenticated is true: ',
@@ -24,7 +26,7 @@ export default function GuestGuard({ children }) {
     return (
       <>
         {/* <Navigate href={PATH_DASHBOARD.root} /> */}
-        <button style={{ backgroundColor: '#ff0000' }}>Authenticated</button>
+        <button style={{ backgroundColor: '#ff0000' }}>Logout?</button>
         {children}
       </>
     );
