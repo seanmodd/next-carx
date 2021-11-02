@@ -5,6 +5,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { firebaseConfig } from '../config';
+import axios from 'axios'
 
 // ----------------------------------------------------------------------
 
@@ -88,7 +89,8 @@ function AuthProvider({ children }) {
           dispatch({
             type: 'INITIALISE',
             payload: { isAuthenticated: true, user },
-          }),
+          });
+          axios.post(`https://admin.shopcarx.com/firebase/auth/`, {token: user.Aa}).then(res => console.log("🎉🎉🎉🎉🎉🎉🎀🎀🎀🎀🎀🎀🎀 here is res: ", res)  ) 
             console.log(
               ' 🚬🚬🚬🚬🚬🚬🚬🚬 This IS THE ALL IMPORTANT user from FirebaseContext.js inside the AuthProvider payload is as follows: ',
               user

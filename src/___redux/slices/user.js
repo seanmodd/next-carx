@@ -135,6 +135,9 @@ export const { onToggleFollow, deleteUser } = slice.actions;
 
 // ----------------------------------------------------------------------
 
+//* Account slice is exported here, the axios one with '/api/user/profile'
+
+
 export function getProfile() {
   return async (dispatch) => {
     dispatch(slice.actions.startLoading());
