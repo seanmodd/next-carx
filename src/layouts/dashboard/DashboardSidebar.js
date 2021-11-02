@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 // next
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+
 // material
 import { alpha, styled } from '@mui/material/styles';
 import {
@@ -26,7 +27,6 @@ import NavSection from '../../components/NavSection';
 //
 import { MHidden } from '../../components/@material-extend';
 import sidebarConfig from './SidebarConfig';
-
 
 // ----------------------------------------------------------------------
 
@@ -58,8 +58,8 @@ IconCollapse.propTypes = {
 };
 
 function IconCollapse({ onToggleCollapse, collapseClick }) {
-      return (
-    <Tooltip title='Mini Menu'>
+  return (
+    <Tooltip title="Mini Menu">
       <CardActionArea
         onClick={onToggleCollapse}
         sx={{
@@ -102,7 +102,15 @@ DashboardSidebar.propTypes = {
 
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { pathname } = useRouter();
+  const { user, isAuthenticated } = useAuth();
+  console.log(
+    ' 📺📺📺📺📺📺📺📺 from DashboardSidebar.js, this is useAuth() which is from src/hooks/useAuth : ',
+    useAuth()
+  );
 
+  const endlink = !isAuthenticated
+    ? '/dashboard/user/register'
+    : 'dashboard/shop';
   const {
     isCollapse,
     collapseClick,
@@ -142,17 +150,17 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         }}
       >
         <Stack
-          direction='row'
-          alignItems='center'
-          justifyContent='space-between'
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
         >
-          <NextLink href='/'>
+          <NextLink href="/">
             <Box sx={{ display: 'inline-flex' }}>
               <Logo />
             </Box>
           </NextLink>
 
-          <MHidden width='lgDown'>
+          <MHidden width="lgDown">
             {!isCollapse && (
               <IconCollapse
                 onToggleCollapse={onToggleCollapse}
@@ -165,7 +173,8 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         {isCollapse ? (
           <MyAvatar />
         ) : (
-          <NextLink href='#'>
+          <NextLink href={endlink}>
+            {/* <NextLink href="#"> */}
             <AccountStyle>
               {/* <Avatar
                 alt='My Avatar'
@@ -173,11 +182,12 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
               /> */}
               <MyAvatar />
               <Box sx={{ ml: 2 }}>
-                <Typography variant='subtitle2' sx={{ color: 'text.primary' }}>
-                  displayName
+                <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
+                  {(isAuthenticated && user.displayName) || user.email}
+                  {!isAuthenticated && 'Guest User'}
                 </Typography>
-                <Typography variant='body2' sx={{ color: 'text.secondary' }}>
-                  role
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  {!isAuthenticated && 'Not signed in yet'}
                 </Typography>
               </Box>
             </AccountStyle>
@@ -200,7 +210,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         }),
       }}
     >
-      <MHidden width='lgUp'>
+      <MHidden width="lgUp">
         <Drawer
           open={isOpenSidebar}
           onClose={onCloseSidebar}
@@ -212,10 +222,10 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         </Drawer>
       </MHidden>
 
-      <MHidden width='lgDown'>
+      <MHidden width="lgDown">
         <Drawer
           open
-          variant='persistent'
+          variant="persistent"
           onMouseEnter={onHoverEnter}
           onMouseLeave={onHoverLeave}
           PaperProps={{
