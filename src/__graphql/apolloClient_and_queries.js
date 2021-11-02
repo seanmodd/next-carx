@@ -1,7 +1,7 @@
+//* Where there can be a process.env.NEXT_PUBLIC_STRAPI_FETCH variable on line 5 for the ApolloClient
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
 const client = new ApolloClient({
-  // uri: `${process.env.GATSBY_STRAPI_URL}/graphql`,
   uri: `https://admin.shopcarx.com/graphql`,
   cache: new InMemoryCache(),
 });

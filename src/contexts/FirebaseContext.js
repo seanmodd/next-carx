@@ -82,7 +82,7 @@ function AuthProvider({ children }) {
             // 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
           },
         };
-        const StrapiApiUrl = process.env.GATSBY_STRAPI_URL;
+
         if (user) {
           const docRef = firebase.firestore().collection('users').doc(user.uid);
           console.log(
@@ -107,7 +107,7 @@ function AuthProvider({ children }) {
           axios
             .post(
               // `http://localhost:1337/firebase/auth/`,
-              `http://${process.env.NEXT_PUBLIC_STRAPI_FETCH}`,
+              `${process.env.NEXT_PUBLIC_STRAPI_FETCH}`,
               {
                 token: user.Aa,
               },
