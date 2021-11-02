@@ -11,7 +11,10 @@ import { firebaseConfig } from '../config';
 const ADMIN_EMAILS = ['demo@minimals.cc'];
 
 if (!firebase.apps.length) {
-  console.log('THIS IS FIREBASE CONFIG', firebaseConfig);
+  console.log(
+    'THIS 🔨🔨🔨🔨🔨🔨🔨🔨 IS FIREBASE CONFIG from FirebaseContext.js :',
+    firebaseConfig
+  );
   firebase.initializeApp(firebaseConfig);
   firebase.firestore();
 }
@@ -85,7 +88,11 @@ function AuthProvider({ children }) {
           dispatch({
             type: 'INITIALISE',
             payload: { isAuthenticated: true, user },
-          });
+          }),
+            console.log(
+              ' 🚬🚬🚬🚬🚬🚬🚬🚬 This IS THE ALL IMPORTANT user from FirebaseContext.js inside the AuthProvider payload is as follows: ',
+              user
+            );
         } else {
           dispatch({
             type: 'INITIALISE',
@@ -97,7 +104,34 @@ function AuthProvider({ children }) {
   );
 
   const login = (email, password) =>
-    firebase.auth().signInWithEmailAndPassword(email, password);
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        console.log(
+          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user.uid from FirebaseContext.js is as follows: ',
+          result.user.uid
+        );
+        console.log(
+          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user.getIdTokenResult from FirebaseContext.js is as follows: ',
+          result.user.getIdTokenResult(true)
+        );
+        console.log(
+          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user.IdTokenResult from FirebaseContext.js is as follows: ',
+          result.user.IdTokenResult
+        );
+        console.log(
+          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user.token from FirebaseContext.js is as follows: ',
+          result.user.token
+        );
+        console.log(
+          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user.token from FirebaseContext.js is as follows: ',
+          result.user.token
+        );
+      })
+      .catch((error) => {
+        console.log('the error is as follows: ', error);
+      });
 
   const loginWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -130,6 +164,10 @@ function AuthProvider({ children }) {
             displayName: `${firstName} ${lastName}`,
           });
       });
+    console.log(
+      'This 💣💣💣💣💣💣💣💣💣 is register functions uid from "src/contexts/FirebaseContext.js : "',
+      uid
+    );
   };
 
   const logout = async () => {
