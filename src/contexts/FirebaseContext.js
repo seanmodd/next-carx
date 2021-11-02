@@ -72,6 +72,19 @@ function AuthProvider({ children }) {
   useEffect(
     () =>
       firebase.auth().onAuthStateChanged((user) => {
+        console.log(
+          'This is process.env.NEXT_PUBLIC_STRAPI_DEV : ',
+          process.env.NEXT_PUBLIC_STRAPI_DEV
+        );
+
+        console.log(
+          'This is process.env.NEXT_PUBLIC_STRAPI : ',
+          process.env.NEXT_PUBLIC_STRAPI
+        );
+        console.log(
+          'This is process.env.STRAPI_API : ',
+          process.env.STRAPI_API
+        );
         const axiosConfig = {
           headers: {
             'Content-Type': 'application/json;charset=UTF-8',
@@ -107,7 +120,8 @@ function AuthProvider({ children }) {
           axios
             .post(
               // `https://admin.shopcarx.com/firebase/auth/`,
-              `${process.env.NEXT_PUBLIC_STRAPI_FETCH}`,
+              `${process.env.NEXT_PUBLIC_STRAPI_DEV}`,
+              // `http://localhost:1337/firebase/auth`,
               {
                 token: user.Aa,
               },
