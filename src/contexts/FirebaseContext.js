@@ -25,12 +25,12 @@ const initialState = {
   user: null,
 };
 
-//! Below is similar to src/__gatsby/auth/SignUp
+//! Below is similar to src/__gatsby/auth/SignUp, copied and pasted from it here: https://github.com/seanmodd/next-carx/blob/9f07f4571b6070b262aa674c5c7d91efb7219047/src/__gatsby/auth/SignUp.js#L27-L30
 export const setUser = (user) => ({
   type: 'SET_USER',
   payload: { user },
 });
-//! Above is similar to src/__gatsby/auth/SignUp
+//! Above is similar to src/__gatsby/auth/SignUp, copied and pasted from it here: https://github.com/seanmodd/next-carx/blob/9f07f4571b6070b262aa674c5c7d91efb7219047/src/__gatsby/auth/SignUp.js#L27-L30
 
 const reducer = (state, action) => {
   if (action.type === 'INITIALISE') {
