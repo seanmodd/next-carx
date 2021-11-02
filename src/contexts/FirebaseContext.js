@@ -4,8 +4,11 @@ import { createContext, useEffect, useReducer, useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import axios from 'axios';
 import { firebaseConfig } from '../config';
-import axios from 'axios'
+
+// require('dotenv').config({ path: path.join(__dirname, '.env') });
+require('dotenv').config();
 
 // ----------------------------------------------------------------------
 
@@ -69,6 +72,17 @@ function AuthProvider({ children }) {
   useEffect(
     () =>
       firebase.auth().onAuthStateChanged((user) => {
+        const axiosConfig = {
+          headers: {
+            'Content-Type': 'application/json;charset=UTF-8',
+            // 'Access-Control-Allow-Origin': '*',
+            // 'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS, POST, PUT',
+            // 'Access-Control-Allow-Methods': 'POST',
+            // 'Access-Control-Allow-Headers':
+            // 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+          },
+        };
+        const StrapiApiUrl = process.env.GATSBY_STRAPI_URL;
         if (user) {
           const docRef = firebase.firestore().collection('users').doc(user.uid);
           console.log(
@@ -90,11 +104,22 @@ function AuthProvider({ children }) {
             type: 'INITIALISE',
             payload: { isAuthenticated: true, user },
           });
-          axios.post(`https://admin.shopcarx.com/firebase/auth/`, {token: user.Aa}).then(res => console.log("🎉🎉🎉🎉🎉🎉🎀🎀🎀🎀🎀🎀🎀 here is res: ", res)  ) 
-            console.log(
-              ' 🚬🚬🚬🚬🚬🚬🚬🚬 This IS THE ALL IMPORTANT user from FirebaseContext.js inside the AuthProvider payload is as follows: ',
-              user
+          axios
+            .post(
+              // `http://localhost:1337/firebase/auth/`,
+              `http://${process.env.NEXT_PUBLIC_STRAPI_FETCH}`,
+              {
+                token: user.Aa,
+              },
+              axiosConfig
+            )
+            .then((res) =>
+              console.log('🎉🎉🎉🎉🎉🎉🎀🎀🎀🎀🎀🎀🎀 here is res: ', res)
             );
+          console.log(
+            ' 🚬🚬🚬🚬🚬🚬🚬🚬 This IS THE ALL IMPORTANT user from FirebaseContext.js inside the AuthProvider payload is as follows: ',
+            user
+          );
         } else {
           dispatch({
             type: 'INITIALISE',
