@@ -67,6 +67,10 @@ function AuthProvider({ children }) {
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           const docRef = firebase.firestore().collection('users').doc(user.uid);
+          console.log(
+            ' 🚬🚬🚬🚬🚬🚬🚬🚬 docRef from FirebaseContext.js is as follows: ',
+            docRef
+          );
           docRef
             .get()
             .then((doc) => {
