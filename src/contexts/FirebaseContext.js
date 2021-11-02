@@ -21,6 +21,13 @@ const initialState = {
   user: null,
 };
 
+//! Below is similar to src/__gatsby/auth/SignUp
+export const setUser = (user) => ({
+  type: 'SET_USER',
+  payload: { user },
+});
+//! Above is similar to src/__gatsby/auth/SignUp
+
 const reducer = (state, action) => {
   if (action.type === 'INITIALISE') {
     const { isAuthenticated, user } = action.payload;
@@ -104,7 +111,7 @@ function AuthProvider({ children }) {
 
   const register = (email, password, firstName, lastName) => {
     console.log('got here');
-    return (firebase
+    return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
@@ -117,8 +124,8 @@ function AuthProvider({ children }) {
             email,
             displayName: `${firstName} ${lastName}`,
           });
-      }))
-    }
+      });
+  };
 
   const logout = async () => {
     await firebase.auth().signOut();

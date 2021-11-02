@@ -277,7 +277,7 @@ export default function Login({
       <Grid item container justifyContent="space-between">
         <Grid item>
           <IconButton onClick={navigateSignUp}>
-            <img src={addUserIcon.src} alt="sign up" />
+            {/* <img src={addUserIcon.src} alt="sign up" /> */}
           </IconButton>
         </Grid>
         <Grid

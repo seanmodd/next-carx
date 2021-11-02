@@ -1,3 +1,4 @@
+//* Account authentication must match this
 import { Icon, InlineIcon } from '@iconify/react';
 import facebookIcon from '@iconify/icons-simple-icons/facebook';
 
@@ -15,12 +16,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Fields from './Fields';
 import { EmailPassword } from './Login';
-import { setUser, setSnackbar } from '../contexts/actions';
+// import { setUser, setSnackbar } from '../contexts/actions';
+import { setSnackbar } from '../contexts/actions';
 
 // import addUserIcon from '../../images/add-user.svg';
 // import nameAdornment from '../../images/name-adornment.svg';
 // import forward from '../../images/forward-outline.svg';
 // import backward from '../../images/backwards-outline.svg';
+
+export const setUser = (user) => ({
+  type: 'SET_USER',
+  payload: { user },
+});
 
 const useStyles = makeStyles((theme) => ({
   addUserIcon: {
