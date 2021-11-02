@@ -114,19 +114,7 @@ function AuthProvider({ children }) {
         );
         console.log(
           ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user.getIdTokenResult from FirebaseContext.js is as follows: ',
-          result.user.getIdTokenResult(true)
-        );
-        console.log(
-          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user.IdTokenResult from FirebaseContext.js is as follows: ',
-          result.user.IdTokenResult
-        );
-        console.log(
-          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user.token from FirebaseContext.js is as follows: ',
-          result.user.token
-        );
-        console.log(
-          ' 🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜🪜 The result.user.token from FirebaseContext.js is as follows: ',
-          result.user.token
+          result.user.getIdTokenResult()
         );
       })
       .catch((error) => {
