@@ -172,32 +172,16 @@ export default function AccountPopover() {
           <>
             <Box sx={{ p: 2, pt: 1.5 }}>
               <Button
+                href="/dashboard/user/register"
+                component={MuiLink}
+                onClick={handleClose}
                 fullWidth
                 color="inherit"
                 variant="outlined"
-                onClick={handleRegister}
               >
-                Register
+                Quick Register Now!
               </Button>
             </Box>
-            <MenuItem
-              href="/dashboard/user/register"
-              component={MuiLink}
-              onClick={handleClose}
-              sx={{ typography: 'body2', py: 1, px: 2.5 }}
-            >
-              <Box
-                // component={Icon}
-                // icon={option.icon}
-                sx={{
-                  mr: 2,
-                  width: 24,
-                  height: 24,
-                }}
-              />
-
-              {option.label}
-            </MenuItem>
           </>
         )}
 

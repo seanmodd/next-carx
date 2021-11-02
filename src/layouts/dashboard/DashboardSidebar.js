@@ -1,3 +1,5 @@
+//* Account important!
+import useAuth from 'src/hooks/useAuth';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 // next
@@ -15,6 +17,7 @@ import {
   CardActionArea,
 } from '@mui/material';
 // hooks
+import MyAvatar from 'src/minimalComponents/MyAvatar';
 import useCollapseDrawer from '../../hooks/useCollapseDrawer';
 // components
 import Logo from '../../components/Logo';
@@ -23,6 +26,7 @@ import NavSection from '../../components/NavSection';
 //
 import { MHidden } from '../../components/@material-extend';
 import sidebarConfig from './SidebarConfig';
+
 
 // ----------------------------------------------------------------------
 
@@ -54,7 +58,7 @@ IconCollapse.propTypes = {
 };
 
 function IconCollapse({ onToggleCollapse, collapseClick }) {
-  return (
+      return (
     <Tooltip title='Mini Menu'>
       <CardActionArea
         onClick={onToggleCollapse}
@@ -159,18 +163,15 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
         </Stack>
 
         {isCollapse ? (
-          <Avatar
-            alt='My Avatar'
-            src='/static/mock-images/avatars/avatar_default.jpg'
-            sx={{ mx: 'auto', mb: 2 }}
-          />
+          <MyAvatar />
         ) : (
           <NextLink href='#'>
             <AccountStyle>
-              <Avatar
+              {/* <Avatar
                 alt='My Avatar'
                 src='/static/mock-images/avatars/avatar_default.jpg'
-              />
+              /> */}
+              <MyAvatar />
               <Box sx={{ ml: 2 }}>
                 <Typography variant='subtitle2' sx={{ color: 'text.primary' }}>
                   displayName
