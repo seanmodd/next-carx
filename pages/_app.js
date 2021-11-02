@@ -94,6 +94,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import MainLayout from 'src/layouts/main';
 import theme from '../theme';
 
+require('dotenv').config();
+
 const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
