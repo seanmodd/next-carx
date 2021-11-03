@@ -71,11 +71,11 @@ export default function MainNavbar() {
 
   useEffect(() => {
     console.log(
-      '🕺  🚀 ~ file: MainNavbar.js ~ line 68 ~ MainNavbar ~ router.asPath: ',
+      '🕺  🚀  From src/layouts/main/MainNavbar.js const router.asPath which is destructured from useRouter() import from "next/router" : ',
       router.asPath
     );
     console.log(
-      '😊  🚀 ~ file: MainNavbar.js ~ line 73 ~ MainNavbar ~ my activePathname',
+      '😊  🚀  From src/layouts/main/MainNavbar.js const activePathname which is equaled to router.asPath which is destructured from useRouter() import from "next/router" : ',
       activePathname
     );
   }, []);
