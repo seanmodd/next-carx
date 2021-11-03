@@ -100,7 +100,10 @@ const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-  console.log('🚀 ~ file: _app.js ~ line 90 ~ MyApp ~ props', props);
+  console.log(
+    'This is from _app.js, here is the props of the root function of the entire application: ',
+    props
+  );
 
   return (
     <HelmetProvider>
