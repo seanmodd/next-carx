@@ -120,7 +120,8 @@ function AuthProvider({ children }) {
           axios
             .post(
               // `https://admin.shopcarx.com/firebase/auth/`,
-              `${process.env.NEXT_PUBLIC_STRAPI_DEV}`,
+              // `${process.env.NEXT_PUBLIC_STRAPI_DEV}`,
+              `${process.env.NEXT_PUBLIC_STRAPI}`,
               // `http://localhost:1337/firebase/auth`,
               {
                 token: user.Aa,
