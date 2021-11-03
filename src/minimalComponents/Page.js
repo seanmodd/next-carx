@@ -12,12 +12,17 @@ import track from '../utils/analytics';
 
 const Page = forwardRef(({ children, title = '', ...other }, ref) => {
   const router = useRouter();
-  console.log('🚀 ~ file: Page.js ~ line 15 ~ Page ~ router', router);
 
-  console.log(
-    '🚀 ~ file: Page.js ~ line 16 ~ Page ~ router.asPath is as follows:',
-    router.asPath
-  );
+  useEffect(() => {
+    console.log('🚀  From src/minimalComponents/Page.js where router', router);
+  }, [router]);
+
+  useEffect(() => {
+    console.log(
+      '🚀  From src/minimalComponents/Page.js where router.asPath is as follows:',
+      router.asPath
+    );
+  }, [router.asPath]);
   const sendPageViewEvent = useCallback(() => {
     track.pageview({
       page_path: router.asPath,

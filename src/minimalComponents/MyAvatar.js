@@ -1,6 +1,7 @@
 //* Account Avatar
 // hooks
 //* useAuth comes from Firebase
+import { useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
 //
 import { MAvatar } from './@material-extend';
@@ -11,25 +12,29 @@ import createAvatar from '../utils/createAvatar';
 export default function MyAvatar({ ...other }) {
   const { user, isAuthenticated } = useAuth();
 
-  console.log(
-    ' 💾💾💾💾💾💾💾💾💾💾 This is the user from useAuth() hook within minimalComponents/MyAvatar.js : ',
-    user
-  );
-  {
-    !user.email === undefined &&
-      console.log(
-        '☎️☎️☎️☎️☎️☎️☎️☎️☎️☎️ This is the user.email from MyAvatar.js when we have !user.email === undefined:',
-        user.email
-      );
-  }
-  {
-    user.email === undefined &&
-      console.log(
-        '☎️☎️☎️☎️☎️☎️☎️☎️☎️☎️ This is the user.email from MyAvatar.js when we have user.email ==== undefined :',
-        user.email
-      );
-  }
+  useEffect(() => {
+    console.log(
+      ' 💾💾💾💾💾💾💾💾💾💾 This is the user from useAuth() hook within minimalComponents/MyAvatar.js : ',
+      user
+    );
+  }, [user]);
 
+  useEffect(() => {
+    {
+      !user.email === undefined &&
+        console.log(
+          '☎️☎️☎️☎️☎️☎️☎️☎️☎️☎️ This is the user.email from MyAvatar.js when we have !user.email === undefined:',
+          user.email
+        );
+    }
+    {
+      user.email === undefined &&
+        console.log(
+          '☎️☎️☎️☎️☎️☎️☎️☎️☎️☎️ This is the user.email from MyAvatar.js when we have user.email ==== undefined :',
+          user.email
+        );
+    }
+  }, [user]);
   return (
     <>
       {isAuthenticated && (

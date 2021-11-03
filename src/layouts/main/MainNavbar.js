@@ -67,16 +67,19 @@ export default function MainNavbar() {
   // const [activePathname, setActivePathname] = useState('');
 
   const router = useRouter();
-  console.log(
-    '🕺  🚀 ~ file: MainNavbar.js ~ line 68 ~ MainNavbar ~ router.asPath: ',
-    router.asPath
-  );
-
   const activePathname = router.asPath;
-  console.log(
-    '😊  🚀 ~ file: MainNavbar.js ~ line 73 ~ MainNavbar ~ my activePathname',
-    activePathname
-  );
+
+  useEffect(() => {
+    console.log(
+      '🕺  🚀 ~ file: MainNavbar.js ~ line 68 ~ MainNavbar ~ router.asPath: ',
+      router.asPath
+    );
+    console.log(
+      '😊  🚀 ~ file: MainNavbar.js ~ line 73 ~ MainNavbar ~ my activePathname',
+      activePathname
+    );
+  }, []);
+
   // create pathname with router
 
   // useEffect(() => {

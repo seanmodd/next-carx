@@ -1,7 +1,7 @@
 //* Account Credentials Stuff
 import { Icon } from '@iconify/react';
 import { useSnackbar } from 'notistack';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import homeFill from '@iconify/icons-eva/home-fill';
 import personFill from '@iconify/icons-eva/person-fill';
 import settings2Fill from '@iconify/icons-eva/settings-2-fill';
@@ -74,7 +74,12 @@ export default function AccountPopover() {
   const { enqueueSnackbar } = useSnackbar();
   const isMountedRef = useIsMountedRef();
   const { user, logout, isAuthenticated } = useAuth();
-  console.log('🥳🥳 isAuthenticated from AccountPopover.js: ', isAuthenticated);
+  useEffect(() => {
+    console.log(
+      '🥳🥳 From src/layouts/dashboard/AccountPopover.js, this is isAuthenticated destructured from useAuth() hook imported from src/hooks/useAuth : ',
+      isAuthenticated
+    );
+  }, [isAuthenticated]);
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {

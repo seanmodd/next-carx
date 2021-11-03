@@ -103,10 +103,18 @@ DashboardSidebar.propTypes = {
 export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   const { pathname } = useRouter();
   const { user, isAuthenticated } = useAuth();
-  console.log(
-    ' 📺📺📺📺📺📺📺📺 from DashboardSidebar.js, this is useAuth() which is from src/hooks/useAuth : ',
-    useAuth()
-  );
+  const theAuth = useAuth();
+  // console.log(
+  //   ' 📺📺📺📺📺📺📺📺 from DashboardSidebar.js, this is useAuth() which is from src/hooks/useAuth : ',
+  //   useAuth()
+  // );
+
+  useEffect(() => {
+    console.log(
+      ' 📺📺📺📺📺📺📺📺 from DashboardSidebar.js, this is useAuth() which is from src/hooks/useAuth : ',
+      theAuth
+    );
+  }, []);
 
   const endlink = !isAuthenticated
     ? '/dashboard/user/register'
