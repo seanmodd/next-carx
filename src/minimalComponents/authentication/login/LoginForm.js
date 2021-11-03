@@ -138,7 +138,7 @@ export default function LoginForm() {
           <Link
             component={RouterLink}
             variant="subtitle2"
-            href={PATH_AUTH.resetPassword}
+            href="/dashboard/user/reset-password"
           >
             Forgot password?
           </Link>
