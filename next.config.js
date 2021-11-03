@@ -1,3 +1,5 @@
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
+
 module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
@@ -12,5 +14,11 @@ module.exports = {
     }
 
     return config;
+  },
+  resolve: {
+    plugins: [PnpWebpackPlugin],
+  },
+  resolveLoader: {
+    plugins: [PnpWebpackPlugin.moduleLoader(module)],
   },
 };
