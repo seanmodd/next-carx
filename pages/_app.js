@@ -131,7 +131,7 @@ export default function MyApp(props) {
                             <NotistackProvider>
                               <GlobalStyles />
                               <ProgressBar />
-                              {/* <LoadingScreen /> */}
+                              <LoadingScreen />
                               <BaseOptionChartStyle />
                               <GoogleAnalytics />
                               <UserWrapper>
